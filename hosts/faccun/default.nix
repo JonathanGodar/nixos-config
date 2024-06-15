@@ -111,6 +111,8 @@
 	syntaxHighlighting.enable = true;
   };
 
+  users.defaultUserShell = pkgs.zsh;
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

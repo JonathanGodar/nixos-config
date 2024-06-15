@@ -17,9 +17,6 @@
 		go
 	];
 
-	programs.fzf = {
-		enable = true;
-	};
 
 	programs.zsh = {
 		enable = true;
@@ -47,11 +44,20 @@
 		# Case insensitive completion 
 		zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+		# Make the keybindings work better (Problems with zsh-vi-mode). Solved by forcing vi mode to instantly activate
+		ZVM_INIT_MODE=sourcing
+
+
 		# Supposed to make the <Ctrl-P> and N shortcuts "prefix sensitive"
 		# bindkey '^p' history-search-backward
 		# bindkey '^n' history-search-forward
 		'';
 
+	};
+
+	programs.fzf = {
+		enable = true;
+		enableZshIntegration = true;
 	};
 
 	programs.git = {

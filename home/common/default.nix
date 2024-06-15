@@ -33,24 +33,30 @@
 
 		plugins = [
 			{
-				# https://discourse.nixos.org/t/zsh-users-how-do-you-manage-plugins/9199/8
-				name = "zsh-vi-mode";
-				src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+			 	# https://discourse.nixos.org/t/zsh-users-how-do-you-manage-plugins/9199/8
+			 	name = "zsh-vi-mode";
+			 	src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+			}
+			{
+				name = "fzf-tab";
+				src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+
 			}
 		];
+		initExtraFirst = ''
+# Make it so that zsh-vi-mode does not override any later keybinding configurations
+ZVM_INIT_MODE=sourcing
+'';
 
 		initExtra = 
 		''
-		# Case insensitive completion 
-		zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Case insensitive completion 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no 
 
-		# Make the keybindings work better (Problems with zsh-vi-mode). Solved by forcing vi mode to instantly activate
-		ZVM_INIT_MODE=sourcing
-
-
-		# Supposed to make the <Ctrl-P> and N shortcuts "prefix sensitive"
-		# bindkey '^p' history-search-backward
-		# bindkey '^n' history-search-forward
+# Supposed to make the <Ctrl-P> and N shortcuts "prefix sensitive"
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 		'';
 
 	};

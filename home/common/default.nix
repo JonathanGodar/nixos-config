@@ -15,6 +15,10 @@
 	home.packages = with pkgs; [
 		alacritty
 		go
+
+		dust # Analyze disk usage
+		tldr # "man" in short form
+		lazygit
 	];
 
 
@@ -27,6 +31,7 @@
 
 		shellAliases = {
 			lsa = "ls -la";
+			lz = "lazygit";
 			cd = "z";
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
 		};

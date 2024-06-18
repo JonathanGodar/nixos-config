@@ -56,7 +56,7 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    variant = "nodeadkeys";
+    	variant = "nodeadkeys";
     	layout = "se";
   };
 
@@ -81,6 +81,28 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+# This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
+#  services.pipewire.wireplumber.extraConfig = {
+#    	"monitor.alsa.rules" = [
+#   {
+#     "matches" = [
+#       {
+# 	"node.name" = "~alsa_input.*";
+#       }
+#       {
+# 	"node.name" = "~alsa_output.*";
+#       }
+#     ];
+#     actions = {
+#       "update-props" = {
+# 	"session.suspend-timeout-seconds" = 0;
+#       };
+#     };
+#   }
+# ];
+#
+#    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -163,5 +185,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+	fonts.packages = with pkgs; [
+		nerdfonts
+	];
 
 }

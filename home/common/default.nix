@@ -1,7 +1,11 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, catppuccin, inputs, ...}:
 {
 	home.username = "jonathan";
 	home.homeDirectory = "/home/jonathan";
+	
+	catppuccin = {
+		enable = true;
+	};
 
 	programs.starship = {
 		enable = true;
@@ -12,8 +16,11 @@
 
 	programs.home-manager.enable = true;
 
+	programs.alacritty.enable  = true;
+	programs.bat.enable  = true;
+
+
 	home.packages = with pkgs; [
-		alacritty
 		go
 
 		dust # Analyze disk usage
@@ -22,7 +29,6 @@
 
 		fd
 		ripgrep
-		bat
 
 		discord
 		vesktop
@@ -34,9 +40,9 @@
 		enable = true;
 
 		shortcut = "Space";
-		plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator catppuccin];
+		plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator inputs.tmuxSessionX.packages."x86_64-linux".default ];
 
-		terminal = "screen-256color";
+		terminal = "xterm-256color";
 		mouse = true;
 
 		extraConfig = ''

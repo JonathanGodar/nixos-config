@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, catppuccin, ... }:
 
 {
   imports =
@@ -17,6 +17,8 @@
 
 	timeout = 1;
   };
+
+  catppuccin.enable = true;
 
   networking.hostName = "faccun"; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

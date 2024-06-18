@@ -5,13 +5,15 @@
 	nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 	catppuccin.url = "github:catppuccin/nix";
 
-
 	home-manager = {
 		url = "github:nix-community/home-manager";
 		inputs.nixpkgs.follows = "nixpkgs";
-
 	};
-  	# nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+	tmuxSessionX = {
+		url = "github:omerxx/tmux-sessionx";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
   };
 
   outputs = { self, nixpkgs, home-manager, catppuccin, ...}@inputs: {
@@ -24,6 +26,9 @@
 			home-manager.nixosModules.home-manager {
 				home-manager.useGlobalPkgs = true;
 				home-manager.useUserPackages = true;
+				home-manager.extraSpecialArgs = { inherit inputs; };
+
+
 
 				home-manager.users.jonathan = {
 					imports = [

@@ -3,10 +3,6 @@
 	home.username = "jonathan";
 	home.homeDirectory = "/home/jonathan";
 	
-	catppuccin = {
-		enable = true;
-	};
-
 	programs.starship = {
 		enable = true;
 		enableZshIntegration = true;
@@ -19,13 +15,26 @@
 	programs.alacritty.enable  = true;
 	programs.bat.enable  = true;
 
+	gtk.catppuccin.enable = true;
+	programs.alacritty.catppuccin.enable = true;
+	programs.bat.catppuccin.enable = true;
+	programs.btop.catppuccin.enable = true;
+	programs.fzf.catppuccin.enable = true;
+	programs.git.delta.catppuccin.enable = true;
+	programs.helix.catppuccin.enable = true;
+	programs.lazygit.catppuccin.enable = true;
+	programs.lazygit.enable = true;
+	programs.neovim.enable = true;
+	programs.starship.catppuccin.enable = true;
+	programs.tmux.catppuccin.enable = true;
+	programs.zsh.syntaxHighlighting.catppuccin.enable = true; 
+	qt.style.catppuccin.enable = true;
 
 	home.packages = with pkgs; [
 		go
 
 		dust # Analyze disk usage
 		tldr # "man" in short form
-		lazygit
 
 		fd
 		ripgrep
@@ -83,13 +92,13 @@
 		'';
 	};
 
-
 	programs.zsh = {
 		enable = true;
 		enableCompletion = true;
 
 		autosuggestion.enable = true;
-		syntaxHighlighting.enable = true;
+		# Already enabled above when setting catppuccin
+		# syntaxHighlighting.enable = true;
 
 		history = {
 			size=100000;

@@ -12,7 +12,13 @@
 
 	programs.home-manager.enable = true;
 
-	programs.alacritty.enable  = true;
+	programs.alacritty = {
+		enable  = true;
+		settings = {
+			window.decorations = "None";
+			shell.program = "tmux";
+		};
+	};
 	programs.bat.enable  = true;
 
 	gtk.catppuccin.enable = true;
@@ -27,7 +33,7 @@
 	programs.neovim.enable = true;
 	programs.starship.catppuccin.enable = true;
 	programs.tmux.catppuccin.enable = true;
-	programs.zsh.syntaxHighlighting.catppuccin.enable = true; 
+	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
 	qt.style.catppuccin.enable = true;
 
 	home.packages = with pkgs; [

@@ -35,6 +35,7 @@
 
 		dust # Analyze disk usage
 		tldr # "man" in short form
+		gh #Github cli tool
 
 		fd
 		ripgrep

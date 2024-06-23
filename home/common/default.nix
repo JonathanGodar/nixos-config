@@ -168,6 +168,11 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 		enable = true;
 		userName = "Jonathan Niklasson Godar";
 		userEmail = "jonathan.godar@hotmail.com";
+
+    extraConfig = {
+      diff.tool = "nvimdiffview";
+      difftool.nvimdiffview.cmd = "nvim -c 'DiffviewOpen' -- $LOCAL $REMOTE";
+    }; 
 	};
 
 	programs.zoxide.enable = true;

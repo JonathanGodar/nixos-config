@@ -15,7 +15,10 @@
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-	mynvim.url = "github:JonathanGodar/nvim-nix";
+	mynvim = {
+    url = "github:JonathanGodar/nvim-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 };
 
   outputs = { self, nixpkgs, home-manager, catppuccin, mynvim, ...}@inputs: {

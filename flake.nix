@@ -14,14 +14,19 @@
 		url = "github:omerxx/tmux-sessionx";
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
-  };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, ...}@inputs: {
+	mynvim.url = "github:JonathanGodar/nvim-nix";
+};
+
+  outputs = { self, nixpkgs, home-manager, catppuccin, mynvim, ...}@inputs: {
   	nixosConfigurations.faccun = nixpkgs.lib.nixosSystem {
 		system = "x86_64-linux";
+		specialArgs = { inherit mynvim; };
+
 		modules = [
 			catppuccin.nixosModules.catppuccin
 			./hosts/faccun
+			./overlays
 
 			home-manager.nixosModules.home-manager {
 				home-manager.useGlobalPkgs = true;

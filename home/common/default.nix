@@ -30,7 +30,9 @@
 	programs.helix.catppuccin.enable = true;
 	programs.lazygit.catppuccin.enable = true;
 	programs.lazygit.enable = true;
-	programs.neovim.enable = true;
+
+	# programs.neovim.enable = true;
+
 	programs.starship.catppuccin.enable = true;
 	programs.tmux.catppuccin.enable = true;
 	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
@@ -49,6 +51,8 @@
 		discord
 		vesktop
 		mattermost-desktop
+
+		nvim-pkg
 	];
 
 
@@ -58,7 +62,7 @@
 		shortcut = "Space";
 		plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator inputs.tmuxSessionX.packages."x86_64-linux".default ];
 
-		terminal = "xterm-256color";
+		terminal = "screen-256color";
 		mouse = true;
 
 		extraConfig = ''

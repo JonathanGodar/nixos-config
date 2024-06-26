@@ -31,6 +31,32 @@
 	programs.lazygit.catppuccin.enable = true;
 	programs.lazygit.enable = true;
 
+	programs.waybar.catppuccin.enable = true;
+	programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar =  {
+        modules-left = [ "hyprland/workspaces" "hyprland/mode" "wlr/taskbar" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [ "mpd" "temperature" ];
+      };
+    };
+		#     "hyprland/workspaces": {
+		#       "disable-scroll": true,
+		# "format": "{name} {icon}",
+		# "format-icons": {
+		# 	"active": " ",
+		# 	"default": " "
+		# },
+		#       "persistent_workspaces": {
+		#           "1": [],
+		#           "2": [],
+		#           "3": [],
+		#           "4": [],
+		#       },
+		#   },
+  };
+
 	# programs.neovim.enable = true;
 
 	programs.starship.catppuccin.enable = true;
@@ -51,6 +77,10 @@
 		discord
 		vesktop
 		mattermost-desktop
+    
+    tofi
+
+    pavucontrol # Needed for waybar
 
 		nvim-pkg
 	];
@@ -99,8 +129,7 @@
 		bind-key % split-window -h -c "#{pane_current_path}"
 
 		# New panes split vertically in the same directory as the current pane
-		bind-key '"' split-window -v -c "#{pane_current_path}"
-		'';
+		bind-key '"' split-window -v -c "#{pane_current_path}" '';
 	};
 
 	programs.zsh = {
@@ -176,4 +205,59 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 	};
 
 	programs.zoxide.enable = true;
+
+  wayland.windowManager.hyprland.catppuccin.enable = true;
+  wayland.windowManager.hyprland.enable = true;
+
+  wayland.windowManager.hyprland.settings = {
+    exec-once = "waybar";
+
+    input = {
+      kb_layout = "se";
+      kb_variant = "nodeadkeys";
+    };
+
+    monitor = [
+      "DP-1, 1920x1080@144, 0x0, 1"
+      "DP-2, 1920x1080@144, 1920x0, 1"
+    ];
+
+    "$mod" = "SUPER";
+    bind =
+      [
+        "SUPER, B, exec, firefox"
+        "$mod, Return, exec, alacritty"
+        "SUPER_SHIFT, c, killactive"
+
+        ", Print, exec, grimblast copy area"
+
+        # HJKL to move windows
+        "$mod, h, movefocus, l"
+        "$mod, j, movefocus, d"
+        "$mod, k, movefocus, u"
+        "$mod, l, movefocus, r"
+
+        "SUPER_SHIFT, h, swapwindow, l"
+        "SUPER_SHIFT, j, swapwindow, d"
+        "SUPER_SHIFT, k, swapwindow, u"
+        "SUPER_SHIFT, l, swapwindow, r"
+
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (builtins.genList (
+            x: let
+              ws = let
+                c = (x + 1) / 10;
+              in
+                builtins.toString (x + 1 - (c * 10));
+            in [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          )
+          10)
+      );
+  };
 }

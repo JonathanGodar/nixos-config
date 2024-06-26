@@ -227,6 +227,15 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
       "Unknown-1, disable"
     ];
 
+    workspace = [
+      "8, monitor:DP-1,default:true"
+      "9, monitor:DP-1"
+      "10, monitor:DP-1"
+      # "2, border:false"
+      # "r[1-7], monitor:$MAIN_MONITOR"
+      # "r[8-10], monitor:$OTHER_MONITOR"
+    ];
+
 
     bind =
       [
@@ -236,16 +245,20 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
         ", Print, exec, grimblast copy area"
 
-        # HJKL to move windows
+        # HJKL to switch active window
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
 
+        # HJKL to move active window position
         "SUPER_SHIFT, h, swapwindow, l"
         "SUPER_SHIFT, j, swapwindow, d"
         "SUPER_SHIFT, k, swapwindow, u"
         "SUPER_SHIFT, l, swapwindow, r"
+
+        "SUPER, f, fullscreen, 0"
+        "SUPER, m, fullscreen, 1"
 
       ]
       ++ (

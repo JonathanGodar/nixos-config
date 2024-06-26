@@ -217,12 +217,17 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
       kb_variant = "nodeadkeys";
     };
 
+    "$mod" = "SUPER";
+    "$MAIN_MONITOR" = "DP-2";
+    "$OTHER_MONITOR" = "DP-1";
+
     monitor = [
-      "DP-1, 1920x1080@144, 0x0, 1"
-      "DP-2, 1920x1080@144, 1920x0, 1"
+      "$OTHER_MONITOR, 1920x1080@144, 0x0, 1"
+      "$MAIN_MONITOR, 1920x1080@144, 1920x0, 1"
+      "Unknown-1, disable"
     ];
 
-    "$mod" = "SUPER";
+
     bind =
       [
         "SUPER, B, exec, firefox"

@@ -21,6 +21,8 @@
 	};
 	programs.bat.enable  = true;
 
+  catppuccin.enable = true;
+
 	gtk.catppuccin.enable = true;
 	programs.alacritty.catppuccin.enable = true;
 	programs.bat.catppuccin.enable = true;

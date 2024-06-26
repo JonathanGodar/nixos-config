@@ -52,7 +52,13 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
+  # Music player daemon
   services.mpd.enable = true;
+
+  xdg.portal = { 
+    enable = true; 
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;

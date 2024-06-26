@@ -85,6 +85,9 @@
     pavucontrol # Needed for waybar
 
 		nvim-pkg
+    
+    # lxqt.lxqt-policykit
+    kdePackages.polkit-kde-agent-1
 	];
 
 
@@ -215,8 +218,21 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
   wayland.windowManager.hyprland.catppuccin.enable = true;
   wayland.windowManager.hyprland.enable = true;
 
+
+  services.dunst = {
+    enable = true;
+    catppuccin.enable = true;
+  };
+
   wayland.windowManager.hyprland.settings = {
-    exec-once = "waybar";
+    exec-once = [
+      "waybar"
+      "dunst"
+      "dbus-update-activation-environment --systemd --all"
+      "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
+      "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
+      # "lxqt.lxqt-policykit"
+    ];
 
     input = {
       kb_layout = "se";

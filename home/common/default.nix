@@ -1,5 +1,27 @@
 { config, pkgs, lib, catppuccin, inputs, ...}:
+let
+      focusApp = windowClass: failLaunch: "${lib.getExe focusScript} ${windowClass} ${failLaunch}";
+      focusScript = pkgs.writeShellApplication {
+        name = "focusWindow";
+        runtimeInputs = with pkgs; [jq hyprland tofi ripgrep];
+        text = builtins.readFile ./../focusWindow.sh;
+      };
+
+      # chatGptScript = pkgs.writeShellApplication {
+      #   name = "chatGpt";
+      #   runtimeInputs = with pkgs; [hyprland brave];
+      #   text = builtins.readFile ./../chatgpt.sh;
+      # };
+
+      navigateOpenWindows = pkgs.writeShellApplication {
+        name = "navigateOpenWindows";
+        runtimeInputs = with pkgs; [jq hyprland tofi focusScript ];
+        text = builtins.readFile ./../navigateOpenWindows.sh;
+      };
+    in
 {
+  imports = [ inputs.anyrun.homeManagerModules.default ];
+
 	home.username = "jonathan";
 	home.homeDirectory = "/home/jonathan";
 	
@@ -13,17 +35,43 @@
 	programs.home-manager.enable = true;
 
 	programs.alacritty = {
-		enable  = true;
-		settings = {
+		enable  = true; settings = {
 			window.decorations = "None";
 			shell.program = "tmux";
+      font.normal = {
+        family = "JetBrains Mono Nerd Font";
+        style = "Medium";
+      };
+      font.bold = {
+        family = "JetBrains Mono Nerd Font";
+        style = "Bold";
+      };
+      font.italic= {
+        family = "JetBrains Mono Nerd Font";
+        style = "MediumItalic";
+      };
+      font.bold_italic= {
+        family = "JetBrains Mono Nerd Font";
+        style = "BoldItalic";
+      };
 		};
 	};
 	programs.bat.enable  = true;
 
+  programs.anyrun = {
+    enable = true;
+    config = {
+      layer = "overlay";
+      plugins = with inputs.anyrun.packages.${pkgs.system}; [ applications rink shell symbols websearch stdin];
+    };
+    # package = inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
+  };
+
   catppuccin.enable = true;
 
-	gtk.catppuccin.enable = true;
+	# gtk.catppuccin.enable = true;
+	# gtk.enable = true;
+
 	programs.alacritty.catppuccin.enable = true;
 	programs.bat.catppuccin.enable = true;
 	programs.btop.catppuccin.enable = true;
@@ -40,16 +88,9 @@
       mainBar =  {
         modules-left = [ "hyprland/workspaces" "hyprland/mode" "wlr/taskbar" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "mpd" "temperature" ];
+        modules-right = [ "mpd" "bluetooth" "tray" "pulseaudio" "wireplumber" ];
       };
     };
-		#     "hyprland/workspaces": {
-		#       "disable-scroll": true,
-		# "format": "{name} {icon}",
-		# "format-icons": {
-		# 	"active": " ",
-		# 	"default": " "
-		# },
 		#       "persistent_workspaces": {
 		#           "1": [],
 		#           "2": [],
@@ -64,6 +105,8 @@
 	programs.starship.catppuccin.enable = true;
 	programs.tmux.catppuccin.enable = true;
 	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
+
+  # qt.enable = true;
 	qt.style.catppuccin.enable = true;
 
 	home.packages = with pkgs; [
@@ -74,21 +117,52 @@
 		gh #Github cli tool
 
 		fd
-		ripgrep
+    jq
+    ripgrep
 
-		discord
+    # Needed to make the desktopEntries
+    xdg-utils
+
+    navigateOpenWindows
+
+    chromium
+    webcord
 		vesktop
 		mattermost-desktop
+
+    xfce.thunar
+    rnote
+    sioyek
+    
+    grim
+    slurp
+    tesseract
+    wl-clipboard
+    cliphist
     
     tofi
 
     pavucontrol # Needed for waybar
 
 		nvim-pkg
+    gimp
     
     # lxqt.lxqt-policykit
     kdePackages.polkit-kde-agent-1
 	];
+
+  xdg.desktopEntries.ocrcopy =
+  let 
+    copy-script = pkgs.writeShellApplication {
+      name = "ocrcopy";
+      runtimeInputs = with pkgs; [ grim slurp tesseract wl-clipboard ];
+      text = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
+    };
+  in
+  {
+    name = "OCR copy screen area";
+    exec = "${lib.getExe copy-script}";
+  };
 
 
 	programs.tmux = {
@@ -218,6 +292,14 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
   wayland.windowManager.hyprland.catppuccin.enable = true;
   wayland.windowManager.hyprland.enable = true;
 
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = "${./../../wallpapers/nix.png}";
+      wallpaper = ",${./../../wallpapers/nix.png}";
+    };
+  };
+
 
   services.dunst = {
     enable = true;
@@ -225,13 +307,19 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
   };
 
   wayland.windowManager.hyprland.settings = {
+  windowrulev2 = "workspace special:Chat, initialtitle:^(chatgpt\.com_/)$";
+#     windowrulev2 = float,class:(qalculate-gtk)
+# windowrulev2 = workspace special:calculator,class:(qalculate-gtk)
+# bind = SUPER, Q, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || qalculate-gtk &
     exec-once = [
       "waybar"
       "dunst"
       "dbus-update-activation-environment --systemd --all"
       "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
       "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
-      # "lxqt.lxqt-policykit"
+
+      "wl-paste --type text --watch cliphist store" # Make text available in clipboard history
+      "wl-paste --type image --watch cliphist store" # Make images available in clipboard history
     ];
 
     input = {
@@ -250,6 +338,15 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
     ];
 
     workspace = [
+      # TODO use range selectors instead
+      "1, monitor:DP-2,default:true"
+      "2, monitor:DP-2"
+      "3, monitor:DP-2"
+      "4, monitor:DP-2"
+      "5, monitor:DP-2"
+      "6, monitor:DP-2"
+      "7, monitor:DP-2"
+
       "8, monitor:DP-1,default:true"
       "9, monitor:DP-1"
       "10, monitor:DP-1"
@@ -258,13 +355,29 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
       # "r[8-10], monitor:$OTHER_MONITOR"
     ];
 
+    
+    # options.xdg.desktopEntries = {
+    #   ocr-copy = {
+    #     name = "ocr screen copy";
+    #     exec = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
+    #   };
+    # };
 
-    bind =
-      [
+
+    bind = [
+        "SUPER, g, exec, bash ${./../chatgpt.sh}" # hyprctl dispatch togglespecialworkspace Chat" # pgrep -f -- \"--app=https://chatgpt.com\" && hyprctl dispatch togglespecialworkspace Chat || brave --app \"https://chatgpt.com\" &"
+        "SUPER_SHIFT, B, exec, ${focusApp "firefox" "firefox"}"
         "SUPER, B, exec, firefox"
-        "$mod, Return, exec, alacritty"
-        "SUPER_SHIFT, c, killactive"
 
+        "$mod, Return, exec, alacritty"
+        "SUPER_SHIFT, Return, exec, ${focusApp "Alacritty" "alacritty"}"
+
+        "SUPER_SHIFT, c, killactive"
+        "SUPER_SHIFT, q, exec, bash ${./../powerMenu.sh}"
+
+        "SUPER, s, exec, ${focusApp "sioyek" "sioyek"}"
+        "SUPER, n, exec, ${focusApp "com.github.flxzt.rnote" "rnote"}"
+        "SUPER, o, exec, ${lib.getExe navigateOpenWindows}"
         ", Print, exec, grimblast copy area"
 
         # HJKL to switch active window
@@ -273,11 +386,19 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
 
+        "$mod, SPACE, exec, anyrun"
+
         # HJKL to move active window position
-        "SUPER_SHIFT, h, swapwindow, l"
-        "SUPER_SHIFT, j, swapwindow, d"
-        "SUPER_SHIFT, k, swapwindow, u"
-        "SUPER_SHIFT, l, swapwindow, r"
+        "SUPER_ALT, h, swapwindow, l"
+        "SUPER_ALT, j, swapwindow, d"
+        "SUPER_ALT, k, swapwindow, u"
+        "SUPER_ALT, l, swapwindow, r"
+
+        # View clipboard history
+        "SUPER, V, exec, cliphist list | tofi | cliphist decode | wl-copy"
+
+        # Copy screen selection as image
+        ",Print, exec, grim -g \"$(slurp)\" - | wl-copy"  #grim -g \"$(slurp)\ | wl-copy"
 
         "SUPER, f, fullscreen, 0"
         "SUPER, m, fullscreen, 1"
@@ -299,5 +420,15 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
           )
           10)
       );
+      binde = [
+        "SUPER_SHIFT, h, resizeactive, -20 0"
+        "SUPER_SHIFT, j, resizeactive, 0 20"
+        "SUPER_SHIFT, k, resizeactive, 0 -20"
+        "SUPER_SHIFT, l, resizeactive, 20 0"
+
+        # Raise and lower volume
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
   };
 }

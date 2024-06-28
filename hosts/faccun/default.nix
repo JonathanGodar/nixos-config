@@ -21,6 +21,22 @@
   catppuccin.enable = true;
 
   networking.hostName = "faccun"; 
+
+    nix.settings = {
+      builders-use-substitutes = true;
+      # extra substituters to add
+      extra-substituters = [
+          "https://anyrun.cachix.org"
+      ];
+
+      extra-trusted-public-keys = [
+          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      ];
+    };
+
+  # Enables wayland support for chromium and electron based apps 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -59,6 +75,8 @@
     enable = true; 
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  xdg.mime.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -134,7 +152,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.hyprland = {
+  programs.hyprland = { # Required for hyprland to work
     enable = true;
     xwayland.enable = true;
   };

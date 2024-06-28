@@ -7,6 +7,10 @@ let
         text = builtins.readFile ./../focusWindow.sh;
       };
 
+      listOfWallpapers = ''
+        ${inputs.catppuccin-wallpaper-repo}/landscapes/forrest.png
+      '';
+
       # chatGptScript = pkgs.writeShellApplication {
       #   name = "chatGpt";
       #   runtimeInputs = with pkgs; [hyprland brave];
@@ -105,6 +109,7 @@ let
 	programs.starship.catppuccin.enable = true;
 	programs.tmux.catppuccin.enable = true;
 	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
+
 
   # qt.enable = true;
 	qt.style.catppuccin.enable = true;

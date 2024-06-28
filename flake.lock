@@ -37,6 +37,22 @@
         "type": "github"
       }
     },
+    "catppuccin-wallpaper-repo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661293434,
+        "narHash": "sha256-h+cFlTXvUVJPRMpk32jYVDDhHu1daWSezFcvhJqDpmU=",
+        "owner": "zhichaoh",
+        "repo": "catppuccin-wallpapers",
+        "rev": "1023077979591cdeca76aae94e0359da1707a60e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhichaoh",
+        "repo": "catppuccin-wallpapers",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -238,6 +254,7 @@
       "inputs": {
         "anyrun": "anyrun",
         "catppuccin": "catppuccin",
+        "catppuccin-wallpaper-repo": "catppuccin-wallpaper-repo",
         "home-manager": "home-manager",
         "mynvim": "mynvim",
         "nixpkgs": "nixpkgs_2",

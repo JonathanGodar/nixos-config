@@ -3,7 +3,7 @@ Power off
 Reboot
 EOM)
 
-chosen=$(echo "$options" | tofi)
+chosen=$(echo "$options" | rofi -dmenu)
 
 if [[ "$chosen" == "Power off" ]]; then
   shutdown now

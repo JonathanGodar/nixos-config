@@ -153,6 +153,14 @@ let
 
     nix-direnv.enable = true;
   };
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+  };
+
+
+
 	home.packages = with pkgs; [
 		go
 
@@ -166,6 +174,7 @@ let
 		fd
     jq
     ripgrep
+    fuzzel
 
     # Needed to make the desktopEntries
     xdg-utils
@@ -434,7 +443,9 @@ export MANPAGER='nvim +Man!'
         "SUPER_SHIFT, Return, exec, ${focusApp "Alacritty" "alacritty"}"
 
         "SUPER_SHIFT, c, killactive"
+
         "SUPER_SHIFT, q, exec, bash ${./../powerMenu.sh}"
+        "SUPER_ALT, m, exec, bash ${./../mynixos.sh}"
 
         "SUPER, s, exec, ${focusApp "sioyek" "sioyek"}"
         "SUPER, n, exec, ${focusApp "com.github.flxzt.rnote" "rnote"}"
@@ -447,7 +458,7 @@ export MANPAGER='nvim +Man!'
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
 
-        "$mod, SPACE, exec, anyrun"
+        "$mod, SPACE, exec, rofi -show drun -show-icons"
 
         # HJKL to move active window position
         "SUPER_ALT, h, swapwindow, l"

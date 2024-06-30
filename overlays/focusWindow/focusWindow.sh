@@ -23,7 +23,7 @@ fi
 
 if [ "$line_count" -gt 1 ]; then
   # If multiple windows match make the user pick one with tofi
-  title=$(echo "$titles" | tofi)
+  title=$(echo "$titles" | rofi)
 else 
   # If only one window matches pick that one
   title=$titles

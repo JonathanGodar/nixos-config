@@ -1,12 +1,6 @@
 { config, pkgs, lib, catppuccin, inputs, ...}:
 let
-      focusApp = windowClass: failLaunch: "${lib.getExe focusScript} ${windowClass} ${failLaunch}";
-      focusScript = pkgs.writeShellApplication {
-        name = "focusWindow";
-        runtimeInputs = with pkgs; [jq hyprland tofi ripgrep];
-        text = builtins.readFile ./../focusWindow.sh;
-      };
-
+      focusApp = windowClass: failLaunch: "${lib.getExe pkgs.focusScript} ${windowClass} ${failLaunch}";
 
       wallpaperPaths = 
       lib.concatStringsSep " "
@@ -45,11 +39,6 @@ let
       #   text = builtins.readFile ./../chatgpt.sh;
       # };
 
-      navigateOpenWindows = pkgs.writeShellApplication {
-        name = "navigateOpenWindows";
-        runtimeInputs = with pkgs; [jq hyprland tofi focusScript ];
-        text = builtins.readFile ./../navigateOpenWindows.sh;
-      };
     in
 {
   imports = [ inputs.anyrun.homeManagerModules.default ];
@@ -449,7 +438,7 @@ export MANPAGER='nvim +Man!'
 
         "SUPER, s, exec, ${focusApp "sioyek" "sioyek"}"
         "SUPER, n, exec, ${focusApp "com.github.flxzt.rnote" "rnote"}"
-        "SUPER, o, exec, ${lib.getExe navigateOpenWindows}"
+        "SUPER, o, exec, ${lib.getExe pkgs.navigateOpenWindows}"
         ", Print, exec, grimblast copy area"
 
         # HJKL to switch active window

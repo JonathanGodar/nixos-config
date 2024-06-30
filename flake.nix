@@ -31,9 +31,9 @@
   };
 
   outputs = { self, nixpkgs, home-manager, catppuccin, mynvim, ...}@inputs: {
-  	nixosConfigurations.faccun = nixpkgs.lib.nixosSystem {
+  	nixosConfigurations.faccun = nixpkgs.lib.nixosSystem  rec {
 		system = "x86_64-linux";
-		specialArgs = { inherit mynvim; };
+		specialArgs = { inherit mynvim; inherit system; };
 
 		modules = [
 			catppuccin.nixosModules.catppuccin
@@ -44,7 +44,7 @@
 			home-manager.nixosModules.home-manager {
 				home-manager.useGlobalPkgs = true;
 				home-manager.useUserPackages = true;
-				home-manager.extraSpecialArgs = { inherit inputs; };
+				home-manager.extraSpecialArgs = { inherit inputs; inherit system; };
 
 
 				home-manager.users.jonathan = {

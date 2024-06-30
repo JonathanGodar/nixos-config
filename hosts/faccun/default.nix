@@ -201,11 +201,31 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  # services.syncthing = {
+  #   openDefaultPorts = true;
+  #   # https://github.com/dustinlyons/nixos-config/blob/7d06bf749002418589ff97598d6b8fdb3404e37a/hosts/nixos/default.nix#L103
+  #   # TODO Fix hardcoded user
+  #   dataDir = "/home/jonathan/.local/share/syncthing";
+  #   configDir = "/home/jonathan/.config/syncthing";
+  #   user = "jonathan";
+  #   group = "users";
+  #   guiAddress = "127.0.0.1:8384";
+  #   overrideFolders = false;
+  #   overrideDevices = false;
+  # };
+
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 
+    22000 # Syncthing
+  ];
+  networking.firewall.allowedUDPPorts = [
+    # Syncthing 
+    22000
+    21027
+  ];
   # Or disable the firewall altogether.
+
   # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default

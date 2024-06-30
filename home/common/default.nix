@@ -7,9 +7,37 @@ let
         text = builtins.readFile ./../focusWindow.sh;
       };
 
-      listOfWallpapers = ''
-        ${inputs.catppuccin-wallpaper-repo}/landscapes/forrest.png
-      '';
+
+      wallpaperPaths = 
+      lib.concatStringsSep " "
+      (map (path: "${inputs.catppuccin-wallpaper-repo}/${path}") 
+      [ 
+        "landscapes/forrest.png"
+        "landscapes/Clearnight.jpg"
+        # "landscapes/Cloudsday.jpg"
+        "landscapes/Cloudsnight.jpg"
+        "landscapes/tropic_island_night.jpg"
+
+        "minimalistic/list-horizontal.png"
+
+        "misc/cat_bunnies.png"
+        "misc/windows-error.jpg"
+        "waves/cat-waves.png"
+      ]);
+
+      changeWallpaper = pkgs.writeShellApplication {
+        name = "changeWallpaper";
+        text = ''
+        wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
+        chosenwallpaper=$(echo "$wallpapers" | shuf -n 1)
+        
+        hyprctl hyprpaper preload "$chosenwallpaper"
+        hyprctl hyprpaper wallpaper ",$chosenwallpaper"
+
+        hyprctl hyprpaper unload all
+        echo "$chosenwallpaper"
+        '';
+      };
 
       # chatGptScript = pkgs.writeShellApplication {
       #   name = "chatGpt";
@@ -32,8 +60,12 @@ let
 	programs.starship = {
 		enable = true;
 		enableZshIntegration = true;
+    settings = {
+      direnv.disabled = false;
+    };
 	};
 
+  services.syncthing.enable = true;
 	home.stateVersion = "24.05";
 
 	programs.home-manager.enable = true;
@@ -110,12 +142,22 @@ let
 	programs.tmux.catppuccin.enable = true;
 	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
 
+  # home.file."${config.home.homeDirectory}/hejsan.txt" = "${listOfWallpapers}";
 
   # qt.enable = true;
 	qt.style.catppuccin.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+
+    nix-direnv.enable = true;
+  };
 	home.packages = with pkgs; [
 		go
+
+    cargo
+    rustc
 
 		dust # Analyze disk usage
 		tldr # "man" in short form
@@ -128,7 +170,11 @@ let
     # Needed to make the desktopEntries
     xdg-utils
 
+    cinnamon.nemo
+    changeWallpaper
     navigateOpenWindows
+
+    eza
 
     chromium
     webcord
@@ -156,7 +202,8 @@ let
     kdePackages.polkit-kde-agent-1
 	];
 
-  xdg.desktopEntries.ocrcopy =
+  xdg.desktopEntries = {
+  ocrCopy =
   let 
     copy-script = pkgs.writeShellApplication {
       name = "ocrcopy";
@@ -168,8 +215,12 @@ let
     name = "OCR copy screen area";
     exec = "${lib.getExe copy-script}";
   };
-
-
+  changeWallpaper = 
+  {
+    name = "Change Wallpaper";
+    exec = "${lib.getExe changeWallpaper}";
+  };
+  };
 	programs.tmux = {
 		enable = true;
 
@@ -233,9 +284,10 @@ let
 		};
 
 		shellAliases = {
-			lsa = "ls -la";
+			lsa = "eza -F always --icons auto -la";
 			lz = "lazygit";
 			cd = "z";
+      ls = "eza";
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
 			q = "exit";
 
@@ -272,6 +324,7 @@ bindkey '^n' history-search-forward
 FD_OPTIONS="--hidden --no-ignore . --exclude node_modules --exclude target --exclude __pycache__ --exclude .git -L"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+export MANPAGER='nvim +Man!'
 		'';
 
 	};
@@ -287,8 +340,9 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 		userEmail = "jonathan.godar@hotmail.com";
 
     extraConfig = {
-      diff.tool = "nvimdiffview";
-      difftool.nvimdiffview.cmd = "nvim -c 'DiffviewOpen' -- $LOCAL $REMOTE";
+      diff.tool = "nvimdiff";
+      difftool.prompt = false;
+      difftool.nvimdiff.cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""; # "nvim -c 'DiffviewOpen' -- $LOCAL $REMOTE";
     }; 
 	};
 
@@ -318,8 +372,10 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 # bind = SUPER, Q, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || qalculate-gtk &
     exec-once = [
       "waybar"
+      "syncthing &"
       "dunst"
       "dbus-update-activation-environment --systemd --all"
+      "${lib.getExe changeWallpaper}"
       "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
       "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
 

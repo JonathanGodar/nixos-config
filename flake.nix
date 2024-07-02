@@ -35,27 +35,23 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, mynvim, ...}@inputs: {
+  outputs = { self, nixpkgs, home-manager, mynvim, ...}@inputs: {
   	nixosConfigurations.faccun = nixpkgs.lib.nixosSystem  rec {
 		system = "x86_64-linux";
-		specialArgs = { inherit mynvim; inherit system; inherit inputs; };
+		specialArgs = { inherit system; inherit inputs; };
 
 		modules = [
-			catppuccin.nixosModules.catppuccin
 			./hosts/faccun
       ./binarycaches.nix
-			./overlays
 
 			home-manager.nixosModules.home-manager {
 				home-manager.useGlobalPkgs = true;
 				home-manager.useUserPackages = true;
 				home-manager.extraSpecialArgs = { inherit inputs; inherit system; };
 
-
 				home-manager.users.jonathan = {
 					imports = [
-						./home/common
-						catppuccin.homeManagerModules.catppuccin
+						./home/faccun
 					];
 				};
 			}

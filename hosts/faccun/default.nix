@@ -1,51 +1,35 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, catppuccin, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../common
     ];
 
   # Bootloader.
   boot.loader = {
   	systemd-boot.enable = true;
-	efi.canTouchEfiVariables = true;
+    efi.canTouchEfiVariables = true;
 
-	timeout = 1;
+    timeout = 1;
   };
 
-  catppuccin.enable = true;
 
   networking.hostName = "faccun"; 
+  nix.settings = {
+    builders-use-substitutes = true;
+    # extra substituters to add
+    extra-substituters = [
+        "https://anyrun.cachix.org"
+    ];
 
-    nix.settings = {
-      builders-use-substitutes = true;
-      # extra substituters to add
-      extra-substituters = [
-          "https://anyrun.cachix.org"
-      ];
-
-      extra-trusted-public-keys = [
-          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      ];
-    };
-
-  # Enables wayland support for chromium and electron based apps 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  hardware.opentabletdriver = {
-    enable = true;
-    # package = pkgs.opentabletdriver.overrideAttrs (oldAttrs: {
-    #   # patches = oldAttrs.patches ++ [ ./S1060W.patch ] ;
-    #   src = inputs.opentablet-ugee;
-    #   dotnet-sdk = (with pkgs.dotnetCorePackages; combinePackages [sdk_7_0 sdk_6_0 sdk_8_0]); 
-    #   dotnetInstallFlags = [ ]; # [ "--framework=net6.0" ];
-    #   nugetDeps = ./deps.nix;
-    # });
+    extra-trusted-public-keys = [
+        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -54,72 +38,7 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Stockholm";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "sv_SE.UTF-8";
-    LC_IDENTIFICATION = "sv_SE.UTF-8";
-    LC_MEASUREMENT = "sv_SE.UTF-8";
-    LC_MONETARY = "sv_SE.UTF-8";
-    LC_NAME = "sv_SE.UTF-8";
-    LC_NUMERIC = "sv_SE.UTF-8";
-    LC_PAPER = "sv_SE.UTF-8";
-    LC_TELEPHONE = "sv_SE.UTF-8";
-    LC_TIME = "sv_SE.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Music player daemon
-  services.mpd.enable = true;
-
-  xdg.portal = { 
-    enable = true; 
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  xdg.mime.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    	variant = "nodeadkeys";
-    	layout = "se";
-  };
-
-  # Configure console keymap
-  console.keyMap = "sv-latin1";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
 
 # This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
 #  services.pipewire.wireplumber.extraConfig = {
@@ -147,15 +66,6 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jonathan = {
-    isNormalUser = true;
-    description = "Jonathan Niklasson Godar";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
 
   # Enable automatic login for the user.
   # services.xserver.displayManager.autoLogin.enable = true;
@@ -163,35 +73,10 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.hyprland = { # Required for hyprland to work
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  programs.neovim = {
-  	enable = true;
-    defaultEditor = true;
-    viAlias = true;
-  };
-
-  programs.zsh = {
-  	enable = true;
-	enableCompletion = true; 
-	syntaxHighlighting.enable = true;
-  };
-
-  users.defaultUserShell = pkgs.zsh;
-
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     # Remove later on
-     dotnetCorePackages.sdk_7_0
-
      brave
      helix
      git
@@ -229,31 +114,10 @@
   # };
 
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
-    22000 # Syncthing
-  ];
-  networking.firewall.allowedUDPPorts = [
-    # Syncthing 
-    22000
-    21027
-  ];
   # Or disable the firewall altogether.
 
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-	fonts.packages = with pkgs; [
-		nerdfonts
-	];
 
   # Enable nVidia - GPU 
   hardware.graphics = {
@@ -294,5 +158,4 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
 }

@@ -1,6 +1,9 @@
 { config, pkgs, lib, catppuccin, inputs, ...}:
 {
-  imports = [ ./../wayland ];
+  imports = [ 
+    ./../wayland 
+    inputs.catppuccin.homeManagerModules.catppuccin
+  ];
 
 	home.username = "jonathan";
 	home.homeDirectory = "/home/jonathan";
@@ -40,9 +43,8 @@
       };
 		};
 	};
-	programs.bat.enable  = true;
 
-  catppuccin.enable = true;
+	programs.bat.enable  = true;
 
 	# gtk.catppuccin.enable = true;
 	# gtk.enable = true;

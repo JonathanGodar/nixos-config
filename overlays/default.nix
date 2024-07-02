@@ -1,8 +1,8 @@
-{ conifg, pkgs, lib, mynvim, opentabletdriver-ugee, inputs, ... }:
+{ conifg, pkgs, lib, opentabletdriver-ugee, inputs, ... }:
 {
   imports = [ ./focusWindow ./navigateOpenWindows ];
 	nixpkgs.overlays = [ 
-    mynvim.overlays.default 
+    inputs.mynvim.overlays.default 
     (final: prev:
     {
        opentabletdriver = (prev.opentabletdriver.override {

@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    opentablet-ugee = {
+      url = "github:Spencer-Sawyer/OpenTabletDriver/master";
+      flake = false;
+    };
+
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -33,7 +38,7 @@
   outputs = { self, nixpkgs, home-manager, catppuccin, mynvim, ...}@inputs: {
   	nixosConfigurations.faccun = nixpkgs.lib.nixosSystem  rec {
 		system = "x86_64-linux";
-		specialArgs = { inherit mynvim; inherit system; };
+		specialArgs = { inherit mynvim; inherit system; inherit inputs; };
 
 		modules = [
 			catppuccin.nixosModules.catppuccin

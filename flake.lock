@@ -250,6 +250,23 @@
         "type": "github"
       }
     },
+    "opentablet-ugee": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717004229,
+        "narHash": "sha256-gyGfsW/csaJ24oCDMDe13oTUWgw8JvqFSMFlSd9qC6Y=",
+        "owner": "Spencer-Sawyer",
+        "repo": "OpenTabletDriver",
+        "rev": "2b84e38477bd3a2e8790d96bdbf4bcaae8e49e80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Spencer-Sawyer",
+        "ref": "master",
+        "repo": "OpenTabletDriver",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "anyrun": "anyrun",
@@ -258,6 +275,7 @@
         "home-manager": "home-manager",
         "mynvim": "mynvim",
         "nixpkgs": "nixpkgs_2",
+        "opentablet-ugee": "opentablet-ugee",
         "tmuxSessionX": "tmuxSessionX"
       }
     },

@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-    nixpkgs.overlays = [
+    config.nixpkgs.overlays = [
       (self: super: {
         focusScript = pkgs.writeShellApplication {
           name = "focusWindow";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, catppuccin, ... }:
+{ config, pkgs, catppuccin, inputs, ... }:
 
 {
   imports =
@@ -36,6 +36,17 @@
 
   # Enables wayland support for chromium and electron based apps 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  hardware.opentabletdriver = {
+    enable = true;
+    # package = pkgs.opentabletdriver.overrideAttrs (oldAttrs: {
+    #   # patches = oldAttrs.patches ++ [ ./S1060W.patch ] ;
+    #   src = inputs.opentablet-ugee;
+    #   dotnet-sdk = (with pkgs.dotnetCorePackages; combinePackages [sdk_7_0 sdk_6_0 sdk_8_0]); 
+    #   dotnetInstallFlags = [ ]; # [ "--framework=net6.0" ];
+    #   nugetDeps = ./deps.nix;
+    # });
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -178,6 +189,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     # Remove later on
+     dotnetCorePackages.sdk_7_0
+
      brave
      helix
      git

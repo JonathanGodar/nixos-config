@@ -5,6 +5,8 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
+  catppuccin.enable = true;
+
 	home.username = "jonathan";
 	home.homeDirectory = "/home/jonathan";
 	
@@ -46,19 +48,6 @@
 
 	programs.bat.enable  = true;
 
-	# gtk.catppuccin.enable = true;
-	# gtk.enable = true;
-
-	programs.alacritty.catppuccin.enable = true;
-	programs.bat.catppuccin.enable = true;
-	programs.btop.catppuccin.enable = true;
-	programs.fzf.catppuccin.enable = true;
-	programs.git.delta.catppuccin.enable = true;
-	programs.helix.catppuccin.enable = true;
-	programs.lazygit.catppuccin.enable = true;
-	programs.lazygit.enable = true;
-
-	programs.waybar.catppuccin.enable = true;
 	programs.waybar = {
     enable = true;
     settings = {
@@ -69,11 +58,6 @@
       }; };
   };
 
-	programs.starship.catppuccin.enable = true;
-	programs.tmux.catppuccin.enable = true;
-	programs.zsh.syntaxHighlighting.catppuccin.enable = true;
-
-	qt.style.catppuccin.enable = true;
   qt.enable = true;
 
   programs.direnv = {
@@ -90,6 +74,7 @@
 
 	home.packages = with pkgs; [
 		go
+    kondo # For removing unneeded files from software projects 
 
     cargo
     rustc
@@ -135,6 +120,8 @@
     # lxqt.lxqt-policykit
     kdePackages.polkit-kde-agent-1
 	];
+
+  programs.lazygit.enable = true;
 
   xdg.desktopEntries = {
   ocrCopy =
@@ -205,8 +192,6 @@
 		enableCompletion = true;
 
 		autosuggestion.enable = true;
-		# Already enabled above when setting catppuccin
-		# syntaxHighlighting.enable = true;
 
 		history = {
 			size=100000;
@@ -268,11 +253,13 @@ export MANPAGER='nvim +Man!'
 		userName = "Jonathan Niklasson Godar";
 		userEmail = "jonathan.godar@hotmail.com";
 
-    extraConfig = {
-      diff.tool = "nvimdiff";
-      difftool.prompt = false;
-      difftool.nvimdiff.cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""; # "nvim -c 'DiffviewOpen' -- $LOCAL $REMOTE";
-    }; 
+    difftastic.enable = true;
+
+    # extraConfig = {
+    #   diff.tool = "nvimdiff";
+    #   difftool.prompt = false;
+    #   difftool.nvimdiff.cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""; # "nvim -c 'DiffviewOpen' -- $LOCAL $REMOTE";
+    # }; 
 	};
 
 	programs.zoxide.enable = true;

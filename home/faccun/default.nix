@@ -1,4 +1,4 @@
-{pkgs, lib}: {
+{pkgs, lib, ... }: {
   imports = [ ../common ];
 
   wayland.windowManager.hyprland.settings = {
@@ -7,6 +7,10 @@
       "$MAIN_MONITOR, 1920x1080@144, 1920x0, 1"
       "Unknown-1, disable"
     ];
+
+    "$mod" = "SUPER";
+    "$MAIN_MONITOR" = "DP-2";
+    "$OTHER_MONITOR" = "DP-1";
 
     workspace = [
       # TODO use range selectors instead

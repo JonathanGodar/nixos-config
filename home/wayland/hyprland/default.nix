@@ -86,18 +86,12 @@ in
     };
 
     "$mod" = "SUPER";
-    "$MAIN_MONITOR" = "DP-2";
-    "$OTHER_MONITOR" = "DP-1";
-
-
     
     # options.xdg.desktopEntries = {
     #   ocr-copy = {
     #     name = "ocr screen copy";
     #     exec = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
     #   };
-    # };
-
 
     bind = [
         "SUPER, g, exec, bash ${./scripts/chatgpt.sh}"

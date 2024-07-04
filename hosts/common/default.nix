@@ -1,7 +1,7 @@
-{pkgs, inputs}: {
+{pkgs, inputs, ...}: {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
-		./overlays
+    ../../overlays
   ];
 
   catppuccin.enable = true;
@@ -31,7 +31,8 @@
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # Enable networking networking.networkmanager.enable = true;
+  # Enable networking 
+  networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.

@@ -1,14 +1,26 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
     ../../overlays
   ];
 
+  # Bootloader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+
+    timeout = 1;
+  };
+
   catppuccin.enable = true;
 
-  # Enables wayland support for chromium and electron based apps 
+  # Enables wayland support for chromium and electron based apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
+
   hardware.opentabletdriver = {
     enable = true;
   };
@@ -31,7 +43,7 @@
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # Enable networking 
+  # Enable networking
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
@@ -41,9 +53,9 @@
   # Music player daemon
   services.mpd.enable = true;
 
-  xdg.portal = { 
-    enable = true; 
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   # Enable the KDE Plasma Desktop Environment.
@@ -51,8 +63,8 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    	variant = "nodeadkeys";
-    	layout = "se";
+    variant = "nodeadkeys";
+    layout = "se";
   };
 
   # Configure console keymap
@@ -80,26 +92,27 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = [ ];
+    extraGroups = ["networkmanager" "wheel"];
+    packages = [];
   };
 
   users.defaultUserShell = pkgs.zsh;
 
-  programs.hyprland = { # Required for hyprland to work
+  programs.hyprland = {
+    # Required for hyprland to work
     enable = true;
     xwayland.enable = true;
   };
-  
+
   programs.neovim = {
-  	enable = true;
+    enable = true;
     defaultEditor = true;
     viAlias = true;
   };
 
   programs.zsh = {
-  	enable = true;
-    enableCompletion = true; 
+    enable = true;
+    enableCompletion = true;
     syntaxHighlighting.enable = true;
   };
 
@@ -107,11 +120,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
+  networking.firewall.allowedTCPPorts = [
     22000 # Syncthing
   ];
   networking.firewall.allowedUDPPorts = [
-    # Syncthing 
+    # Syncthing
     22000
     21027
   ];
@@ -123,10 +136,9 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
-	fonts.packages = with pkgs; [
-		nerdfonts
-	];
-
+  fonts.packages = with pkgs; [
+    nerdfonts
+  ];
 }

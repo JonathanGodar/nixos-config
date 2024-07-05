@@ -1,34 +1,29 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, catppuccin, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../common
-    ];
+  config,
+  pkgs,
+  catppuccin,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../common
+  ];
 
-  # Bootloader.
-  boot.loader = {
-  	systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-
-    timeout = 1;
-  };
-
-
-  networking.hostName = "faccun"; 
+  networking.hostName = "faccun";
   nix.settings = {
     builders-use-substitutes = true;
     # extra substituters to add
     extra-substituters = [
-        "https://anyrun.cachix.org"
+      "https://anyrun.cachix.org"
     ];
 
     extra-trusted-public-keys = [
-        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
 
@@ -40,27 +35,27 @@
 
   services.desktopManager.plasma6.enable = true;
 
-# This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
-#  services.pipewire.wireplumber.extraConfig = {
-#    	"monitor.alsa.rules" = [
-#   {
-#     "matches" = [
-#       {
-# 	"node.name" = "~alsa_input.*";
-#       }
-#       {
-# 	"node.name" = "~alsa_output.*";
-#       }
-#     ];
-#     actions = {
-#       "update-props" = {
-# 	"session.suspend-timeout-seconds" = 0;
-#       };
-#     };
-#   }
-# ];
-#
-#    };
+  # This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
+  #  services.pipewire.wireplumber.extraConfig = {
+  #    	"monitor.alsa.rules" = [
+  #   {
+  #     "matches" = [
+  #       {
+  # 	"node.name" = "~alsa_input.*";
+  #       }
+  #       {
+  # 	"node.name" = "~alsa_output.*";
+  #       }
+  #     ];
+  #     actions = {
+  #       "update-props" = {
+  # 	"session.suspend-timeout-seconds" = 0;
+  #       };
+  #     };
+  #   }
+  # ];
+  #
+  #    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -77,15 +72,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     brave
-     helix
-     git
-     htop
+    brave
+    helix
+    git
+    htop
 
-     discord
-     filelight
-     vscode
-     wezterm
+    discord
+    filelight
+    vscode
+    wezterm
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -113,13 +108,11 @@
   #   overrideDevices = false;
   # };
 
-
   # Or disable the firewall altogether.
 
   # networking.firewall.enable = false;
 
-
-  # Enable nVidia - GPU 
+  # Enable nVidia - GPU
   hardware.graphics = {
     enable = true;
   };
@@ -128,13 +121,12 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -144,15 +136,15 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.

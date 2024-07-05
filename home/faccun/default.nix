@@ -1,5 +1,9 @@
-{pkgs, lib, ... }: {
-  imports = [ ../common ];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [../common];
 
   wayland.windowManager.hyprland.settings = {
     monitor = [

@@ -67,7 +67,13 @@
     };
   };
 
-  qt.enable = true;
+  qt = {
+    enable = true;
+
+    # Required to use catppuccin style
+    style.name = "kvantum";
+    platformTheme.name = "kvantum";
+  };
 
   programs.direnv = {
     enable = true;

@@ -22,13 +22,8 @@
 
     nixvim = {
       url = "github:JonathanGodar/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # mynvim = {
-    #   url = "github:JonathanGodar/nvim-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     opentablet-ugee = {
       url = "github:Spencer-Sawyer/OpenTabletDriver/master";

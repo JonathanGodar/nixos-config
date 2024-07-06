@@ -5,6 +5,10 @@
 }: {
   imports = [../common];
 
+  home.packages = with pkgs; [
+    ntfs3g
+  ];
+
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "$OTHER_MONITOR, 1920x1080@144, 0x0, 1"

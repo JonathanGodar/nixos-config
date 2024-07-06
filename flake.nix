@@ -69,5 +69,32 @@
         }
       ];
     };
+    nixosConfigurations.wax9 = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit system;
+        inherit inputs;
+      };
+
+      modules = [
+        ./hosts/wax9
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            inherit system;
+          };
+
+          home-manager.users.jonathan = {
+            imports = [
+              ./home/wax9
+            ];
+          };
+        }
+      ];
+    };
   };
 }

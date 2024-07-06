@@ -91,6 +91,9 @@
     go
     kondo # For removing unneeded files from software projects
 
+    prismlauncher
+    openjdk
+
     cargo
     rustc
 
@@ -176,7 +179,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-          
+        
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 

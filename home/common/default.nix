@@ -1,8 +1,6 @@
 {
-  config,
   pkgs,
   lib,
-  catppuccin,
   inputs,
   system,
   ...
@@ -90,6 +88,8 @@
   home.packages = with pkgs; [
     go
     kondo # For removing unneeded files from software projects
+
+    nh # Nix helper, provides nice diff when updating system
 
     prismlauncher
     openjdk
@@ -222,6 +222,7 @@
       cd = "z";
       ls = "eza";
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
+      rebld = "nh os switch -a ~/nixos";
       q = "exit";
 
       cat = "bat";

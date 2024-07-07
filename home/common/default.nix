@@ -179,7 +179,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-        
+          
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 
@@ -271,6 +271,9 @@
     userEmail = "jonathan.godar@hotmail.com";
 
     difftastic.enable = true;
+    extraConfig = {
+      pull.rebase = false;
+    };
 
     # extraConfig = {
     #   diff.tool = "nvimdiff";

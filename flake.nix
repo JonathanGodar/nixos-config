@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     catppuccin.url = "github:catppuccin/nix";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     catppuccin-wallpaper-repo = {
       url = "github:zhichaoh/catppuccin-wallpapers";
@@ -38,7 +39,7 @@
     self,
     nixpkgs,
     home-manager,
-    # mynvim,
+    nixos-hardware,
     ...
   } @ inputs: {
     nixosConfigurations.faccun = nixpkgs.lib.nixosSystem rec {
@@ -77,6 +78,7 @@
       };
 
       modules = [
+        nixos-hardware.nixosModules.huawei-machc-wa
         ./hosts/wax9
 
         home-manager.nixosModules.home-manager

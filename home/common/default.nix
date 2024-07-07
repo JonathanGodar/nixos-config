@@ -10,7 +10,10 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  catppuccin.enable = true;
+  catppuccin = {
+    flavor = "mocha";
+    enable = true;
+  };
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";
@@ -22,6 +25,8 @@
       direnv.disabled = false;
     };
   };
+
+  programs.htop.enable = true;
 
   services.syncthing.enable = true;
   home.stateVersion = "24.05";
@@ -85,10 +90,11 @@
     package = pkgs.rofi-wayland;
   };
 
+  programs.firefox.enable = true;
+
   home.packages = with pkgs; [
     go
     kondo # For removing unneeded files from software projects
-    firefox
 
     nh # Nix helper, provides nice diff when updating system
 
@@ -180,7 +186,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-      
+          
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 

@@ -4,4 +4,6 @@
     ./hardware-configuration.nix
     ../common
   ];
+  networking.hostName = "wax9";
+  services.libinput.touchpad.naturalScrolling = true;
 }

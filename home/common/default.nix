@@ -93,6 +93,8 @@
   programs.firefox.enable = true;
 
   home.packages = with pkgs; [
+    dconf # For setting gtk dark theme
+
     go
     kondo # For removing unneeded files from software projects
 
@@ -186,7 +188,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-          
+      
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 

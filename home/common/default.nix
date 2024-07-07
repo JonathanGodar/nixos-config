@@ -90,6 +90,7 @@
   home.packages = with pkgs; [
     go
     kondo # For removing unneeded files from software projects
+    firefox
 
     prismlauncher
     openjdk
@@ -179,7 +180,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-        
+      
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 

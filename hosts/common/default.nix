@@ -8,6 +8,10 @@
     ../../overlays
   ];
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;

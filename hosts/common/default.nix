@@ -8,9 +8,13 @@
     ../../overlays
   ];
 
+<<<<<<< HEAD
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+=======
+  programs.dconf.enable = true;
+>>>>>>> oldrepo/main
 
   # Bootloader.
   boot.loader = {

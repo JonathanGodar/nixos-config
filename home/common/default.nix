@@ -60,7 +60,7 @@
       mainBar = {
         modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
         modules-center = ["hyprland/window"];
-        modules-right = ["mpd" "bluetooth" "tray" "pulseaudio" "wireplumber"];
+        modules-right = ["mpd" "bluetooth" "tray" "network" "wireplumber"];
       };
     };
   };
@@ -86,6 +86,8 @@
   };
 
   home.packages = with pkgs; [
+    killall
+
     go
     kondo # For removing unneeded files from software projects
 
@@ -179,7 +181,7 @@
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"
-          
+      
       # Partially restore clear screen
       bind C-l send-keys 'C-l'
 

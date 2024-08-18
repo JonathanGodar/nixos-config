@@ -42,10 +42,10 @@
     nixos-hardware,
     ...
   } @ inputs: {
-    nixosConfigurations.faccun = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.faccun = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit system;
+        # inherit system;
         inherit inputs;
       };
 
@@ -59,7 +59,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             inherit inputs;
-            inherit system;
+            # inherit system;
           };
 
           home-manager.users.jonathan = {
@@ -70,10 +70,9 @@
         }
       ];
     };
-    nixosConfigurations.wax9 = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.wax9 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit system;
         inherit inputs;
       };
 
@@ -87,7 +86,6 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             inherit inputs;
-            inherit system;
           };
 
           home-manager.users.jonathan = {

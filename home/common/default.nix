@@ -2,7 +2,6 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }: {
   imports = [
@@ -110,7 +109,7 @@
     cargo
     rustc
 
-    inputs.nixvim.packages.${system}.default
+    inputs.nixvim.packages.${pkgs.system}.default
 
     dust # Analyze disk usage
     tldr # "man" in short form

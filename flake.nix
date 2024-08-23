@@ -64,6 +64,8 @@
 
           home-manager.users.jonathan = {
             imports = [
+              inputs.catppuccin.homeManagerModules.catppuccin
+              ./home_modules
               ./home/faccun
             ];
           };

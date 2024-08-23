@@ -3,7 +3,14 @@
   lib,
   ...
 }: {
-  imports = [../common];
+  imports = [
+    ../common
+  ];
+
+  preconf = {
+    cli_full.enable = true;
+    catppuccin.enable = true;
+  };
 
   home.packages = with pkgs; [
     ntfs3g

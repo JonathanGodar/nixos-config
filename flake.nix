@@ -41,62 +41,54 @@
     home-manager,
     nixos-hardware,
     ...
-  } @ inputs: {
-    nixosConfigurations.faccun = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        # inherit system;
-        inherit inputs;
+  } @ inputs: let
+    mkSystem = {
+      hostname,
+      system,
+      extraModules ? [],
+    }: (
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./hosts/${hostname}
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+
+            home-manager.users.jonathan = {
+              imports = [
+                inputs.catppuccin.homeManagerModules.catppuccin
+                ./home_modules
+                ./home/${hostname}
+              ];
+            };
+          }
+        ];
+      }
+    );
+  in {
+    nixosConfigurations = {
+      faccun = mkSystem {
+        system = "x86_64-linux";
+        hostname = "faccun";
       };
-
-      modules = [
-        ./hosts/faccun
-        ./binarycaches.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            # inherit system;
-          };
-
-          home-manager.users.jonathan = {
-            imports = [
-              inputs.catppuccin.homeManagerModules.catppuccin
-              ./home_modules
-              ./home/faccun
-            ];
-          };
-        }
-      ];
-    };
-    nixosConfigurations.wax9 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit inputs;
+      wax9 = mkSystem {
+        system = "x86_64-linux";
+        hostname = "wax9";
+        extraModules = [nixos-hardware.nixosModules.huawei-machc-wa];
       };
-
-      modules = [
-        nixos-hardware.nixosModules.huawei-machc-wa
-        ./hosts/wax9
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-          };
-
-          home-manager.users.jonathan = {
-            imports = [
-              ./home/wax9
-            ];
-          };
-        }
-      ];
+      # rpi4 = mkSystem {
+      #   system = "aarch64-linux";
+      #   hostname = "rpi4";
+      # };
     };
   };
 }

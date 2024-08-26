@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     ntfs3g
+    qemu
   ];
 
   wayland.windowManager.hyprland.settings = {

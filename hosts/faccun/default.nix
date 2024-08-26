@@ -117,6 +117,9 @@
     enable = true;
   };
 
+  # To be able to emulate RASPI-4
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 

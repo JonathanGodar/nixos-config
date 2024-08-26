@@ -7,17 +7,18 @@
 }: let
   focusApp = windowClass: failLaunch: "${lib.getExe pkgs.focusScript} ${windowClass} ${failLaunch}";
 
+  # GTK cursor size fix? https://discourse.nixos.org/t/cursor-size-in-wayland-sway/25112/4
+
   changeWallpaper = pkgs.writeShellApplication {
     name = "changeWallpaper";
-    text = ''
-      wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
-      chosenwallpaper=$(echo "$wallpapers" | shuf -n 1)
+    text = ''      wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
+           chosenwallpaper=$(echo "$wallpapers" | shuf -n 1)
 
-      hyprctl hyprpaper preload "$chosenwallpaper"
-      hyprctl hyprpaper wallpaper ",$chosenwallpaper"
+           hyprctl hyprpaper preload "$chosenwallpaper"
+           hyprctl hyprpaper wallpaper ",$chosenwallpaper"
 
-      hyprctl hyprpaper unload all
-      echo "$chosenwallpaper"
+           hyprctl hyprpaper unload all
+           echo "$chosenwallpaper"
     '';
   };
 
@@ -38,6 +39,10 @@
         "waves/cat-waves.png"
       ]);
 in {
+  options = {
+    preconf.hyprland.enable = lib.mkEnableOption "Enable preconfigured Hyperland";
+  };
+
   config = {
     home.packages = with pkgs; [
       # Required to make desktop entries
@@ -58,8 +63,8 @@ in {
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = "${./../../../wallpapers/nix.png}";
-        wallpaper = ",${./../../../wallpapers/nix.png}";
+        preload = "${./../../wallpapers/nix.png}";
+        wallpaper = ",${./../../wallpapers/nix.png}";
       };
     };
 

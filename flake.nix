@@ -51,9 +51,13 @@
         inherit system;
         specialArgs = {
           inherit inputs;
+          inherit hostname;
         };
         modules = [
           ./hosts/${hostname}
+          {
+            networking.hostName = hostname;
+          }
 
           home-manager.nixosModules.home-manager
           {
@@ -61,6 +65,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {
               inherit inputs;
+              inherit hostname;
             };
 
             home-manager.users.jonathan = {
@@ -74,7 +79,7 @@
         ];
       }
     );
-  in {
+  in rec {
     nixosConfigurations = {
       faccun = mkSystem {
         system = "x86_64-linux";
@@ -85,10 +90,29 @@
         hostname = "wax9";
         extraModules = [nixos-hardware.nixosModules.huawei-machc-wa];
       };
-      # rpi4 = mkSystem {
-      #   system = "aarch64-linux";
-      #   hostname = "rpi4";
-      # };
+      rpi4 = mkSystem {
+        system = "aarch64-linux";
+        hostname = "rpi4";
+        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4];
+      };
+    };
+
+    # Copied from https://github.com/MatthewCroughan/raspberrypi-nixos-example/blob/master/flake.nix
+    images = {
+      rpi4 =
+        (self.nixosConfigurations.rpi4.extendModules
+          {
+            modules = [
+              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+              # {
+              # disabledModules =
+              # }
+            ];
+          })
+        .config
+        .system
+        .build
+        .sdImage;
     };
   };
 }

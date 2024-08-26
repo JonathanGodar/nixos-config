@@ -2,6 +2,7 @@
   imports = [
     ./catppuccin.nix
 
+    ./hyprland
     ./cli.nix
     ./cli_full.nix
     ./git.nix

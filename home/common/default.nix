@@ -4,9 +4,7 @@
   inputs,
   ...
 }: {
-  imports = [
-    ./../wayland
-  ];
+  preconf.hyprland.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";

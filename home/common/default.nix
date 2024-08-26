@@ -4,43 +4,15 @@
   inputs,
   ...
 }: {
-  preconf.hyprland.enable = true;
+  preconf.hyprland_de.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";
-
-  programs.htop.enable = true;
 
   services.syncthing.enable = true;
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.decorations = "None";
-      shell.program = "tmux";
-      font.normal = {
-        family = "JetBrains Mono Nerd Font";
-        style = "Medium";
-      };
-      font.bold = {
-        family = "JetBrains Mono Nerd Font";
-        style = "Bold";
-      };
-      font.italic = {
-        family = "JetBrains Mono Nerd Font";
-        style = "MediumItalic";
-      };
-      font.bold_italic = {
-        family = "JetBrains Mono Nerd Font";
-        style = "BoldItalic";
-      };
-    };
-  };
-
-  programs.bat.enable = true;
 
   programs.waybar = {
     enable = true;

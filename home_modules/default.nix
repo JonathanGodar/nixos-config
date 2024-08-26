@@ -3,8 +3,10 @@
     ./catppuccin.nix
 
     ./hyprland
+    ./hyprland_de.nix
     ./cli.nix
     ./cli_full.nix
+    ./alacritty.nix
     ./git.nix
     ./starship.nix
     ./tmux.nix

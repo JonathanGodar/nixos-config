@@ -43,7 +43,7 @@ in {
     preconf.hyprland.enable = lib.mkEnableOption "Enable preconfigured Hyperland";
   };
 
-  config = {
+  config = lib.mkIf config.preconf.hyprland.enable {
     home.packages = with pkgs; [
       # Required to make desktop entries
       xdg-utils

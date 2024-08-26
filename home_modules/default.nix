@@ -4,6 +4,7 @@
 
     ./hyprland
     ./hyprland_de.nix
+    ./waybar.nix
     ./cli.nix
     ./cli_full.nix
     ./alacritty.nix

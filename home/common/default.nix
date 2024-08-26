@@ -14,17 +14,6 @@
 
   programs.home-manager.enable = true;
 
-  programs.waybar = {
-    enable = true;
-    settings = {
-      mainBar = {
-        modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
-        modules-center = ["hyprland/window"];
-        modules-right = ["mpd" "bluetooth" "tray" "network" "wireplumber"];
-      };
-    };
-  };
-
   qt.enable = true;
 
   programs.direnv = {

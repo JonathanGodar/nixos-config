@@ -8,6 +8,7 @@
 
   config = lib.mkIf config.preconf.hyprland_de.enable {
     preconf.hyprland.enable = true;
+    preconf.waybar.enable = true;
     preconf.alacritty.enable = true;
   };
 }

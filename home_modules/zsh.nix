@@ -18,16 +18,9 @@
       };
 
       shellAliases = {
-        # TODO Only enable shellAliases if the programs they use are installed
-        lsa = "eza -F always --icons auto -la";
-        lz = "lazygit";
-        cd = "z";
-        ls = "eza";
+        lsa = "ls -la";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
-        rebld = "nh os switch -a ~/nixos";
         q = "exit";
-
-        cat = "bat";
       };
 
       plugins = [

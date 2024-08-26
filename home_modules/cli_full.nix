@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options = {
@@ -11,5 +12,18 @@
     preconf.cli.enable = true;
     preconf.tmux.enable = true;
     preconf.lazygit.enable = true;
+    programs.bat.enable = true;
+
+    home.packages = with pkgs; [
+      # Alternative ls
+      eza
+    ];
+
+    programs.zsh.shellAliases = {
+      lsa = lib.mkForce "eza -F always --icons auto -la";
+      lz = "lazygit";
+      ls = "eza";
+      cat = "bat";
+    };
   };
 }

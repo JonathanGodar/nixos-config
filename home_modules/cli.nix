@@ -15,6 +15,13 @@
     preconf.fzf.enable = true;
     preconf.zoxide.enable = true;
 
+    programs.htop.enable = true;
+
+    programs.zsh.shellAliases = {
+      cd = "z";
+      rebld = "nh os switch -a ~/nixos";
+    };
+
     home.packages = with pkgs; [
       killall
       kondo # For removing unneeded files from software projects
@@ -24,9 +31,6 @@
       fd # Used somewhere (?)
       jq
       ripgrep
-
-      # Alternative ls
-      eza
     ];
   };
 }

@@ -460,11 +460,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1720178199,
-        "narHash": "sha256-lhAH25ePjOOrOhckgH2q4fySFMUAXH7n8MLeVfsjlbI=",
+        "lastModified": 1724762100,
+        "narHash": "sha256-KO+CrG3HqDFRetwQDtbuJTUZ4Eo7RPGwIqRUTF6d7gQ=",
         "owner": "JonathanGodar",
         "repo": "nixvim",
-        "rev": "77bd66fcf84e2d4e06229db62175573675726aa5",
+        "rev": "fd94fe698883a2868d1f3339d94ce5e23a37506d",
         "type": "github"
       },
       "original": {

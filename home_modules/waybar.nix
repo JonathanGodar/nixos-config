@@ -12,7 +12,7 @@
         mainBar = {
           modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
           modules-center = ["hyprland/window"];
-          modules-right = ["mpd" "bluetooth" "tray" "network" "wireplumber"];
+          modules-right = ["tray" "battery" "clock" "wireplumber"];
         };
       };
     };

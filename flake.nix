@@ -7,6 +7,10 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    hyprcursor-phinger = {
+      url = "github:jappie3/hyprcursor-phinger";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin-wallpaper-repo = {
       url = "github:zhichaoh/catppuccin-wallpapers";
       flake = false;

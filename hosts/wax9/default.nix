@@ -6,6 +6,8 @@
   ];
   networking.hostName = "wax9";
 
+  services.upower.enable = true;
+
   services.libinput.touchpad.naturalScrolling = true;
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 }

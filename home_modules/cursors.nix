@@ -21,6 +21,13 @@
         gtk.enable = true;
       };
 
+      dconf.settings = {
+        "org/gnome/desktop/interface" = {
+          cursor-theme = "phinger-cursors-dark";
+          cursor-size = toString size;
+        };
+      };
+
       wayland.windowManager.hyprland.settings = lib.mkIf config.preconf.hyprland.enable {
         exec-once = [
           "hyprctl setcursor phinger-cursors-dark ${toString size}"

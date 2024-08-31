@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-9f41.url = "github:nixos/nixpkgs/9f4128e00b0ae8ec65918efeba59db998750ead6";
     catppuccin.url = "github:catppuccin/nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -27,7 +28,7 @@
     };
 
     opentablet-ugee = {
-      url = "github:Spencer-Sawyer/OpenTabletDriver/master";
+      url = "github:Spencer-Sawyer/OpenTabletDriver/2b84e38477bd3a2e8790d96bdbf4bcaae8e49e80";
       flake = false;
     };
 
@@ -38,6 +39,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-9f41,
     home-manager,
     nixos-hardware,
     ...
@@ -52,6 +54,10 @@
         specialArgs = {
           inherit inputs;
           inherit hostname;
+          pkgs-9f41 = import nixpkgs-9f41 {
+            inherit system;
+            config.allowUnfree = true;
+          };
         };
         modules = [
           ./hosts/${hostname}

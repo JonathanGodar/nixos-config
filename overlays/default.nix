@@ -1,6 +1,7 @@
 {
   conifg,
   pkgs,
+  pkgs-9f41,
   lib,
   opentabletdriver-ugee,
   inputs,
@@ -13,10 +14,10 @@
       opentabletdriver =
         (prev.opentabletdriver.override {
           buildDotnetModule = attrs:
-            pkgs.buildDotnetModule (attrs
+            pkgs-9f41.buildDotnetModule (attrs
               // {
-                dotnet-sdk = with pkgs.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
-                dotnet-runtime = with pkgs.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
+                dotnet-sdk = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
+                dotnet-runtime = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
                 nugetDeps = ./deps.nix;
                 disabledTests = attrs.disabledTests ++ ["OpenTabletDriver.Tests.ConfigurationTest.Configurations_Are_Linted"];
                 dotnetInstallFlags = [];

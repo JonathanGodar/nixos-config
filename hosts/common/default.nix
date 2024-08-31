@@ -13,6 +13,8 @@
   services.blueman.enable = true;
   programs.dconf.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -98,7 +100,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = [];
   };
 

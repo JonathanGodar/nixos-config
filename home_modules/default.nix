@@ -16,5 +16,6 @@
     ./fzf.nix
     ./lazygit.nix
     ./zoxide.nix
+    ./kth.nix
   ];
 }

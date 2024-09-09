@@ -588,7 +588,6 @@
     },
     "root": {
       "inputs": {
-        "ags": "ags",
         "anyrun": "anyrun",
         "catppuccin": "catppuccin",
         "catppuccin-wallpaper-repo": "catppuccin-wallpaper-repo",

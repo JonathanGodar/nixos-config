@@ -1,6 +1,7 @@
 options=$(cat << EOM
 Power off
 Reboot
+Suspend
 EOM)
 
 chosen=$(echo "$options" | rofi -dmenu)
@@ -11,4 +12,8 @@ fi
 
 if [[ "$chosen" == "Reboot" ]]; then
   shutdown -r now
+fi
+
+if [[ "$chosen" == "Suspend" ]]; then
+  systemctl suspend
 fi

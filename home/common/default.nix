@@ -44,6 +44,9 @@
     cargo
     rustc
 
+    httpie
+    httpie-desktop
+
     inputs.nixvim.packages.${pkgs.system}.default
 
     dust # Analyze disk usage

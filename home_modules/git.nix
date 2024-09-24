@@ -15,6 +15,7 @@
 
       difftastic.enable = true;
       extraConfig = {
+        rerere.enabled = true;
         pull.rebase = false;
         push.autoSetupRemote = true;
       };

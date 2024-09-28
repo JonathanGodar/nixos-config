@@ -14,6 +14,53 @@
     ../common
   ];
 
+  services.borgbackup.jobs = {
+    faccunHomeBackup = {
+      paths = "/home/jonathan/";
+      exclude = [ 
+        ".cargo/" 
+        "*/Cache"
+        "**/.cache/" 
+        ".eclipse/" 
+        ".discord-rpc/" 
+        ".java/" 
+        ".julia/" 
+        ".nix-profile/" 
+        ".ssh/" 
+        ".vscode/"
+        ".zconpdump"
+        ".zshenv"
+        ".zshrc"
+        "Downloads/"
+        "**/target/**"
+        "**/build/**"
+        "**/__pycache__/**"
+        "**/.venv/**"
+        "**/venv/**"
+        "**/node_modules/**"
+
+        ".mozilla/firefox/*.default-release/cache2/"
+        ".config/google-chrome/Default/Cache/"
+        ".local/share/Trash/"
+        "**/tmp/"
+        "**/.git/"
+        "**/pyc"
+
+        ".virtualenvs/"
+        "node_modules/"
+        ".npm/"
+        ".m2/repository/"
+        ".gradle/caches/"
+      ]; 
+      repo = "/mnt/backups/borg";
+      doInit = true;
+      encryption.mode = "none";
+      compression = "auto,lzma";
+      startAt = "weekly";
+    };
+  };
+
+
   networking.hostName = "faccun";
   nix.settings = {
     builders-use-substitutes = true;
@@ -26,6 +73,13 @@
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
+
+  
+
+  networking.hostId = "354736d9";
+  services.zfs.autoScrub.enable = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  # boot.kernelModules = [ "zfs" ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -81,6 +135,8 @@
     filelight
     vscode
     wezterm
+
+    zfs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

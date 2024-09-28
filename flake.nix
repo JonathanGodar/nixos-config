@@ -64,6 +64,7 @@
           };
         };
         modules = [
+          ./nixos_modules
           ./hosts/${hostname}
           {
             networking.hostName = hostname;

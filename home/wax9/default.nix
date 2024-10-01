@@ -11,10 +11,9 @@
   ];
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1, 1920x1080@60, 0x0, 1"
+      # monitor, resolution, position, scale
+      "eDP-1, preferred, 0x0, 2"
       ", preferred, auto, 1, mirror, eDP-1"
-      # "DP-2, 1920x1080@144, 1920x0, 1"
-      # "Unknown-1, disable"
     ];
 
     "$mod" = "SUPER";

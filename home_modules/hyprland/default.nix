@@ -71,6 +71,10 @@ in {
     wayland.windowManager.hyprland.catppuccin.enable = true;
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {
+      general = {
+        gaps_in = 3;
+        gaps_out = 0;
+      };
       windowrulev2 = "workspace special:Chat, initialtitle:^(chatgpt\.com_/)$";
       #     windowrulev2 = float,class:(qalculate-gtk)
       # windowrulev2 = workspace special:calculator,class:(qalculate-gtk)

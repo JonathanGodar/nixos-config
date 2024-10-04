@@ -13,6 +13,7 @@
       enableZshIntegration = true;
       settings = {
         direnv.disabled = false;
+        directory.truncate_to_repo = false;
       };
     };
   };

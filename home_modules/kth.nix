@@ -13,6 +13,9 @@
       python3
       zoom-us
       vscode
+
+      onlyoffice-bin
+      libreoffice
       slack
     ];
   };

@@ -75,6 +75,10 @@ in {
         gaps_in = 3;
         gaps_out = 0;
       };
+      animation = [
+        "workspaces, 0"
+      ];
+
       windowrulev2 = "workspace special:Chat, initialtitle:^(chatgpt\.com_/)$";
       #     windowrulev2 = float,class:(qalculate-gtk)
       # windowrulev2 = workspace special:calculator,class:(qalculate-gtk)

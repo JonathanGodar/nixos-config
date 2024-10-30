@@ -12,7 +12,7 @@
       enable = true;
       settings = {
         window.decorations = "None";
-        shell.program = "tmux";
+        terminal.shell.program = "tmux";
         font.normal = {
           family = "JetBrains Mono Nerd Font";
           style = "Medium";

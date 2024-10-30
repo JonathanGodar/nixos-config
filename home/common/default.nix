@@ -57,7 +57,7 @@
     # Needed to make the desktopEntries
     xdg-utils
 
-    cinnamon.nemo
+    nemo
     navigateOpenWindows
 
     chromium

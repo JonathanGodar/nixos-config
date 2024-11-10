@@ -21,6 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
+
+
     tmuxSessionX = {
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -36,6 +36,7 @@
       #   # dotnetInstallFlags = [ "ALKJDASLKDJASLDKJASLKJ" ];
       # });
     })
+    inputs.nix-matlab.overlay
     # (final: prev: {
     #   opentabletdriver = prev.opentabletdriver.overrideAttrs {
     #     src = inputs.opentablet-ugee;

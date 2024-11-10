@@ -17,6 +17,13 @@
       onlyoffice-bin
       libreoffice
       slack
+
+      gnumake
+      noweb
+      # texlive denna är brutalt stor och lyckas aldrig installeras
+      texlive.combined.scheme-medium
+
+      matlab # Provided by nix-matlab overlay. Requires imperative installation. See the gitlab of the input
     ];
   };
 }

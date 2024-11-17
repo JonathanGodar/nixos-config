@@ -10,6 +10,7 @@
   preconf = {
     cli_full.enable = true;
     catppuccin.enable = true;
+    kth.enable = true;
   };
 
   home.packages = with pkgs; [

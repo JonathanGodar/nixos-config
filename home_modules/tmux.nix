@@ -11,7 +11,7 @@
       enable = true;
 
       shortcut = "Space";
-      plugins = with pkgs.tmuxPlugins; [sensible vim-tmux-navigator catppucccin inputs.tmuxSessionX.packages."${pkgs.system}".default];
+      plugins = with pkgs.tmuxPlugins; [sensible vim-tmux-navigator catppuccin inputs.tmuxSessionX.packages."${pkgs.system}".default];
 
       terminal = "screen-256color";
       mouse = true;

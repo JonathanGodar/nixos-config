@@ -126,6 +126,9 @@
               # }
               {
                 sdImage.compressImage = false;
+
+                # Let the sd-image thing take care of the file system paths 
+                rpi4_fs.enable = false;
               }
             ];
           })

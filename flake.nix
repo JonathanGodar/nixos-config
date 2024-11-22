@@ -124,6 +124,9 @@
               # {
               # disabledModules =
               # }
+              {
+                sdImage.compressImage = false;
+              }
             ];
           })
         .config

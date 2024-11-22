@@ -17,5 +17,6 @@
     ./lazygit.nix
     ./zoxide.nix
     ./kth.nix
+    ./matlab.nix
   ];
 }

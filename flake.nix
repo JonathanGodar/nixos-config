@@ -121,9 +121,11 @@
           {
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-              # {
-              # disabledModules =
-              # }
+              {
+                disabledModules = [
+                  nixos-hardware.nixosModules.raspberry-pi-4
+                ];
+              }
               {
                 sdImage.compressImage = false;
 

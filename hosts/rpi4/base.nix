@@ -7,6 +7,7 @@
 }:
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     # Paths to other modules.
     # Compose this module out of smaller ones.
   ];

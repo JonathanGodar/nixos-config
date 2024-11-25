@@ -21,8 +21,14 @@
     # This is set by the SD-installer and needs to be kept.
     fileSystems."/" =
     { 
-	device = "/dev/disk/by-label/NIXOS_SD";
-	fsType = "ext4";
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+    };
+
+    fileSystems."/mnt/ssd/" =
+    { 
+      device = "/dev/vg-ssd/lv-home";
+      fsType = "ext4";
     };
 
 	#    boot = {

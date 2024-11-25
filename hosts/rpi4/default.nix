@@ -46,6 +46,12 @@
   # Configure console keymap
   console.keyMap = "sv-latin1";
 
+  users.users.syncthing = {
+    home = "/mnt/ssd/syncthing";
+  };
+
+  services.syncthing.enable = true;
+
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";

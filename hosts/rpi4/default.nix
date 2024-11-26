@@ -88,6 +88,19 @@
     };
   };
 
+  services.borgbackup.repos = {
+      borg_repo = {
+        authorizedKeys = [
+          # TODO Set to variable - duplication 
+          (builtins.readFile
+            ./../../public_keys/faccun.pub)
+          (builtins.readFile
+            ./../../public_keys/wax9.pub)
+        ];
+        path = "/mnt/ssd/borg";
+      };
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

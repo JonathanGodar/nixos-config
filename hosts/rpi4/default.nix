@@ -60,6 +60,8 @@
     openssh.authorizedKeys.keys = [
       (builtins.readFile
         ./../../public_keys/faccun.pub)
+      (builtins.readFile
+        ./../../public_keys/wax9.pub)
     ];
   };
 

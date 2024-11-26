@@ -19,7 +19,8 @@
       paths = "/home/jonathan/";
       exclude = [ 
         ".cargo/" 
-        "*/Cache"
+        "**/Cache"
+        "**/cache"
         "**/.cache/" 
         ".eclipse/" 
         ".discord-rpc/" 
@@ -52,11 +53,11 @@
         ".m2/repository/"
         ".gradle/caches/"
       ]; 
-      repo = "/mnt/backups/borg";
+      repo = "borg@192.168.1.32:.";
       doInit = true;
       encryption.mode = "none";
       compression = "auto,lzma";
-      startAt = "weekly";
+      startAt = "daily";
     };
   };
 

@@ -121,9 +121,17 @@
           {
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-              # {
-              # disabledModules =
-              # }
+              {
+                disabledModules = [
+                  nixos-hardware.nixosModules.raspberry-pi-4
+                ];
+              }
+              {
+                sdImage.compressImage = false;
+
+                # Let the sd-image thing take care of the file system paths 
+                rpi4_fs.enable = false;
+              }
             ];
           })
         .config

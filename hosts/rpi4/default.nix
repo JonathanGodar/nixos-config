@@ -3,6 +3,10 @@
   inputs,
   ...
 }: {
+  imports = [
+    ./base.nix
+
+  ];
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
   # hardware.bluetooth.powerOnBoot = true;
   # services.blueman.enable = true;
@@ -42,6 +46,12 @@
   # Configure console keymap
   console.keyMap = "sv-latin1";
 
+  services.syncthing = {
+    enable = true;
+    # TODO Set this as a variable
+    dataDir = "/mnt/ssd/syncthing";
+  };
+
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
@@ -50,6 +60,8 @@
     openssh.authorizedKeys.keys = [
       (builtins.readFile
         ./../../public_keys/faccun.pub)
+      (builtins.readFile
+        ./../../public_keys/wax9.pub)
     ];
   };
 
@@ -76,6 +88,19 @@
     };
   };
 
+  services.borgbackup.repos = {
+      borg_repo = {
+        authorizedKeys = [
+          # TODO Set to variable - duplication 
+          (builtins.readFile
+            ./../../public_keys/faccun.pub)
+          (builtins.readFile
+            ./../../public_keys/wax9.pub)
+        ];
+        path = "/mnt/ssd/borg";
+      };
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -91,6 +116,8 @@
     21027
   ];
 
+  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -99,7 +126,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # RPI4 specific
-  environment.noXlibs = false;
 }

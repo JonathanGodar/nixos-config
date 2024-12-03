@@ -15,11 +15,12 @@
   ];
 
   services.borgbackup.jobs = {
-    faccunHomeBackup = {
+    faccback = {
       paths = "/home/jonathan/";
       exclude = [ 
         ".cargo/" 
-        "*/Cache"
+        "**/Cache"
+        "**/cache"
         "**/.cache/" 
         ".eclipse/" 
         ".discord-rpc/" 
@@ -52,11 +53,18 @@
         ".m2/repository/"
         ".gradle/caches/"
       ]; 
-      repo = "/mnt/backups/borg";
-      doInit = true;
+      environment = { 
+        BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519"; 
+      };
+
+      extraCreateArgs = "--verbose --stats";
+
+      user = "jonathan";
+
+      repo = "borg@192.168.1.32:./";
       encryption.mode = "none";
       compression = "auto,lzma";
-      startAt = "weekly";
+      startAt = "daily";
     };
   };
 

@@ -14,6 +14,8 @@
       zoom-us
       vscode
 
+      typst
+
       onlyoffice-bin
       libreoffice
       slack

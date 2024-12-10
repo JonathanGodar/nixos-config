@@ -25,6 +25,7 @@
         })
         .overrideAttrs (old: {
           src = inputs.opentablet-ugee; # Flake input of for source.
+          nativeBuildInputs = old.nativeBuildInputs ++ [pkgs-9f41.git];
         });
 
       # prev.opentabletdriver.overrideAttrs (old: {

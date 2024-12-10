@@ -143,7 +143,9 @@
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # font.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
+  # For all nerd-fonts
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.jetbrains-mono
   ];
 }

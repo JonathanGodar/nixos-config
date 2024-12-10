@@ -41,7 +41,10 @@
         "**/node_modules/**"
 
         ".mozilla/firefox/*.default-release/cache2/"
+        ".mozilla/firefox/"
+        ".config/discord/"
         ".config/google-chrome/Default/Cache/"
+        ".config/chromium/"
         ".local/share/Trash/"
         "**/tmp/"
         "**/.git/"

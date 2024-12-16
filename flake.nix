@@ -44,6 +44,8 @@
 
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
+    rnote-export.url = "github:JonathanGodar/rnote_export";
   };
 
   outputs = {
@@ -93,7 +95,7 @@
               ];
             };
           }
-        ];
+        ] ++ extraModules;
       }
     );
   in rec {
@@ -102,10 +104,16 @@
         system = "x86_64-linux";
         hostname = "faccun";
       };
-      wax9 = mkSystem {
+      wax9 = mkSystem rec {
         system = "x86_64-linux";
         hostname = "wax9";
-        extraModules = [nixos-hardware.nixosModules.huawei-machc-wa];
+        extraModules = [
+          nixos-hardware.nixosModules.huawei-machc-wa
+          inputs.rnote-export.nixosModules.${system}.default
+          {
+            services.rnote-export.enable = true;
+          }
+        ];
       };
       rpi4 = mkSystem {
         system = "aarch64-linux";

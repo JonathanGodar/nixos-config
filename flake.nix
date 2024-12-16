@@ -42,9 +42,6 @@
       flake = false;
     };
 
-    anyrun.url = "github:anyrun-org/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
-
     rnote-export.url = "github:JonathanGodar/rnote_export";
   };
 

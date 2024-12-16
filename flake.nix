@@ -108,14 +108,20 @@
           nixos-hardware.nixosModules.huawei-machc-wa
           inputs.rnote-export.nixosModules.${system}.default
           {
-            services.rnote-export.enable = true;
+            services.rnote-export = {
+              enable = true;
+              user = "jonathan";
+              group = "users";
+              inputDirectory = "/home/jonathan/kth/pde/";
+              includeString = "föreläsningar/F*.rnote";
+            };
           }
         ];
       };
-      rpi4 = mkSystem {
+      rpi4 = mkSystem rec {
         system = "aarch64-linux";
         hostname = "rpi4";
-        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4];
+        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4 inputs.rnote-export.nixosModules.${system}.default];
       };
     };
 

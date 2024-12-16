@@ -46,6 +46,9 @@
   # Configure console keymap
   console.keyMap = "sv-latin1";
 
+  # required for remote builds (https://nixos.wiki/wiki/Nixos-rebuild)
+  nix.settings.trusted-users = ["jonathan"];
+
   services.syncthing = {
     enable = true;
     # TODO Set this as a variable
@@ -107,6 +110,7 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22000 # Syncthing
+    80 # nginx web traffic
     22
   ];
   networking.firewall.allowedUDPPorts = [

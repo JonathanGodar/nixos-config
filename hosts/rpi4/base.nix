@@ -38,9 +38,6 @@
 	#   grub.enable = lib.mkDefault false;
 	# };
 	#    };
-
-
-
   };
 }
 

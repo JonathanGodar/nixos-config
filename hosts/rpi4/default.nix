@@ -122,8 +122,8 @@
 
   services.rnote-export = {
     enable = true;
-    user = "jonathan";
-    group = "users";
+    user = "syncthing";
+    group = "syncthing";
 
     inputDirectory = "/mnt/ssd/syncthing/kth";
     includeString = "*/föreläsningar/F*.rnote";
@@ -134,6 +134,7 @@
 
     virtualHosts."lillathea.asuscomm.com" = {
       root = "/var/lib/rnote-export/";
+      extraConfig = "charset UTF-8;";
       locations."/" = {
         extraConfig = "autoindex on;";
       };

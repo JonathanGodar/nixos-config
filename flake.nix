@@ -11,6 +11,7 @@
       url = "github:jappie3/hyprcursor-phinger";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     catppuccin-wallpaper-repo = {
       url = "github:zhichaoh/catppuccin-wallpapers";
       flake = false;
@@ -25,7 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-matlab";
     };
-
 
     tmuxSessionX = {
       url = "github:omerxx/tmux-sessionx";
@@ -97,9 +97,21 @@
     );
   in rec {
     nixosConfigurations = {
-      faccun = mkSystem {
+      faccun = mkSystem rec {
         system = "x86_64-linux";
         hostname = "faccun";
+        extraModules = [
+          inputs.rnote-export.nixosModules.${system}.default
+          {
+            services.rnote-export = {
+              enable = true;
+              inputDirectory = "/home/jonathan/kth";
+              user = "jonathan";
+              group = "users";
+              includeString = "*/föreläsningar/*.rnote";
+            };
+          }
+        ];
       };
       wax9 = mkSystem rec {
         system = "x86_64-linux";
@@ -108,7 +120,10 @@
           nixos-hardware.nixosModules.huawei-machc-wa
           inputs.rnote-export.nixosModules.${system}.default
           {
-            services.rnote-export.enable = true;
+            services.rnote-export = {
+              enable = true;
+              inputDirectory = "/home/jonathan/kth";
+            };
           }
         ];
       };

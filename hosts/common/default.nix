@@ -107,6 +107,7 @@
     # Required for hyprland to work
     enable = true;
     xwayland.enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
   programs.neovim = {
@@ -134,6 +135,9 @@
     21027
   ];
 
+  # To be able to emulate RASPI-4
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -143,7 +147,9 @@
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # font.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
+  # For all nerd-fonts
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.jetbrains-mono
   ];
 }

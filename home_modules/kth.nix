@@ -14,13 +14,15 @@
       zoom-us
       vscode
 
+      typst
+
       onlyoffice-bin
       libreoffice
       slack
 
       gnumake
       noweb
-      texlive.combined.scheme-medium
+      texlive.combined.scheme-small
     ];
   };
 }

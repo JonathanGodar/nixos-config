@@ -11,6 +11,7 @@
       url = "github:jappie3/hyprcursor-phinger";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     catppuccin-wallpaper-repo = {
       url = "github:zhichaoh/catppuccin-wallpapers";
       flake = false;
@@ -25,7 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-matlab";
     };
-
 
     tmuxSessionX = {
       url = "github:omerxx/tmux-sessionx";
@@ -42,8 +42,7 @@
       flake = false;
     };
 
-    anyrun.url = "github:anyrun-org/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    rnote-export.url = "github:JonathanGodar/rnote_export";
   };
 
   outputs = {
@@ -93,24 +92,48 @@
               ];
             };
           }
-        ];
+        ] ++ extraModules;
       }
     );
   in rec {
     nixosConfigurations = {
-      faccun = mkSystem {
+      faccun = mkSystem rec {
         system = "x86_64-linux";
         hostname = "faccun";
+        extraModules = [
+          inputs.rnote-export.nixosModules.${system}.default
+          {
+            services.rnote-export = {
+              enable = true;
+              inputDirectory = "/home/jonathan/kth";
+              user = "jonathan";
+              group = "users";
+              includeString = "*/föreläsningar/*.rnote";
+            };
+          }
+        ];
       };
-      wax9 = mkSystem {
+      wax9 = mkSystem rec {
         system = "x86_64-linux";
         hostname = "wax9";
-        extraModules = [nixos-hardware.nixosModules.huawei-machc-wa];
+        extraModules = [
+          nixos-hardware.nixosModules.huawei-machc-wa
+          inputs.rnote-export.nixosModules.${system}.default
+          {
+            services.rnote-export = {
+              enable = true;
+              user = "jonathan";
+              group = "users";
+              inputDirectory = "/home/jonathan/kth/pde/";
+              includeString = "föreläsningar/F*.rnote";
+            };
+          }
+        ];
       };
-      rpi4 = mkSystem {
+      rpi4 = mkSystem rec {
         system = "aarch64-linux";
         hostname = "rpi4";
-        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4];
+        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4 inputs.rnote-export.nixosModules.${system}.default];
       };
     };
 

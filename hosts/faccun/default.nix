@@ -15,11 +15,12 @@
   ];
 
   services.borgbackup.jobs = {
-    faccunHomeBackup = {
+    faccback = {
       paths = "/home/jonathan/";
       exclude = [ 
         ".cargo/" 
-        "*/Cache"
+        "**/Cache"
+        "**/cache"
         "**/.cache/" 
         ".eclipse/" 
         ".discord-rpc/" 
@@ -40,7 +41,10 @@
         "**/node_modules/**"
 
         ".mozilla/firefox/*.default-release/cache2/"
+        ".mozilla/firefox/"
+        ".config/discord/"
         ".config/google-chrome/Default/Cache/"
+        ".config/chromium/"
         ".local/share/Trash/"
         "**/tmp/"
         "**/.git/"
@@ -52,11 +56,18 @@
         ".m2/repository/"
         ".gradle/caches/"
       ]; 
-      repo = "/mnt/backups/borg";
-      doInit = true;
+      environment = { 
+        BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519"; 
+      };
+
+      extraCreateArgs = "--verbose --stats";
+
+      user = "jonathan";
+
+      repo = "borg@192.168.1.32:./";
       encryption.mode = "none";
       compression = "auto,lzma";
-      startAt = "weekly";
+      startAt = "daily";
     };
   };
 
@@ -64,14 +75,6 @@
   networking.hostName = "faccun";
   nix.settings = {
     builders-use-substitutes = true;
-    # extra substituters to add
-    extra-substituters = [
-      "https://anyrun.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-    ];
   };
 
   

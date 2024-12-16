@@ -8,6 +8,7 @@
 
   services.upower.enable = true;
 
+  services.xserver.desktopManager.lxqt.enable = true;
   services.libinput.touchpad.naturalScrolling = true;
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 }

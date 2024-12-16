@@ -120,7 +120,25 @@
     21027
   ];
 
-  
+  services.rnote-export = {
+    enable = true;
+    user = "jonathan";
+    group = "users";
+
+    inputDirectory = "/mnt/ssd/syncthing/kth";
+    includeString = "*/föreläsningar/F*.rnote";
+  };
+
+  services.nginx = {
+    enable = true;
+
+    virtualHosts."lillathea.asuscomm.com" = {
+      root = "/var/lib/rnote-export/";
+      locations."/" = {
+        extraConfig = "autoindex on;";
+      };
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

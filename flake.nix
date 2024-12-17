@@ -102,7 +102,7 @@
         hostname = "faccun";
         extraModules = [
           inputs.rnote-export.nixosModules.${system}.default
-          {
+          ({pkgs, ...}: {
             services.rnote-export = {
               enable = true;
               inputDirectory = "/home/jonathan/kth";
@@ -110,7 +110,22 @@
               group = "users";
               includeString = "*/föreläsningar/*.rnote";
             };
-          }
+
+            services.nginx = {
+              enable = true;
+              additionalModules = [ pkgs.nginxModules.fancyindex ];
+
+
+              virtualHosts."192.168.1.83" = {
+                root = "/var/lib/rnote-export/";
+                locations."/" = {
+                  extraConfig = ''
+                  fancyindex on;
+                  '';
+                };
+              };
+            };
+          })
         ];
       };
       wax9 = mkSystem rec {

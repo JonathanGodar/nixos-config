@@ -131,12 +131,13 @@
 
   services.nginx = {
     enable = true;
+    additionalModules = [ pkgs.nginxModules.fancyindex ];
 
     virtualHosts."lillathea.asuscomm.com" = {
       root = "/var/lib/rnote-export/";
       extraConfig = "charset UTF-8;";
       locations."/" = {
-        extraConfig = "autoindex on;";
+        extraConfig = "fancyindex on;";
       };
     };
   };

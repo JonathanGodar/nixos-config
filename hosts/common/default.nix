@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  pkgs-9f41,
   ...
 }: {
   imports = [
@@ -30,6 +31,21 @@
 
   hardware.opentabletdriver = {
     enable = true;
+    package = (pkgs-9f41.opentabletdriver.override {
+          buildDotnetModule = attrs:
+            pkgs-9f41.buildDotnetModule (attrs
+              // {
+                dotnet-sdk = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
+                dotnet-runtime = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
+                nugetDeps = ./deps.nix;
+                disabledTests = attrs.disabledTests ++ ["OpenTabletDriver.Tests.ConfigurationTest.Configurations_Are_Linted"];
+                dotnetInstallFlags = [];
+              });
+        })
+        .overrideAttrs (old: {
+          src = inputs.opentablet-ugee; # Flake input of for source.
+          nativeBuildInputs = old.nativeBuildInputs; # ++ [pkgs-9f41.git];
+        });
   };
 
   # Set your time zone.

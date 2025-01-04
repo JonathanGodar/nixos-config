@@ -9,39 +9,6 @@
 }: {
   imports = [./focusWindow ./navigateOpenWindows];
   nixpkgs.overlays = [
-    # inputs.mynvim.overlays.default
-    (final: prev: {
-      opentabletdriver =
-        (prev.opentabletdriver.override {
-          buildDotnetModule = attrs:
-            pkgs-9f41.buildDotnetModule (attrs
-              // {
-                dotnet-sdk = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
-                dotnet-runtime = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
-                nugetDeps = ./deps.nix;
-                disabledTests = attrs.disabledTests ++ ["OpenTabletDriver.Tests.ConfigurationTest.Configurations_Are_Linted"];
-                dotnetInstallFlags = [];
-              });
-        })
-        .overrideAttrs (old: {
-          src = inputs.opentablet-ugee; # Flake input of for source.
-          nativeBuildInputs = old.nativeBuildInputs ++ [pkgs-9f41.git];
-        });
-
-      # prev.opentabletdriver.overrideAttrs (old: {
-      #   src = inputs.opentablet-ugee;
-      #   # dotnet-sdk = [pkgs.dotnetCorePackages.sdk_7_0];
-      #   dotnet-sdk = pkgs.dotnetCorePackages.sdk_7_0; # (with pkgs.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0]);
-      #   # dotnet-sdk = (with pkgs.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0]);
-      #   dotnetInstallFlags = [ ];
-      #   # dotnetInstallFlags = [ "ALKJDASLKDJASLDKJASLKJ" ];
-      # });
-    })
     inputs.nix-matlab.overlay
-    # (final: prev: {
-    #   opentabletdriver = prev.opentabletdriver.overrideAttrs {
-    #     src = inputs.opentablet-ugee;
-    #   };
-    # })
   ];
 }

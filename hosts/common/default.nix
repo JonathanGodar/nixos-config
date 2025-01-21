@@ -14,8 +14,6 @@
   services.blueman.enable = true;
   programs.dconf.enable = true;
 
-  virtualisation.docker.enable = true;
-
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -28,6 +26,14 @@
 
   # Enables wayland support for chromium and electron based apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  virtualisation.podman = {
+    enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    podman-compose
+  ];
 
   hardware.opentabletdriver = {
     enable = true;
@@ -113,7 +119,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel"];
     packages = [];
   };
 

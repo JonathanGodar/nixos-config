@@ -31,6 +31,10 @@
       fsType = "ext4";
     };
 
+    boot.kernel.sysctl = {
+      "fs.inotify.max_user_watches"   = "524288";  # Increase default
+    };
+
 	#    boot = {
 	#      kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 	# loader = {

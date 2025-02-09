@@ -40,6 +40,14 @@
     LC_TIME = "sv_SE.UTF-8";
   };
 
+  services.ddclient = {
+    enable = true;
+    protocol = "namecheap";
+    username = "ngodag.com";
+    passwordFile = "/mnt/ssd/syncthing/misc/secrets/namecheap_ddns_password";
+    domains = ["@" "*"];
+  };
+
   # Enable networking
   # networking.networkmanager.enable = true;
 

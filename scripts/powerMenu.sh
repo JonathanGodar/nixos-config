@@ -2,6 +2,7 @@ options=$(cat << EOM
 Power off
 Reboot
 Suspend
+Logout
 EOM)
 
 chosen=$(echo "$options" | rofi -dmenu)
@@ -16,4 +17,8 @@ fi
 
 if [[ "$chosen" == "Suspend" ]]; then
   systemctl suspend
+fi
+
+if [[ "$chosen" == "Logout" ]]; then
+  loginctl kill-user $(whoami) 
 fi

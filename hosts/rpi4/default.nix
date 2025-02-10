@@ -118,7 +118,8 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22000 # Syncthing
-    80 # nginx web traffic
+    80 
+    443
     22
   ];
   networking.firewall.allowedUDPPorts = [
@@ -137,18 +138,43 @@
     includeString = "*/föreläsningar/F*.rnote";
   };
 
-  services.nginx = {
+  services.caddy = {
     enable = true;
-    additionalModules = [ pkgs.nginxModules.fancyindex ];
+    virtualHosts = {
+      "ant.ngodag.com" = {
+        extraConfig = ''
+        file_server browse
+        root /var/lib/rnote-export/
+        '';
+      };
 
-    virtualHosts."lillathea.asuscomm.com" = {
-      root = "/var/lib/rnote-export/";
-      extraConfig = "charset UTF-8;";
-      locations."/" = {
-        extraConfig = "fancyindex on;";
+      "tun1.ngodag.com" = {
+        extraConfig = ''
+        reverse_proxy :9001
+        '';
+      };
+
+      "tun2.ngodag.com" = {
+        extraConfig = ''
+        reverse_proxy :9002
+        '';
       };
     };
   };
+
+  # services.nginx = {
+  #   enable = true;
+  #                         This option took an eternity to understand
+  #   additionalModules = [ pkgs.nginxModules.fancyindex ];
+  #
+  #   virtualHosts."lillathea.asuscomm.com" = {
+  #     root = "/var/lib/rnote-export/";
+  #     extraConfig = "charset UTF-8;";
+  #     locations."/" = {
+  #       extraConfig = "fancyindex on;";
+  #     };
+  #   };
+  # };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -142,6 +142,14 @@
     zfs
   ];
 
+  # services.ddclient = {
+  #   enable = true;
+  #   protocol = "namecheap";
+  #   username = "ngodag.com";
+  #   passwordFile = "/home/jonathan/misc/secrets/namecheap_ddns_password";
+  #   domains = ["@" "*"];
+  # };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -169,7 +177,7 @@
 
   # Or disable the firewall altogether.
 
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # Enable nVidia - GPU
   hardware.graphics = {
@@ -212,4 +220,12 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+    loadModels = ["deepseek-r1"];
+  };
+
+  services.open-webui.enable = true;
+
 }

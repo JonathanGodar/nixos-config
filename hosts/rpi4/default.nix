@@ -143,8 +143,9 @@
     virtualHosts = {
       "ant.ngodag.com" = {
         extraConfig = ''
+        root * /var/lib/rnote-export/
         file_server browse
-        root /var/lib/rnote-export/
+        header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
         '';
       };
 

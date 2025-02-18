@@ -148,7 +148,7 @@
     database.createLocally = true;
 
     # To be able to register more devices
-    openRegistration = true;
+    # openRegistration = true;
   };
 
 

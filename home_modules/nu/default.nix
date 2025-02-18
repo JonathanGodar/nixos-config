@@ -18,7 +18,13 @@
     programs.eza.enableNushellIntegration = true;
     programs.direnv.enableNushellIntegration = true;
 
-    programs.atuin.enable = true;
+    programs.atuin = {
+      enable = true;
+      settings = {
+        sync_frequency = "0";
+        sync_address = "https://atuin.ngodag.com";
+      };
+    };
     programs.atuin.enableNushellIntegration = true;
 
     # programs.zsh = {

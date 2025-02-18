@@ -138,6 +138,20 @@
     includeString = "*/föreläsningar/F*.rnote";
   };
 
+  # For atuin
+  services.postgresql = {
+    enable = true;
+  };
+
+  services.atuin = {
+    enable = true;
+    database.createLocally = true;
+
+    # To be able to register more devices
+    openRegistration = true;
+  };
+
+
   services.caddy = {
     enable = true;
     virtualHosts = {
@@ -146,6 +160,12 @@
         root * /var/lib/rnote-export/
         file_server browse
         header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
+        '';
+      };
+
+      "atuin.ngodag.com" = {
+        extraConfig = '' 
+          reverse_proxy :8888
         '';
       };
 

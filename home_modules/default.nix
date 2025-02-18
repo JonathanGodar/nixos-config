@@ -4,6 +4,8 @@
 
     ./hyprland
     ./hyprland_de.nix
+    ./nu
+
     ./cursors.nix
     ./waybar.nix
     ./cli.nix

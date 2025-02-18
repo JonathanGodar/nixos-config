@@ -5,6 +5,7 @@
   ...
 }: {
   preconf.hyprland_de.enable = true;
+  preconf.nu.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";

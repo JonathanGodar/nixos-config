@@ -11,6 +11,8 @@
     ./cli.nix
     ./cli_full.nix
     ./alacritty.nix
+    ./kitty.nix
+    ./ghostty.nix
     ./git.nix
     ./starship.nix
     ./tmux.nix

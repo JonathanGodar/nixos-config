@@ -10,6 +10,7 @@
     preconf.hyprland.enable = true;
     preconf.waybar.enable = true;
     preconf.alacritty.enable = true;
+    preconf.ghostty.enable = true;
 
     preconf.cursors.enable = true;
   };

@@ -21,9 +21,6 @@
     programs.atuin.enable = true;
     programs.atuin.enableNushellIntegration = true;
 
-
-    catppuccin.kitty.enable = true;
-    
     # programs.zsh = {
     #   enable = true;
     #   enableCompletion = true;

@@ -124,7 +124,7 @@ in {
           "SUPER_SHIFT, B, exec, ${focusApp "firefox" "firefox"}"
           "SUPER, B, exec, firefox"
 
-          "$mod, Return, exec, alacritty"
+          "$mod, Return, exec, ghostty"
           "SUPER_SHIFT, Return, exec, ${focusApp "Alacritty" "alacritty"}"
 
           "SUPER_SHIFT, c, killactive"

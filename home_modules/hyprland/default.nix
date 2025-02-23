@@ -46,6 +46,7 @@ in {
   config = lib.mkIf config.preconf.hyprland.enable {
     home.packages = with pkgs; [
       # Required to make desktop entries
+      hyprpolkitagent
       xdg-utils
     ];
 
@@ -90,7 +91,8 @@ in {
         "dbus-update-activation-environment --systemd --all"
         "${lib.getExe changeWallpaper}"
         "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
-        "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
+        "systemctl --user start hyprpolkitagent"
+        # "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
 
         "wl-paste --type text --watch cliphist store" # Make text available in clipboard history
         "wl-paste --type image --watch cliphist store" # Make images available in clipboard history

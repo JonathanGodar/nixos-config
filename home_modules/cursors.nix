@@ -14,28 +14,28 @@
     in
 
     lib.mkIf config.preconf.cursors.enable {
-      home.pointerCursor = {
-        name = "phinger-cursors-dark";
-        package = pkgs.phinger-cursors;
-        inherit size;
-        gtk.enable = true;
-      };
-
-      dconf.settings = {
-        "org/gnome/desktop/interface" = {
-          cursor-theme = "phinger-cursors-dark";
-          cursor-size = toString size;
-        };
-      };
-
-      wayland.windowManager.hyprland.settings = lib.mkIf config.preconf.hyprland.enable {
-        exec-once = [
-          "hyprctl setcursor phinger-cursors-dark ${toString size}"
-        ];
-      };
-
-      # Imports phinger-hyprcursor variant
-      programs.hyprcursor-phinger.enable = lib.mkIf config.preconf.hyprland.enable true;
+      # home.pointerCursor = {
+      #   name = "phinger-cursors-dark";
+      #   package = pkgs.phinger-cursors;
+      #   inherit size;
+      #   gtk.enable = true;
+      # };
+      #
+      # dconf.settings = {
+      #   "org/gnome/desktop/interface" = {
+      #     cursor-theme = "phinger-cursors-dark";
+      #     cursor-size = toString size;
+      #   };
+      # };
+      #
+      # wayland.windowManager.hyprland.settings = lib.mkIf config.preconf.hyprland.enable {
+      #   exec-once = [
+      #     "hyprctl setcursor phinger-cursors-dark ${toString size}"
+      #   ];
+      # };
+      #
+      # # Imports phinger-hyprcursor variant
+      # programs.hyprcursor-phinger.enable = lib.mkIf config.preconf.hyprland.enable true;
   };
 
 }

@@ -56,9 +56,10 @@ in {
         exec = "${lib.getExe changeWallpaper}";
       };
     };
+
+    catppuccin.dunst.enable = true;
     services.dunst = {
       enable = true;
-      catppuccin.enable = true;
     };
 
     services.hyprpaper = {
@@ -69,7 +70,9 @@ in {
       };
     };
 
-    wayland.windowManager.hyprland.catppuccin.enable = true;
+
+    catppuccin.hyprland.enable = true;
+    # wayland.windowManager.hyprland.catppuccin.enable = true;
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {
       general = {

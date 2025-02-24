@@ -6,6 +6,7 @@
 }: {
   options.preconf.waybar.enable = lib.mkEnableOption "Enable preconfigured waybar";
   config = lib.mkIf config.preconf.waybar.enable {
+    catppuccin.waybar.enable = true;
     programs.waybar = {
       enable = true;
       settings = {

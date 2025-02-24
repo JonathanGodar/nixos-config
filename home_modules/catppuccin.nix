@@ -2,6 +2,7 @@
   lib,
   inputs,
   config,
+  pkgs,
   ...
 }: {
   options = {
@@ -18,11 +19,13 @@
       enable = true;
     };
 
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
+    catppuccin.gtk.enable = true;
+    gtk.enable = true;
+    # dconf.settings = {
+    #   "org/gnome/desktop/interface" = {
+    #     color-scheme = "prefer-dark";
+    #   };
+    # };
 
     qt = {
       # Required to use catppuccin style

@@ -79,7 +79,7 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver = {
     enable = true;
-    xkbOptions = "caps:swapescape";
+    xkb.options = "caps:swapescape";
   };
 
   # Music player daemon
@@ -106,7 +106,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

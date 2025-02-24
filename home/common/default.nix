@@ -7,6 +7,7 @@
   preconf.hyprland_de.enable = true;
   preconf.kitty.enable = true;
   preconf.nu.enable = true;
+  preconf.catppuccin.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";

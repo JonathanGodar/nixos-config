@@ -27,6 +27,8 @@
         bind -r K resize-pane -U 5
         bind -r L resize-pane -R 5
 
+        set -g default-shell ${lib.getExe pkgs.nushell}
+
 
         # Start lazygit instance
         bind g run-shell "tmux neww -c '#{pane_current_path}' lazygit"

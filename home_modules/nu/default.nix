@@ -10,6 +10,13 @@
     programs.nushell = {
       enable = true;
       configFile.source = ./config.nu;
+      shellAliases = {
+        lsa = "ls -la";
+        rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
+        cd = "z";
+        rebld = "nh os switch -a ~/nixos";
+        q = "exit";
+      };
     };
 
     programs.zoxide.enableNushellIntegration = true;
@@ -23,6 +30,7 @@
       settings = {
         sync_frequency = "0";
         sync_address = "https://atuin.ngodag.com";
+        invert = true;
       };
     };
     programs.atuin.enableNushellIntegration = true;

@@ -11,9 +11,12 @@
       enable = true;
       configFile.source = ./config.nu;
       shellAliases = {
-        lsa = "ls -la";
+        lsa = "eza -la";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
-        cd = "z";
+
+        # Does not work :(
+        # cd = "z";
+
         rebld = "nh os switch -a ~/nixos";
         q = "exit";
       };

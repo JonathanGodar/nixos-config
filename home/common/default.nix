@@ -8,6 +8,7 @@
   preconf.kitty.enable = true;
   preconf.nu.enable = true;
   preconf.catppuccin.enable = true;
+  preconf.lazyvim.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";
@@ -55,7 +56,7 @@
     httpie
     httpie-desktop
 
-    inputs.nixvim.packages.${pkgs.system}.default
+    # inputs.nixvim.packages.${pkgs.system}.default
 
     dust # Analyze disk usage
     tldr # "man" in short form

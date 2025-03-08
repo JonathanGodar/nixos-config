@@ -14,12 +14,12 @@
     in
 
     lib.mkIf config.preconf.cursors.enable {
-      # home.pointerCursor = {
-      #   name = "phinger-cursors-dark";
-      #   package = pkgs.phinger-cursors;
-      #   inherit size;
-      #   gtk.enable = true;
-      # };
+      home.pointerCursor = {
+        name = "phinger-cursors-dark";
+        package = pkgs.phinger-cursors;
+        inherit size;
+        gtk.enable = true;
+      };
       #
       # dconf.settings = {
       #   "org/gnome/desktop/interface" = {

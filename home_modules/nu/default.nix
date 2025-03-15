@@ -14,8 +14,8 @@
         lsa = "eza -la";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
 
-        # Does not work :(
-        # cd = "z";
+        # Does not work :( (?)
+        cd = "z";
 
         rebld = "nh os switch -a ~/nixos";
         q = "exit";

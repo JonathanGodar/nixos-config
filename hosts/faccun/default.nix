@@ -7,7 +7,8 @@
   catppuccin,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -17,17 +18,17 @@
   services.borgbackup.jobs = {
     faccback = {
       paths = "/home/jonathan/";
-      exclude = [ 
-        ".cargo/" 
+      exclude = [
+        ".cargo/"
         "**/Cache"
         "**/cache"
-        "**/.cache/" 
-        ".eclipse/" 
-        ".discord-rpc/" 
-        ".java/" 
-        ".julia/" 
-        ".nix-profile/" 
-        ".ssh/" 
+        "**/.cache/"
+        ".eclipse/"
+        ".discord-rpc/"
+        ".java/"
+        ".julia/"
+        ".nix-profile/"
+        ".ssh/"
         ".vscode/"
         ".zconpdump"
         ".zshenv"
@@ -55,9 +56,9 @@
         ".npm/"
         ".m2/repository/"
         ".gradle/caches/"
-      ]; 
-      environment = { 
-        BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519"; 
+      ];
+      environment = {
+        BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
       };
 
       extraCreateArgs = "--verbose --stats";
@@ -71,13 +72,10 @@
     };
   };
 
-
   networking.hostName = "faccun";
   nix.settings = {
     builders-use-substitutes = true;
   };
-
-  
 
   networking.hostId = "354736d9";
   services.zfs.autoScrub.enable = true;
@@ -184,10 +182,10 @@
   };
 
   # To be able to emulate RASPI-4
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -219,4 +217,67 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  environment.etc."nextcloud-admin-pass".text = "hejsanpådigsan";
+  services.nextcloud = {
+    enable = true;
+    hostName = "localhost";
+
+    # Need to manually increment with every major upgrade.
+    package = pkgs.nextcloud30;
+
+    # Let NixOS install and configure the database automatically.
+    database.createLocally = true;
+
+    # Let NixOS install and configure Redis caching automatically.
+    configureRedis = true;
+
+    # Increase the maximum file upload size to avoid problems uploading videos.
+    maxUploadSize = "4G";
+    # https = true;
+    # enableBrokenCiphersForSSE = false;
+
+    # autoUpdateApps.enable = true;
+    # extraAppsEnable = true;
+    # extraApps = with config.services.nextcloud.package.packages.apps; {
+    #   # List of apps we want to install and are already packaged in
+    #   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
+    #   inherit calendar contacts mail notes onlyoffice tasks;
+    #
+    #   # Custom app installation example.
+    #   cookbook = pkgs.fetchNextcloudApp rec {
+    #     url =
+    #       "https://github.com/nextcloud/cookbook/releases/download/v0.10.2/Cookbook-0.10.2.tar.gz";
+    #     sha256 = "sha256-XgBwUr26qW6wvqhrnhhhhcN4wkI+eXDHnNSm1HDbP6M=";
+    #   };
+    # };
+    #
+    config = {
+      # overwriteProtocol = "https";
+      # defaultPhoneRegion = "PT";
+      dbtype = "sqlite";
+      adminuser = "admins";
+      adminpassFile = "/etc/nextcloud-admin-pass";
+    };
+  };
+
+  # onlyoffice = {
+  #   enable = true;
+  #   hostname = "onlyoffice.example.com";
+  # };
+
+  # services.nextcloud = {
+  #   enable = true;
+  #   hostName = "localhost";
+  #
+  #   database.createLocally = true;
+  #   package = pkgs.nextcloud30;
+  #
+  #   config = {
+  #     adminpassFile = "/home/jonathan/nixos/nextcloud_pass.txt";
+  #     dbtype = "sqlite";
+  #   };
+  #   # extraAppsEnable = true;
+  # };
+
 }

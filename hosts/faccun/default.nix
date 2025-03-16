@@ -78,11 +78,6 @@
   };
 
   networking.hostId = "354736d9";
-  services.zfs.autoScrub.enable = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  # boot.kernelModules = [ "zfs" ];
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -135,8 +130,6 @@
     discord
     vscode
     wezterm
-
-    zfs
   ];
 
   # services.ddclient = {

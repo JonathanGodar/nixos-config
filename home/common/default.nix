@@ -4,6 +4,11 @@
   inputs,
   ...
 }: {
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+  ];
+  programs.nix-index-database.comma.enable = true;
+
   preconf.hyprland_de.enable = true;
   preconf.kitty.enable = true;
   preconf.nu.enable = true;
@@ -36,7 +41,6 @@
 
   home.packages = with pkgs; [
     dconf # For setting gtk dark theme
-    comma
     blueman
     overskride
     killall

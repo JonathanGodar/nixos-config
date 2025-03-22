@@ -38,10 +38,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixvim = {
-    #   url = "github:JonathanGodar/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     opentablet-ugee = {
       url = "github:Spencer-Sawyer/OpenTabletDriver/2b84e38477bd3a2e8790d96bdbf4bcaae8e49e80";

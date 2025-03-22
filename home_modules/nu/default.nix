@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options.preconf.nu.enable = lib.mkEnableOption "Enable nushell";
 
   config = lib.mkIf config.preconf.nu.enable {
@@ -13,6 +14,8 @@
       shellAliases = {
         lsa = "eza -la";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos";
+
+        nvim-update = "nix flake update lazyvim --flake ~/nixos";
 
         # Does not work :( (?)
         cd = "z";

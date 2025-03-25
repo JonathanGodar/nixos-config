@@ -24,7 +24,7 @@
 
     nix-matlab = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "gitlab:doronbehar/nix-matlab";
+      url = "gitlab:doronbehar/nix-matlab?rev=85792fd2e60739866c7b8739f26a513515f762d7";
     };
 
     tmuxSessionX = {

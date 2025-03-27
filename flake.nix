@@ -23,7 +23,7 @@
     };
 
     nix-matlab = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-matlab?rev=85792fd2e60739866c7b8739f26a513515f762d7";
     };
 
@@ -33,7 +33,7 @@
       flake = true;
     };
 
-    lazyvim= {
+    lazyvim = {
       url = "github:JonathanGodar/LazyVim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -49,118 +49,125 @@
     rnote-export.url = "github:JonathanGodar/rnote_export";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-9f41,
-    home-manager,
-    nixos-hardware,
-    ...
-  } @ inputs: let
-    mkSystem = {
-      hostname,
-      system,
-      extraModules ? [],
-    }: (
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit hostname;
-          pkgs-9f41 = import nixpkgs-9f41 {
-            inherit system;
-            config.allowUnfree = true;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-9f41,
+      home-manager,
+      nixos-hardware,
+      ...
+    }@inputs:
+    let
+      mkSystem =
+        {
+          hostname,
+          system,
+          extraModules ? [ ],
+        }:
+        (nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit hostname;
+            pkgs-9f41 = import nixpkgs-9f41 {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
-        };
-        modules = [
-          ./nixos_modules
-          ./hosts/${hostname}
-          {
-            networking.hostName = hostname;
-          }
+          modules = [
+            ./nixos_modules
+            ./hosts/${hostname}
+            {
+              networking.hostName = hostname;
+            }
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              inherit hostname;
-            };
-
-            home-manager.users.jonathan = {
-              imports = [
-                inputs.catppuccin.homeManagerModules.catppuccin
-                ./home_modules
-                ./home/${hostname}
-              ];
-            };
-          }
-        ] ++ extraModules;
-      }
-    );
-  in rec {
-    nixosConfigurations = {
-      faccun = mkSystem rec {
-        system = "x86_64-linux";
-        hostname = "faccun";
-        extraModules = [
-          inputs.rnote-export.nixosModules.${system}.default
-          ({pkgs, ...}: {
-            services.rnote-export = {
-              enable = true;
-              inputDirectory = "/home/jonathan/kth";
-              user = "jonathan";
-              group = "users";
-              includeString = "*/föreläsningar/*.rnote";
-            };
-
-            services.nginx = {
-              enable = true;
-              additionalModules = [ pkgs.nginxModules.fancyindex ];
-
-
-              virtualHosts."192.168.1.83" = {
-                root = "/var/lib/rnote-export/";
-                locations."/" = {
-                  extraConfig = ''
-                  fancyindex on;
-                  '';
-                };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit hostname;
               };
-            };
-          })
-        ];
-      };
-      wax9 = mkSystem rec {
-        system = "x86_64-linux";
-        hostname = "wax9";
-        extraModules = [
-          nixos-hardware.nixosModules.huawei-machc-wa
-          inputs.rnote-export.nixosModules.${system}.default
-          {
-            services.rnote-export = {
-              enable = true;
-              user = "jonathan";
-              group = "users";
-              inputDirectory = "/home/jonathan/kth/pde/";
-              includeString = "föreläsningar/F*.rnote";
-            };
-          }
-        ];
-      };
-      rpi4 = mkSystem rec {
-        system = "aarch64-linux";
-        hostname = "rpi4";
-        extraModules = [nixos-hardware.nixosModules.raspberry-pi-4 inputs.rnote-export.nixosModules.${system}.default];
-      };
-    };
 
-    # Copied from https://github.com/MatthewCroughan/raspberrypi-nixos-example/blob/master/flake.nix
-    images = {
-      rpi4 =
-        (self.nixosConfigurations.rpi4.extendModules
-          {
+              home-manager.users.jonathan = {
+                imports = [
+                  inputs.catppuccin.homeManagerModules.catppuccin
+                  ./home_modules
+                  ./home/${hostname}
+                ];
+              };
+            }
+          ] ++ extraModules;
+        });
+    in
+    rec {
+      nixosConfigurations = {
+        faccun = mkSystem rec {
+          system = "x86_64-linux";
+          hostname = "faccun";
+          extraModules = [
+            inputs.rnote-export.nixosModules.${system}.default
+            (
+              { pkgs, ... }:
+              {
+                services.rnote-export = {
+                  enable = true;
+                  inputDirectory = "/home/jonathan/kth";
+                  user = "jonathan";
+                  group = "users";
+                  includeString = "*/föreläsningar/*.rnote";
+                };
+
+                services.nginx = {
+                  enable = true;
+                  additionalModules = [ pkgs.nginxModules.fancyindex ];
+
+                  virtualHosts."192.168.1.83" = {
+                    root = "/var/lib/rnote-export/";
+                    locations."/" = {
+                      extraConfig = ''
+                        fancyindex on;
+                      '';
+                    };
+                  };
+                };
+              }
+            )
+          ];
+        };
+        wax9 = mkSystem rec {
+          system = "x86_64-linux";
+          hostname = "wax9";
+          extraModules = [
+            nixos-hardware.nixosModules.huawei-machc-wa
+            inputs.rnote-export.nixosModules.${system}.default
+            {
+              services.rnote-export = {
+                enable = true;
+                user = "jonathan";
+                group = "users";
+                inputDirectory = "/home/jonathan/kth/pde/";
+                includeString = "föreläsningar/F*.rnote";
+              };
+            }
+          ];
+        };
+        rpi4 = mkSystem rec {
+          system = "aarch64-linux";
+          hostname = "rpi4";
+          extraModules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            inputs.rnote-export.nixosModules.${system}.default
+          ];
+        };
+      };
+
+      # Copied from https://github.com/MatthewCroughan/raspberrypi-nixos-example/blob/master/flake.nix
+      images = {
+        rpi4 =
+          (self.nixosConfigurations.rpi4.extendModules {
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               {
@@ -171,15 +178,11 @@
               {
                 sdImage.compressImage = false;
 
-                # Let the sd-image thing take care of the file system paths 
+                # Let the sd-image thing take care of the file system paths
                 rpi4_fs.enable = false;
               }
             ];
-          })
-        .config
-        .system
-        .build
-        .sdImage;
+          }).config.system.build.sdImage;
+      };
     };
-  };
 }

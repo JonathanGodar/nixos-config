@@ -11,6 +11,7 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  programs.dconf.enable = true;
 
   # Bootloader.
   boot.loader = {
@@ -64,7 +65,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.package = pkgs.kdePackages.sddm;
+  # services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 
   # Configure keymap in X11
   services.xserver.xkb = {

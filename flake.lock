@@ -168,20 +168,21 @@
     "nix-matlab": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1741100509,
-        "narHash": "sha256-YM8LQmzhNwKY2zTtynemfMJCgIDqXhD2r4ii9+RL5x0=",
+        "lastModified": 1743346909,
+        "narHash": "sha256-I7jcDnF7v/SQChirIHommHiPdFCq/5fiAbVg6BpOYAY=",
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "85792fd2e60739866c7b8739f26a513515f762d7",
+        "rev": "cc41a9db2a9dda0b15704172d49ca8e28708a6cb",
         "type": "gitlab"
       },
       "original": {
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "85792fd2e60739866c7b8739f26a513515f762d7",
         "type": "gitlab"
       }
     },
@@ -253,18 +254,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
-        "path": "/nix/store/1728d3jg85mkz2w2cvk6vi74i30fn6x7-source",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1742422364,
         "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
         "owner": "nixos",
@@ -279,7 +268,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1730958623,
         "narHash": "sha256-JwQZIGSYnRNOgDDoIgqKITrPVil+RMWHsZH1eE1VGN0=",
@@ -315,7 +304,7 @@
     "rnote-export": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -342,7 +331,7 @@
         "nix-index-database": "nix-index-database",
         "nix-matlab": "nix-matlab",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-9f41": "nixpkgs-9f41",
         "opentablet-ugee": "opentablet-ugee",
         "rnote-export": "rnote-export",

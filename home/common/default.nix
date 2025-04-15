@@ -40,6 +40,8 @@
 
   programs.firefox.enable = true;
 
+  catppuccin.thunderbird.enable = true;
+
   home.packages = with pkgs; [
     dconf # For setting gtk dark theme
     blueman

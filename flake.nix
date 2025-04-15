@@ -94,7 +94,7 @@
 
               home-manager.users.jonathan = {
                 imports = [
-                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.catppuccin.homeModules.catppuccin
                   ./home_modules
                   ./home/${hostname}
                 ];

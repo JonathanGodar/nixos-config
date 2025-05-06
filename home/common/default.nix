@@ -65,6 +65,9 @@
     httpie
     httpie-desktop
 
+    vlc
+    obs-studio
+
     # inputs.nixvim.packages.${pkgs.system}.default
 
     dust # Analyze disk usage

@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = {
     preconf.ghostty.enable = lib.mkEnableOption "Enable preconfigured ghostty";
   };
@@ -11,6 +12,7 @@
     programs.ghostty = {
       enable = true;
       settings = {
+        font-size = 10;
         command = "tmux";
       };
     };

@@ -78,6 +78,8 @@
   };
 
   networking.hostId = "354736d9";
+  programs.steam.enable = true;
+  services.flatpak.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

@@ -74,6 +74,7 @@
         };
         modules = [
           ./nixos_modules
+          ./overlays
           ./hosts/${hostname}
           {
             networking.hostName = hostname;

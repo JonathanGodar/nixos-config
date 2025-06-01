@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
@@ -39,11 +40,15 @@
 
   programs.firefox.enable = true;
 
+  catppuccin.thunderbird.enable = true;
+
   home.packages = with pkgs; [
     dconf # For setting gtk dark theme
     blueman
     overskride
     killall
+
+    thunderbird
 
     go
     prismlauncher
@@ -59,6 +64,9 @@
 
     httpie
     httpie-desktop
+
+    vlc
+    obs-studio
 
     # inputs.nixvim.packages.${pkgs.system}.default
 
@@ -96,15 +104,22 @@
   ];
 
   xdg.desktopEntries = {
-    ocrCopy = let
-      copy-script = pkgs.writeShellApplication {
-        name = "ocrcopy";
-        runtimeInputs = with pkgs; [grim slurp tesseract wl-clipboard];
-        text = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
+    ocrCopy =
+      let
+        copy-script = pkgs.writeShellApplication {
+          name = "ocrcopy";
+          runtimeInputs = with pkgs; [
+            grim
+            slurp
+            tesseract
+            wl-clipboard
+          ];
+          text = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
+        };
+      in
+      {
+        name = "OCR copy screen area";
+        exec = "${lib.getExe copy-script}";
       };
-    in {
-      name = "OCR copy screen area";
-      exec = "${lib.getExe copy-script}";
-    };
   };
 }

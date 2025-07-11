@@ -87,6 +87,8 @@
 
   services.desktopManager.plasma6.enable = true;
 
+  preconf.vaultwarden.enable = true;
+
   # This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
   #  services.pipewire.wireplumber.extraConfig = {
   #    	"monitor.alsa.rules" = [

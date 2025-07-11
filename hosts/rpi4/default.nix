@@ -1,8 +1,10 @@
 {
   pkgs,
   inputs,
+  config,
   ...
-}: {
+}:
+{
   imports = [
     ./base.nix
 
@@ -45,7 +47,10 @@
     protocol = "namecheap";
     username = "ngodag.com";
     passwordFile = "/mnt/ssd/syncthing/misc/secrets/namecheap_ddns_password";
-    domains = ["@" "*"];
+    domains = [
+      "@"
+      "*"
+    ];
   };
 
   # Enable networking
@@ -55,7 +60,7 @@
   console.keyMap = "sv-latin1";
 
   # required for remote builds (https://nixos.wiki/wiki/Nixos-rebuild)
-  nix.settings.trusted-users = ["jonathan"];
+  nix.settings.trusted-users = [ "jonathan" ];
 
   services.syncthing = {
     enable = true;
@@ -66,13 +71,14 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
     openssh.authorizedKeys.keys = [
-      (builtins.readFile
-        ./../../public_keys/faccun.pub)
-      (builtins.readFile
-        ./../../public_keys/wax9.pub)
+      (builtins.readFile ./../../public_keys/faccun.pub)
+      (builtins.readFile ./../../public_keys/wax9.pub)
     ];
   };
 
@@ -100,16 +106,14 @@
   };
 
   services.borgbackup.repos = {
-      borg_repo = {
-        authorizedKeys = [
-          # TODO Set to variable - duplication 
-          (builtins.readFile
-            ./../../public_keys/faccun.pub)
-          (builtins.readFile
-            ./../../public_keys/wax9.pub)
-        ];
-        path = "/mnt/ssd/borg";
-      };
+    borg_repo = {
+      authorizedKeys = [
+        # TODO Set to variable - duplication
+        (builtins.readFile ./../../public_keys/faccun.pub)
+        (builtins.readFile ./../../public_keys/wax9.pub)
+      ];
+      path = "/mnt/ssd/borg";
+    };
   };
 
   # Allow unfree packages
@@ -118,7 +122,7 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22000 # Syncthing
-    80 
+    80
     443
     22
   ];
@@ -151,33 +155,40 @@
     # openRegistration = true;
   };
 
+  preconf.vaultwarden.enable = true;
 
   services.caddy = {
     enable = true;
     virtualHosts = {
       "ant.ngodag.com" = {
         extraConfig = ''
-        root * /var/lib/rnote-export/
-        file_server browse
-        header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
+          root * /var/lib/rnote-export/
+          file_server browse
+          header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
         '';
       };
 
       "atuin.ngodag.com" = {
-        extraConfig = '' 
+        extraConfig = ''
           reverse_proxy :8888
+        '';
+      };
+
+      "pass.ngodag.com" = {
+        extraConfig = ''
+          reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT}
         '';
       };
 
       "tun1.ngodag.com" = {
         extraConfig = ''
-        reverse_proxy :9001
+          reverse_proxy :9001
         '';
       };
 
       "tun2.ngodag.com" = {
         extraConfig = ''
-        reverse_proxy :9002
+          reverse_proxy :9002
         '';
       };
     };
@@ -204,5 +215,8 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

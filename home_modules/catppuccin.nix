@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     preconf.catppuccin.enable = lib.mkEnableOption "Enable configured catpuccin theme";
   };
@@ -20,6 +21,8 @@
     };
 
     catppuccin.gtk.enable = true;
+
+    catppuccin.firefox.profiles.default.force = true;
     # gtk.enable = true;
     # dconf.settings = {
     #   "org/gnome/desktop/interface" = {

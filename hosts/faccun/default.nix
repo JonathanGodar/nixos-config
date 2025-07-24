@@ -169,7 +169,20 @@
 
   # Or disable the firewall altogether.
 
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [
+    3344
+  ];
+
+  # networking.firewall.enable = false;
+
+  services.ntfy-sh = {
+    enable = true;
+    # settings.base-url = "";
+    settings = {
+      base-url = "https://faccun.ngodag.com";
+      listen-http = ":3344";
+    };
+  };
 
   # Enable nVidia - GPU
   hardware.graphics = {
@@ -215,7 +228,7 @@
 
   environment.etc."nextcloud-admin-pass".text = "hejsanpådigsan";
   services.nextcloud = {
-    enable = true;
+    # enable = true;
     hostName = "localhost";
 
     # Need to manually increment with every major upgrade.

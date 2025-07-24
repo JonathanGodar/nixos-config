@@ -174,6 +174,12 @@
         '';
       };
 
+      "faccun.ngodar.com" = {
+        extraConfig = ''
+          reverse_proxy http://192.168.1.83:80
+        '';
+      };
+
       "pass.ngodag.com" = {
         extraConfig = ''
           reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT}

@@ -176,20 +176,14 @@
   ];
 
   # networking.firewall.enable = false;
-
-  services.ntfy-sh = {
-    enable = true;
-    # settings.base-url = "";
-    settings = {
-      base-url = "https://faccun.ngodag.com";
-      listen-http = ":3344";
-    };
-  };
+  #
 
   # Enable nVidia - GPU
   hardware.graphics = {
     enable = true;
   };
+
+  preconf.ntfy.enable = true;
 
   # To be able to emulate RASPI-4
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

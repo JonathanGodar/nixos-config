@@ -47,6 +47,8 @@
         ".config/google-chrome/Default/Cache/"
         ".config/chromium/"
         ".local/share/Trash/"
+        ".local/share/containers"
+        ".local/share/Steam"
         "**/tmp/"
         "**/.git/"
         "**/pyc"

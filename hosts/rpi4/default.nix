@@ -176,7 +176,7 @@
 
       "faccun.ngodar.com" = {
         extraConfig = ''
-          reverse_proxy http://192.168.1.83:80
+          reverse_proxy http://192.168.1.83:3344
         '';
       };
 

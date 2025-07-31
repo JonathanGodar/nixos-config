@@ -145,6 +145,7 @@
   # For atuin
   services.postgresql = {
     enable = true;
+    dataDir = "/mnt/ssd/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
   };
 
   services.atuin = {

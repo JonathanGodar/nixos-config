@@ -18,47 +18,54 @@
   services.borgbackup.jobs = {
     faccback = {
       paths = "/home/jonathan/";
-      exclude = [
-        ".cargo/"
-        "**/Cache"
-        "**/cache"
-        "**/.cache/"
-        ".eclipse/"
-        ".discord-rpc/"
-        ".java/"
-        ".julia/"
-        ".nix-profile/"
-        ".ssh/"
-        ".vscode/"
-        ".zconpdump"
-        ".zshenv"
-        ".zshrc"
-        "Downloads/"
-        "**/target/**"
-        "**/build/**"
-        "**/__pycache__/**"
-        "**/.venv/**"
-        "**/venv/**"
-        "**/node_modules/**"
+      exclude =
+        (map (path: "/home/jonathan/" + path) [
+          ".cargo/"
+          ".eclipse/"
+          ".discord-rpc/"
+          ".java/"
+          ".julia/"
+          ".nix-profile/"
+          ".ssh/"
+          ".vscode/"
+          ".zconpdump"
+          ".zshenv"
+          ".zshrc"
+          "Downloads/"
 
-        ".mozilla/firefox/*.default-release/cache2/"
-        ".mozilla/firefox/"
-        ".config/discord/"
-        ".config/google-chrome/Default/Cache/"
-        ".config/chromium/"
-        ".local/share/Trash/"
-        ".local/share/containers"
-        ".local/share/Steam"
-        "**/tmp/"
-        "**/.git/"
-        "**/pyc"
+          ".mozilla/firefox/*.default-release/cache2/"
+          ".mozilla/firefox/"
+          ".config/discord/"
+          ".config/google-chrome/Default/Cache/"
+          ".config/chromium/"
+          ".local/share/Trash/"
+          ".local/share/containers"
+          ".local/share/Steam"
 
-        ".virtualenvs/"
-        "node_modules/"
-        ".npm/"
-        ".m2/repository/"
-        ".gradle/caches/"
-      ];
+          ".npm/"
+          ".m2/repository/"
+          ".gradle/caches/"
+          ".virtualenvs/"
+        ])
+        ++ [
+          "**/Cache"
+          "**/cache"
+          "**/.cache/"
+          "**/target/**"
+          "**/build/**"
+          "**/__pycache__/**"
+          "**/.venv/**"
+          "**/venv/**"
+          "**/node_modules/**"
+
+          "**/tmp/"
+          "**/.git/"
+          "**/pyc"
+
+          "**/node_modules/"
+
+          "**/DistantHorizons.sqlite"
+        ];
       environment = {
         BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
       };
@@ -67,7 +74,7 @@
 
       user = "jonathan";
 
-      repo = "borg@192.168.1.32:./";
+      repo = "borg@ngodag.com:./";
       encryption.mode = "none";
       compression = "auto,lzma";
       startAt = "daily";

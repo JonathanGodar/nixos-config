@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+# Edit this configuration file to define hat should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
@@ -136,6 +136,10 @@
     wezterm
   ];
 
+  # boot.zfs.enabled = true;
+  # boot.supportedFilesystems = [ "zfs" ];
+  # services.zfs.enable = true;
+
   # services.ddclient = {
   #   enable = true;
   #   protocol = "namecheap";
@@ -239,7 +243,6 @@
 
     # Let NixOS install and configure the database automatically.
     database.createLocally = true;
-
     # Let NixOS install and configure Redis caching automatically.
     configureRedis = true;
 

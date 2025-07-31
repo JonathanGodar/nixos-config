@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options.preconf.zsh.enable = lib.mkEnableOption "Enable zsh";
 
   config = lib.mkIf config.preconf.zsh.enable {
@@ -34,7 +35,7 @@
           src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
         }
       ];
-      initExtraFirst = ''
+      initContent = lib.mkBefore ''
         # Make it so that zsh-vi-mode does not override any later keybinding configurations
         ZVM_INIT_MODE=sourcing
       '';

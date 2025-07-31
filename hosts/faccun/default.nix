@@ -186,7 +186,14 @@
   preconf.ntfy.enable = true;
 
   # To be able to emulate RASPI-4
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt = {
+    emulatedSystems = [ "aarch64-linux" ];
+
+    # Make nixos-enter work with systems of different architectures
+    preferStaticEmulators = true;
+  };
+
+  # systemd.binfmt.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];

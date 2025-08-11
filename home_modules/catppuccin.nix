@@ -20,8 +20,6 @@
       enable = true;
     };
 
-    catppuccin.gtk.enable = true;
-
     catppuccin.firefox.profiles.default.force = true;
     # gtk.enable = true;
     # dconf.settings = {

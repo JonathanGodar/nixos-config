@@ -45,7 +45,7 @@
   services.ddclient = {
     enable = true;
     protocol = "namecheap";
-    username = "ngodag.com";
+    username = "${config.home_network_url}";
     passwordFile = "/mnt/ssd/syncthing/misc/secrets/namecheap_ddns_password";
     domains = [
       "@"
@@ -161,7 +161,7 @@
   services.caddy = {
     enable = true;
     virtualHosts = {
-      "ant.ngodag.com" = {
+      "ant.${config.home_network_url}" = {
         extraConfig = ''
           root * /var/lib/rnote-export/
           file_server browse
@@ -169,31 +169,31 @@
         '';
       };
 
-      "atuin.ngodag.com" = {
+      "atuin.${config.home_network_url}" = {
         extraConfig = ''
           reverse_proxy :8888
         '';
       };
 
-      "faccun.ngodar.com" = {
+      "faccun.${config.home_network_url}" = {
         extraConfig = ''
-          reverse_proxy http://192.168.1.83:3344
+          reverse_proxy 192.168.1.83:3344
         '';
       };
 
-      "pass.ngodag.com" = {
+      "pass.${config.home_network_url}" = {
         extraConfig = ''
           reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT}
         '';
       };
 
-      "tun1.ngodag.com" = {
+      "tun1.${config.home_network_url}" = {
         extraConfig = ''
           reverse_proxy :9001
         '';
       };
 
-      "tun2.ngodag.com" = {
+      "tun2.${config.home_network_url}" = {
         extraConfig = ''
           reverse_proxy :9002
         '';

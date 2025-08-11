@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
   ];
   programs.nix-index-database.comma.enable = true;
 
@@ -42,6 +42,12 @@
   programs.firefox.profiles.default.extensions.force = true;
 
   catppuccin.thunderbird.enable = true;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 
   home.packages = with pkgs; [
     dconf # For setting gtk dark theme

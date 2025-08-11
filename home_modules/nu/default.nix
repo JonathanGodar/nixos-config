@@ -35,7 +35,7 @@
       enable = true;
       settings = {
         sync_frequency = "0";
-        sync_address = "https://atuin.ngodag.com";
+        sync_address = "https://atuin.${config.home_network_url}";
         invert = true;
       };
     };

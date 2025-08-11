@@ -79,6 +79,7 @@
             ./nixos_modules
             ./overlays
             ./hosts/${hostname}
+            ./vars.nix
             {
               networking.hostName = hostname;
             }
@@ -96,12 +97,14 @@
               home-manager.users.jonathan = {
                 imports = [
                   inputs.catppuccin.homeModules.catppuccin
+                  ./vars.nix
                   ./home_modules
                   ./home/${hostname}
                 ];
               };
             }
-          ] ++ extraModules;
+          ]
+          ++ extraModules;
         });
     in
     rec {

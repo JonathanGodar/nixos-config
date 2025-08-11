@@ -74,7 +74,7 @@
 
       user = "jonathan";
 
-      repo = "borg@ngodag.com:./";
+      repo = "borg@${config.home_network_url}:./";
       encryption.mode = "none";
       compression = "auto,lzma";
       startAt = "daily";
@@ -150,7 +150,7 @@
   # services.ddclient = {
   #   enable = true;
   #   protocol = "namecheap";
-  #   username = "ngodag.com";
+  #   username = "${config.home_network_url}";
   #   passwordFile = "/home/jonathan/misc/secrets/namecheap_ddns_password";
   #   domains = ["@" "*"];
   # };

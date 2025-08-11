@@ -17,7 +17,7 @@
           DATABASE_URL = "postgresql:///vaultwarden?host=/run/postgresql";
           ROCKET_ADDRESS = "127.0.0.1";
           ROCKET_PORT = 8222;
-          DOMAIN = "https://pass.ngodag.com";
+          DOMAIN = "https://pass.${config.home_network_url}";
         };
       };
 

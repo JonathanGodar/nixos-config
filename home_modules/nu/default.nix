@@ -22,6 +22,9 @@
 
         rebld = "nh os switch -a ~/nixos";
         q = "exit";
+
+        # Nu specific
+        fg = "job unfreeze";
       };
     };
 

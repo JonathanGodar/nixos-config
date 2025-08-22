@@ -197,11 +197,17 @@
   preconf.ntfy.enable = true;
 
   # To be able to emulate RASPI-4
-  boot.binfmt = {
-    emulatedSystems = [ "aarch64-linux" ];
+  boot = {
+    extraModprobeConfig = ''
+      options snd_hda_intel power_save=0
+    '';
 
-    # Make nixos-enter work with systems of different architectures
-    preferStaticEmulators = true;
+    binfmt = {
+      emulatedSystems = [ "aarch64-linux" ];
+
+      # Make nixos-enter work with systems of different architectures
+      preferStaticEmulators = true;
+    };
   };
 
   # systemd.binfmt.enable = true;

@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754913468,
-        "narHash": "sha256-vICQr7jRn8kSSwxISbUcGPL8c2LG9cNDtm0HGL13vzk=",
+        "lastModified": 1755425970,
+        "narHash": "sha256-K4bfVomufc9+DdTu2gLCDUA2dms9sbWw1ce5g9sysqc=",
         "owner": "JonathanGodar",
         "repo": "LazyVim",
-        "rev": "1204785c8ee2de203a05a05fa9fda2c1bd4525df",
+        "rev": "38bfad848984cc09dc776a370388386458b4f07d",
         "type": "github"
       },
       "original": {

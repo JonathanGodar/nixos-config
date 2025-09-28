@@ -13,6 +13,16 @@
       description = "Port which ntfy should run on";
     };
 
+    smtp_subdomain = lib.mkOption {
+      type = lib.types.str;
+      description = "Subdomain to run ntfy on";
+    };
+
+    subdomain = lib.mkOption {
+      type = lib.types.str;
+      description = "Subdomain to run ntfy on";
+    };
+
     # auth-file-path = lib.mkOption {
     #   type = lib.types.str;
     #   default = "/mnt/ssd/ntfy/user.db";
@@ -29,11 +39,17 @@
     services.ntfy-sh = {
       enable = true;
       settings = {
-        base-url = "https://faccun.${config.home_network_url}";
+        base-url = "https://${config.preconf.ntfy.subdomain}.${config.home_network_url}";
+        # base-url = config.preconf.ntfy.domain;
+        upstream-base-url = "https://ntfy.sh";
         # auth-file = config.preconf.ntfy.auth-file-path;
         auth-users = [ "jonathan:$2a$12$spElE6eFXGBaJdFCKyZIlu4Jn34gDgVgoXC9ZiP0GHIYlwuqL9oUK:admin" ];
         behind-proxy = true;
         enable-login = true;
+
+        smtp-server-listen = ":25";
+        smtp-server-domain = "${config.preconf.ntfy.smtp_subdomain}.${config.home_network_url}";
+        smtp-server-addr-prefix = "ntfy-";
 
         # Only allows users who have signed up to use the service
         auth-default-access = "deny-all";

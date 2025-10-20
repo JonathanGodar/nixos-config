@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [../common];
+{ pkgs, ... }:
+{
+  imports = [ ../common ];
 
   preconf.cli_full.enable = true;
   preconf.kth.enable = true;
@@ -14,11 +15,11 @@
     monitor = [
       # monitor, resolution, position, scale
       "eDP-1, preferred, 0x0, 2"
-      ", preferred, auto, 1, mirror, eDP-1"
+      ", preferred, auto, 1"
     ];
 
     "$mod" = "SUPER";
     "$MAIN_MONITOR" = "DP-2";
     "$OTHER_MONITOR" = "DP-1";
-    };
+  };
 }

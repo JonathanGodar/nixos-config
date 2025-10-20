@@ -5,5 +5,6 @@
     ./vaultwarden.nix
     ./ntfy.nix
     ./virtualbox.nix
+    ./external-backup.nix
   ];
 }

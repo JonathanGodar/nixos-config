@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  lib,
   catppuccin,
   inputs,
   ...
@@ -15,70 +16,101 @@
     ../common
   ];
 
+  # systemd.timers = flip mapAttrs' config.services.borgbackup.jobs (name: value: nameValuePair "borgbackup-job-${name}")
+  #
+  # systemd.timers."borgbackup-job-faccback".timerConfig.Persistent = true;
+  #
+  #
+  preconf.borgextern_job.enable = true;
+
   services.borgbackup.jobs = {
-    faccback = {
-      paths = "/home/jonathan/";
-      exclude =
-        (map (path: "/home/jonathan/" + path) [
-          ".cargo/"
-          ".eclipse/"
-          ".discord-rpc/"
-          ".java/"
-          ".julia/"
-          ".nix-profile/"
-          ".ssh/"
-          ".vscode/"
-          ".zconpdump"
-          ".zshenv"
-          ".zshrc"
-          "Downloads/"
+    faccback =
+      let
+        notify-send = lib.getExe pkgs.libnotify;
+      in
+      {
+        persistentTimer = true;
 
-          ".mozilla/firefox/*.default-release/cache2/"
-          ".mozilla/firefox/"
-          ".config/discord/"
-          ".config/google-chrome/Default/Cache/"
-          ".config/chromium/"
-          ".local/share/Trash/"
-          ".local/share/containers"
-          ".local/share/Steam"
+        preHook = ''
+          ${notify-send} -t 0 "Starting backup"
+        '';
 
-          ".npm/"
-          ".m2/repository/"
-          ".gradle/caches/"
-          ".virtualenvs/"
-        ])
-        ++ [
-          "**/Cache"
-          "**/cache"
-          "**/.cache/"
-          "**/target/**"
-          "**/build/**"
-          "**/__pycache__/**"
-          "**/.venv/**"
-          "**/venv/**"
-          "**/node_modules/**"
+        postHook = ''
+          if [[ $exitStatus -eq 0 ]]; then
+            ${notify-send} -t 0 "Backup done"
+          else
+            ${notify-send} -u critical -t 0 "Backup failed" "Backup job exited with status $exitStatus"
+          fi
+        '';
 
-          "**/tmp/"
-          "**/.git/"
-          "**/pyc"
+        paths = "/home/jonathan/";
 
-          "**/node_modules/"
+        exclude =
+          (map (path: "/home/jonathan/" + path) [
+            ".cargo/"
+            ".eclipse/"
+            ".discord-rpc/"
+            ".java/"
+            ".julia/"
+            ".nix-profile/"
+            ".ssh/"
+            ".vscode/"
+            ".zconpdump"
+            ".zshenv"
+            ".zshrc"
+            "Downloads/"
 
-          "**/DistantHorizons.sqlite"
-        ];
-      environment = {
-        BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
+            ".mozilla/firefox/*.default-release/cache2/"
+            ".mozilla/firefox/"
+            ".config/discord/"
+            ".config/google-chrome/Default/Cache/"
+            ".config/chromium/"
+            ".local/share/Trash/"
+            ".local/share/containers"
+            ".local/share/Steam"
+
+            ".npm/"
+            ".m2/repository/"
+            ".gradle/caches/"
+            ".virtualenvs/"
+          ])
+          ++ [
+            "**/Cache"
+            "**/cache"
+            "**/.cache/"
+            "**/target/**"
+            "**/build/**"
+            "**/__pycache__/**"
+            "**/.venv/**"
+            "**/venv/**"
+            "**/node_modules/**"
+
+            "**/tmp/"
+            "**/.git/"
+            "**/pyc"
+
+            "**/node_modules/"
+
+            "**/DistantHorizons.sqlite"
+          ];
+        environment = {
+          BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
+
+          # Required to let notify-session access DBUS.
+          # This is really ugly because i have hard coded the my users UID (which is 1000).
+          DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
+        };
+
+        extraCreateArgs = "--verbose --stats";
+
+        user = "jonathan";
+        # Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
+
+        repo = "borg@${config.home_network_url}:./";
+        encryption.mode = "none";
+        compression = "auto,lzma";
+        startAt = "daily";
       };
-
-      extraCreateArgs = "--verbose --stats";
-
-      user = "jonathan";
-
-      repo = "borg@${config.home_network_url}:./";
-      encryption.mode = "none";
-      compression = "auto,lzma";
-      startAt = "daily";
-    };
   };
 
   networking.hostName = "faccun";
@@ -194,7 +226,12 @@
     enable = true;
   };
 
-  preconf.ntfy.enable = true;
+  preconf.ntfy = {
+    enable = true;
+    subdomain = "faccun";
+    smtp_subdomain = "ntfy-mx";
+  };
+  # ntfy.settings.base-url = "https://faccun.${config.home_network_url}";
 
   # To be able to emulate RASPI-4
   boot = {

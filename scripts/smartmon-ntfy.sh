@@ -1,0 +1,2 @@
+echo $SMARTD_DEVICE
+echo $SMARTD_FAILTYPE

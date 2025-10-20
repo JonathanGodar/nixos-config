@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 {
@@ -109,6 +110,11 @@
 
     kdePackages.polkit-kde-agent-1
   ];
+
+  home.file."${config.xdg.configHome}/sioyek/keys_user.config".text = ''
+    next_page <C-d>
+    previous_page <C-u>
+  '';
 
   xdg.desktopEntries = {
     ocrCopy =

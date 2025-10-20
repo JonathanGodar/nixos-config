@@ -108,6 +108,11 @@
     gimp
 
     kdePackages.polkit-kde-agent-1
+
+    arduino-ide
+    freecad
+    prusa-slicer
+    logisim-evolution
   ];
 
   xdg.desktopEntries = {

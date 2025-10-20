@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     preconf.kth.enable = lib.mkEnableOption "Enable some things that are required for kth work";
   };
@@ -18,11 +19,14 @@
 
       onlyoffice-bin
       libreoffice
-      slack
+      # slack
 
-      gnumake
-      noweb
+      # gnumake
+      # noweb
       texlive.combined.scheme-small
+
+      # rars
+      # logisim-evolution
     ];
   };
 }

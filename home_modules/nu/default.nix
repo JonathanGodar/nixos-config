@@ -25,6 +25,9 @@
 
         # Nu specific
         fg = "job unfreeze";
+
+        s = "atuin scripts";
+        r = "atuin scripts run";
       };
     };
 

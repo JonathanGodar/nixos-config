@@ -4,14 +4,16 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   focusApp = windowClass: failLaunch: "${lib.getExe pkgs.focusScript} ${windowClass} ${failLaunch}";
 
   # GTK cursor size fix? https://discourse.nixos.org/t/cursor-size-in-wayland-sway/25112/4
 
   changeWallpaper = pkgs.writeShellApplication {
     name = "changeWallpaper";
-    text = ''      wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
+    text = ''
+      wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
            chosenwallpaper=$(echo "$wallpapers" | shuf -n 1)
 
            hyprctl hyprpaper preload "$chosenwallpaper"
@@ -22,23 +24,23 @@
     '';
   };
 
-  wallpaperPaths =
-    lib.concatStringsSep " "
-    (map (path: "${inputs.catppuccin-wallpaper-repo}/${path}")
-      [
-        "landscapes/forrest.png"
-        "landscapes/Clearnight.jpg"
-        # "landscapes/Cloudsday.jpg"
-        "landscapes/Cloudsnight.jpg"
-        "landscapes/tropic_island_night.jpg"
+  wallpaperPaths = lib.concatStringsSep " " (
+    map (path: "${inputs.catppuccin-wallpaper-repo}/${path}") [
+      "landscapes/forrest.png"
+      "landscapes/Clearnight.jpg"
+      # "landscapes/Cloudsday.jpg"
+      "landscapes/Cloudsnight.jpg"
+      "landscapes/tropic_island_night.jpg"
 
-        "minimalistic/list-horizontal.png"
+      "minimalistic/list-horizontal.png"
 
-        "misc/cat_bunnies.png"
-        "misc/windows-error.jpg"
-        "waves/cat-waves.png"
-      ]);
-in {
+      "misc/cat_bunnies.png"
+      "misc/windows-error.jpg"
+      "waves/cat-waves.png"
+    ]
+  );
+in
+{
   options = {
     preconf.hyprland.enable = lib.mkEnableOption "Enable preconfigured Hyperland";
   };
@@ -69,7 +71,6 @@ in {
         wallpaper = ",${./../../wallpapers/nix.png}";
       };
     };
-
 
     catppuccin.hyprland.enable = true;
     # wayland.windowManager.hyprland.catppuccin.enable = true;
@@ -114,7 +115,8 @@ in {
         scroll_factor = 0.6;
       };
 
-      gestures.workspace_swipe = true;
+      # gestures.workspace_swipe = true;
+      gesture = "3, horizontal, workspace";
 
       # options.xdg.desktopEntries = {
       #   ocr-copy = {
@@ -122,65 +124,68 @@ in {
       #     exec = "grim -g \"$(slurp)\" - | tesseract - - | wl-copy";
       #   };
 
-      bind =
-        [
-          "SUPER, g, exec, bash ${./scripts/chatgpt.sh}"
+      bind = [
+        "SUPER, g, exec, bash ${./scripts/chatgpt.sh}"
 
-          "SUPER_SHIFT, B, exec, ${focusApp "firefox" "firefox"}"
-          "SUPER, B, exec, firefox"
+        "SUPER_SHIFT, B, exec, ${focusApp "firefox" "firefox"}"
+        "SUPER, B, exec, firefox"
 
-          "$mod, Return, exec, ghostty"
-          "SUPER_SHIFT, Return, exec, ${focusApp "Alacritty" "alacritty"}"
+        "$mod, Return, exec, ghostty"
+        "SUPER_SHIFT, Return, exec, ${focusApp "Alacritty" "alacritty"}"
 
-          "SUPER_SHIFT, c, killactive"
+        "SUPER_SHIFT, c, killactive"
 
-          "SUPER_SHIFT, q, exec, bash ${./../../scripts/powerMenu.sh}"
-          "SUPER_ALT, m, exec, bash ${./../../scripts/mynixos.sh}"
+        "SUPER_SHIFT, q, exec, bash ${./../../scripts/powerMenu.sh}"
+        "SUPER_ALT, m, exec, bash ${./../../scripts/mynixos.sh}"
 
-          "SUPER, s, exec, ${focusApp "sioyek" "sioyek"}"
-          "SUPER, n, exec, ${focusApp "com.github.flxzt.rnote" "rnote"}"
-          "SUPER, o, exec, ${lib.getExe pkgs.navigateOpenWindows}"
-          ", Print, exec, grimblast copy area"
+        "SUPER, s, exec, ${focusApp "sioyek" "sioyek"}"
+        "SUPER, n, exec, ${focusApp "com.github.flxzt.rnote" "rnote"}"
+        "SUPER, o, exec, ${lib.getExe pkgs.navigateOpenWindows}"
+        ", Print, exec, grimblast copy area"
 
-          # HJKL to switch active window
-          "$mod, h, movefocus, l"
-          "$mod, j, movefocus, d"
-          "$mod, k, movefocus, u"
-          "$mod, l, movefocus, r"
+        # HJKL to switch active window
+        "$mod, h, movefocus, l"
+        "$mod, j, movefocus, d"
+        "$mod, k, movefocus, u"
+        "$mod, l, movefocus, r"
 
-          "$mod, SPACE, exec, rofi -show drun -show-icons"
+        "$mod, SPACE, exec, rofi -show drun -show-icons"
 
-          # HJKL to move active window position
-          "SUPER_ALT, h, swapwindow, l"
-          "SUPER_ALT, j, swapwindow, d"
-          "SUPER_ALT, k, swapwindow, u"
-          "SUPER_ALT, l, swapwindow, r"
+        # HJKL to move active window position
+        "SUPER_ALT, h, swapwindow, l"
+        "SUPER_ALT, j, swapwindow, d"
+        "SUPER_ALT, k, swapwindow, u"
+        "SUPER_ALT, l, swapwindow, r"
 
-          # View clipboard history
-          "SUPER, V, exec, cliphist list | tofi | cliphist decode | wl-copy"
+        # View clipboard history
+        "SUPER, V, exec, cliphist list | tofi | cliphist decode | wl-copy"
 
-          # Copy screen selection as image
-          ",Print, exec, grim -g \"$(slurp)\" - | wl-copy" #grim -g \"$(slurp)\ | wl-copy"
+        # Copy screen selection as image
+        ",Print, exec, grim -g \"$(slurp)\" - | wl-copy" # grim -g \"$(slurp)\ | wl-copy"
 
-          "SUPER, f, fullscreen, 0"
-          "SUPER, m, fullscreen, 1"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-          builtins.concatLists (builtins.genList (
-              x: let
-                ws = let
+        "SUPER, f, fullscreen, 0"
+        "SUPER, m, fullscreen, 1"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (
+          builtins.genList (
+            x:
+            let
+              ws =
+                let
                   c = (x + 1) / 10;
                 in
-                  builtins.toString (x + 1 - (c * 10));
-              in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              ]
-            )
-            10)
-        );
+                builtins.toString (x + 1 - (c * 10));
+            in
+            [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          ) 10
+        )
+      );
       binde = [
         "SUPER_SHIFT, h, resizeactive, -20 0"
         "SUPER_SHIFT, j, resizeactive, 0 20"

@@ -15,4 +15,5 @@
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 
   preconf.virtualbox.enable = true;
+  preconf.spotify.enable = true;
 }

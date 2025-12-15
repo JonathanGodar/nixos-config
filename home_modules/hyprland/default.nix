@@ -199,6 +199,9 @@ in
         ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
         ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
         ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} s 5%-"
+        ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} s 5%+"
       ];
     };
   };

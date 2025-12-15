@@ -116,7 +116,7 @@ in
       };
 
       # gestures.workspace_swipe = true;
-      gesture = "3, horizontal, workspace";
+      # gesture = "3, horizontal, workspace";
 
       # options.xdg.desktopEntries = {
       #   ocr-copy = {

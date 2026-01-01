@@ -12,7 +12,6 @@
   config = lib.mkIf config.preconf.kth.enable {
     home.packages = with pkgs; [
       python3
-      zoom-us
       vscode
 
       typst

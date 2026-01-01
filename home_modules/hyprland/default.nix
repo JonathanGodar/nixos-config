@@ -43,6 +43,7 @@ in
 {
   options = {
     preconf.hyprland.enable = lib.mkEnableOption "Enable preconfigured Hyperland";
+    preconf.hyprland.extraMediaKeyKeybinds = lib.mkEnableOption "Enable extra keybinds for media keys";
   };
 
   config = lib.mkIf config.preconf.hyprland.enable {
@@ -185,7 +186,13 @@ in
             ]
           ) 10
         )
-      );
+      )
+      ++ lib.optionals config.preconf.hyprland.extraMediaKeyKeybinds [
+        ", XF86AudioMicMute, exec, ${lib.getExe pkgs.playerctl} play-pause"
+        ", Super_L, exec, ${lib.getExe pkgs.playerctl} previous"
+        ", XF86Tools, exec, ${lib.getExe pkgs.playerctl} next"
+      ];
+
       binde = [
         "SUPER_SHIFT, h, resizeactive, -20 0"
         "SUPER_SHIFT, j, resizeactive, 0 20"

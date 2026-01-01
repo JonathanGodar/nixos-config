@@ -189,7 +189,7 @@ in
       )
       ++ lib.optionals config.preconf.hyprland.extraMediaKeyKeybinds [
         ", XF86AudioMicMute, exec, ${lib.getExe pkgs.playerctl} play-pause"
-        ", Super_L, exec, ${lib.getExe pkgs.playerctl} previous"
+        # ", Super_L, exec, ${lib.getExe pkgs.playerctl} previous"
         ", XF86Tools, exec, ${lib.getExe pkgs.playerctl} next"
       ];
 

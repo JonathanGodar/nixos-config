@@ -71,7 +71,6 @@
     rustc
 
     httpie
-    httpie-desktop
 
     vlc
     obs-studio
@@ -81,8 +80,6 @@
     dust # Analyze disk usage
     tldr # "man" in short form
 
-    fuzzel # Is this used?
-
     # Needed to make the desktopEntries
     xdg-utils
 
@@ -90,7 +87,6 @@
     navigateOpenWindows
 
     chromium
-    webcord
     mattermost-desktop
 
     rnote

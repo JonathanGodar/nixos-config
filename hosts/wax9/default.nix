@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -14,7 +17,14 @@
   services.desktopManager.cosmic.enable = true;
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 
-  preconf.borgextern_job.enable = true;
+  preconf.backup_to_external_drive = {
+    enable = true;
+    paths = [ "/home/jonathan/" ];
+    exclude =
+      (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
+      ++ backup_helpers.ignore_directories;
+  };
+
   preconf.virtualbox.enable = true;
   preconf.spotify.enable = true;
 }

@@ -7,67 +7,38 @@
 }:
 {
   options = {
-    preconf.borgextern_job.enable = lib.mkEnableOption "Enables preconfigured";
+    preconf.backup_to_external_drive = {
+      enable = lib.mkEnableOption "Enables preconfigured";
+      job_name = lib.mkOption {
+        type = lib.types.str;
+        default = "external_drive_backup";
+      };
+
+      drive_mount_path = lib.mkOption {
+        type = lib.types.str;
+        default = "/backup";
+      };
+      exclude = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "What files/directories to ignore";
+      };
+
+      paths = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "What paths to include in the backup";
+      };
+    };
   };
 
   config =
     let
-      job-name = config.networking.hostName + "_extern";
-      mount_name = "backup";
       disk_uuid = "05fbbe4b-540c-4705-81d3-df2bb043d47e";
 
-      ignored_directory_names = [
-        "**/Cache"
-        "**/cache"
-        "**/.cache/"
-        "**/target/**"
-        "**/build/**"
-        "**/__pycache__/**"
-        "**/.venv/**"
-        "**/venv/**"
-        "**/node_modules/**"
-
-        "**/tmp/"
-        "**/.git/"
-        "**/pyc"
-
-        "**/node_modules/"
-
-        "**/DistantHorizons.sqlite"
-      ];
-
-      ignored_home_files = [
-        ".cargo/"
-        ".eclipse/"
-        ".discord-rpc/"
-        ".java/"
-        ".julia/"
-        ".nix-profile/"
-        ".ssh/"
-        ".vscode/"
-        ".zconpdump"
-        ".zshenv"
-        ".zshrc"
-        "Downloads/"
-
-        ".mozilla/firefox/*.default-release/cache2/"
-        ".mozilla/firefox/"
-        ".config/discord/"
-        ".config/google-chrome/Default/Cache/"
-        ".config/chromium/"
-        ".local/share/Trash/"
-        ".local/share/containers"
-        ".local/share/Steam"
-
-        ".npm/"
-        ".m2/repository/"
-        ".gradle/caches/"
-        ".virtualenvs/"
-      ];
-
     in
-    lib.mkIf config.preconf.borgextern_job.enable {
-      fileSystems."/${mount_name}" = {
+    lib.mkIf config.preconf.backup_to_external_drive.enable {
+      fileSystems."${config.preconf.backup_to_external_drive.drive_mount_path}" = {
         device = "/dev/disk/by-uuid/${disk_uuid}";
         fsType = "ext4";
         options = [ "nofail" ];
@@ -75,20 +46,22 @@
 
       # This was used once and it worked but it seems to work just as well without it
       # systemd = {
-      #   services."borgbackup-job-${job-name}" = {
+      #   services."borgbackup-job-${job_name}" = {
       #     requires = [ "${mount_name}.mount" ];
       #     after = [ "${mount_name}.mount" ];
       #   };
       # };
 
       services = {
-        borgbackup.jobs.${job-name} = {
+        borgbackup.jobs.${config.preconf.backup_to_external_drive.job_name} = {
           compression = "auto,zstd";
-          paths = "/home/jonathan/Desktop/";
-          repo = "/${mount_name}/borgbackup";
+          paths = config.preconf.backup_to_external_drive.paths;
+          exclude = config.preconf.backup_to_external_drive.exclude;
+          repo = "${config.preconf.backup_to_external_drive.drive_mount_path}/borgbackup";
           startAt = "daily";
           encryption.mode = "none";
           persistentTimer = true;
+          extraCreateArgs = "--verbose --stats";
         };
       };
     };

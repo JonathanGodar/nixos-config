@@ -68,8 +68,13 @@ in
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = "${./../../wallpapers/nix.png}";
-        wallpaper = ",${./../../wallpapers/nix.png}";
+        splash = false;
+        wallpaper = [
+          {
+            monitor = "";
+            path = "${./../../wallpapers/nix.png}";
+          }
+        ];
       };
     };
 

@@ -49,6 +49,8 @@
     "**/.git/"
     "**/pyc"
 
+    "**/*.log"
+
     "**/node_modules/"
 
     "**/DistantHorizons.sqlite"

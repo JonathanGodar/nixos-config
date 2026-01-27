@@ -11,6 +11,8 @@ nix-shell -p 'python3.withPackages (ps: [ ps.dbus-python ])'
 
 Then run the python scripts with python3. Then use nmtui to connect to the wifi and enter username and password. You may also need to configure the settings of the network in nm tui as described on [the kth website](https://www.kth.se/student/it/work-online/wifi-pa-kth/eduroam-pa-kth-1.1349435)
 
+If the password is forgotten for each reboot, use the nmtui to set the password (edit connections) and select available for all users.
+
 ## Raspberry Pi
 
 To build the raspberry PI image use:

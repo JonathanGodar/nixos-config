@@ -116,6 +116,9 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "sioyek.desktop" ]; # Replace with your preferred viewer
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
     };
   };
 

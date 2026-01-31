@@ -17,7 +17,7 @@
 
       typst
 
-      onlyoffice-bin
+      onlyoffice-desktopeditors
       libreoffice
       # slack
 

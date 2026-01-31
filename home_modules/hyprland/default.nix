@@ -84,7 +84,7 @@ in
         "workspaces, 0"
       ];
 
-      windowrulev2 = "workspace special:Chat, initialtitle:^(chatgpt\.com_/)$";
+      # windowrulev2 = "workspace special:Chat, initialtitle:^(chatgpt\.com_/)$";
       #     windowrulev2 = float,class:(qalculate-gtk)
       # windowrulev2 = workspace special:calculator,class:(qalculate-gtk)
       # bind = SUPER, Q, exec, pgrep qalculate-gtk && hyprctl dispatch togglespecialworkspace calculator || qalculate-gtk &

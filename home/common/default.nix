@@ -90,7 +90,6 @@
     navigateOpenWindows
 
     chromium
-    webcord
     mattermost-desktop
 
     rnote

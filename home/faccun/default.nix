@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     ntfs3g
     qemu
+    spotify
   ];
 
   wayland.windowManager.hyprland.settings = {

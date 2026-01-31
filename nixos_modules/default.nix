@@ -7,5 +7,6 @@
     ./virtualbox.nix
     ./external-backup.nix
     ./spotify.nix
+    ./immich.nix
   ];
 }

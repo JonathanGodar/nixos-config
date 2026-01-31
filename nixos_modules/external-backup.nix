@@ -18,6 +18,7 @@
         type = lib.types.str;
         default = "/backup";
       };
+
       exclude = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];

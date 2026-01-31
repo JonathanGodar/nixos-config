@@ -9,6 +9,10 @@
   inputs,
   ...
 }:
+let
+  backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
+  to_rpi_job_name = "faccback";
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -19,9 +23,13 @@
   # systemd.timers = flip mapAttrs' config.services.borgbackup.jobs (name: value: nameValuePair "borgbackup-job-${name}")
   #
   # systemd.timers."borgbackup-job-faccback".timerConfig.Persistent = true;
-  #
-  #
-  preconf.borgextern_job.enable = true;
+
+  systemd = {
+    services."borgbackup-job-${to_rpi_job_name}" = {
+      requires = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+    };
+  };
 
   services.borgbackup.jobs = {
     faccback =
@@ -32,67 +40,27 @@
         persistentTimer = true;
 
         preHook = ''
-          ${notify-send} -t 0 "Starting backup"
+          if [ -S /run/user/1000/bus ]; then
+            ${notify-send} -t 0 "Starting ->RPI backup"
+          fi
         '';
 
         postHook = ''
-          if [[ $exitStatus -eq 0 ]]; then
-            ${notify-send} -t 0 "Backup done"
-          else
-            ${notify-send} -u critical -t 0 "Backup failed" "Backup job exited with status $exitStatus"
+          if [ -S /run/user/1000/bus ]; then
+            if [[ $exitStatus -eq 0 ]]; then
+              ${notify-send} -t 0 "Backup -> RPI done"
+            else
+              ${notify-send} -u critical -t 0 "Backup  -> RPI failed" "Backup job exited with status $exitStatus"
+            fi
           fi
         '';
 
         paths = "/home/jonathan/";
 
         exclude =
-          (map (path: "/home/jonathan/" + path) [
-            ".cargo/"
-            ".eclipse/"
-            ".discord-rpc/"
-            ".java/"
-            ".julia/"
-            ".nix-profile/"
-            ".ssh/"
-            ".vscode/"
-            ".zconpdump"
-            ".zshenv"
-            ".zshrc"
-            "Downloads/"
+          (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
+          ++ backup_helpers.ignore_directories;
 
-            ".mozilla/firefox/*.default-release/cache2/"
-            ".mozilla/firefox/"
-            ".config/discord/"
-            ".config/google-chrome/Default/Cache/"
-            ".config/chromium/"
-            ".local/share/Trash/"
-            ".local/share/containers"
-            ".local/share/Steam"
-
-            ".npm/"
-            ".m2/repository/"
-            ".gradle/caches/"
-            ".virtualenvs/"
-          ])
-          ++ [
-            "**/Cache"
-            "**/cache"
-            "**/.cache/"
-            "**/target/**"
-            "**/build/**"
-            "**/__pycache__/**"
-            "**/.venv/**"
-            "**/venv/**"
-            "**/node_modules/**"
-
-            "**/tmp/"
-            "**/.git/"
-            "**/pyc"
-
-            "**/node_modules/"
-
-            "**/DistantHorizons.sqlite"
-          ];
         environment = {
           BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
 
@@ -111,6 +79,14 @@
         compression = "auto,lzma";
         startAt = "daily";
       };
+  };
+
+  preconf.backup_to_external_drive = {
+    enable = true;
+    paths = [ "/home/jonathan/" ];
+    exclude =
+      (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
+      ++ backup_helpers.ignore_directories;
   };
 
   networking.hostName = "faccun";

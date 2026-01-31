@@ -45,7 +45,7 @@
         options = [
           "nofail"
           "x-systemd.device-timeout=0"
-          "x-systemd.automount"
+          # "x-systemd.automount"
         ];
       };
 

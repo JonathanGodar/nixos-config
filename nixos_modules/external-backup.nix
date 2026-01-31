@@ -41,7 +41,11 @@
       fileSystems."${config.preconf.backup_to_external_drive.drive_mount_path}" = {
         device = "/dev/disk/by-uuid/${disk_uuid}";
         fsType = "ext4";
-        options = [ "nofail" ];
+        options = [
+          "nofail"
+          "x-systemd.device-timeout=0"
+          "x-systemd.automount"
+        ];
       };
 
       # This was used once and it worked but it seems to work just as well without it

@@ -157,6 +157,7 @@
   };
 
   preconf.vaultwarden.enable = true;
+  preconf.immich.enable = true;
 
   services.caddy = {
     enable = true;
@@ -184,6 +185,12 @@
       "pass.${config.home_network_url}" = {
         extraConfig = ''
           reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT}
+        '';
+      };
+
+      "immich.${config.home_network_url}" = {
+        extraConfig = ''
+          reverse_proxy :${toString config.services.immich.port}
         '';
       };
 

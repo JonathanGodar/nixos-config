@@ -190,7 +190,7 @@
 
       "immich.${config.home_network_url}" = {
         extraConfig = ''
-          reverse_proxy :${toString config.services.immich.port}
+          reverse_proxy [::1]:${toString config.services.immich.port}
         '';
       };
 

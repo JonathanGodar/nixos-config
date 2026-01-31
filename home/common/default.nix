@@ -71,7 +71,6 @@
     rustc
 
     httpie
-    httpie-desktop
 
     vlc
     obs-studio
@@ -80,8 +79,6 @@
 
     dust # Analyze disk usage
     tldr # "man" in short form
-
-    fuzzel # Is this used?
 
     # Needed to make the desktopEntries
     xdg-utils
@@ -114,6 +111,16 @@
     prusa-slicer
     logisim-evolution
   ];
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = [ "sioyek.desktop" ]; # Replace with your preferred viewer
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+    };
+  };
 
   home.file."${config.xdg.configHome}/sioyek/keys_user.config".text = ''
     next_page <C-d>

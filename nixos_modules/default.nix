@@ -6,5 +6,6 @@
     ./ntfy.nix
     ./virtualbox.nix
     ./external-backup.nix
+    ./spotify.nix
   ];
 }

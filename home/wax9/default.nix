@@ -6,6 +6,8 @@
   preconf.kth.enable = true;
   preconf.matlab.enable = true;
 
+  preconf.hyprland.extraMediaKeyKeybinds = true;
+
   home.packages = with pkgs; [
     brightnessctl
     discord

@@ -43,6 +43,7 @@ in
 {
   options = {
     preconf.hyprland.enable = lib.mkEnableOption "Enable preconfigured Hyperland";
+    preconf.hyprland.extraMediaKeyKeybinds = lib.mkEnableOption "Enable extra keybinds for media keys";
   };
 
   config = lib.mkIf config.preconf.hyprland.enable {
@@ -67,8 +68,13 @@ in
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = "${./../../wallpapers/nix.png}";
-        wallpaper = ",${./../../wallpapers/nix.png}";
+        splash = false;
+        wallpaper = [
+          {
+            monitor = "";
+            path = "${./../../wallpapers/nix.png}";
+          }
+        ];
       };
     };
 
@@ -116,7 +122,7 @@ in
       };
 
       # gestures.workspace_swipe = true;
-      gesture = "3, horizontal, workspace";
+      # gesture = "3, horizontal, workspace";
 
       # options.xdg.desktopEntries = {
       #   ocr-copy = {
@@ -185,7 +191,13 @@ in
             ]
           ) 10
         )
-      );
+      )
+      ++ lib.optionals config.preconf.hyprland.extraMediaKeyKeybinds [
+        ", XF86AudioMicMute, exec, ${lib.getExe pkgs.playerctl} play-pause"
+        # ", Super_L, exec, ${lib.getExe pkgs.playerctl} previous"
+        ", XF86Tools, exec, ${lib.getExe pkgs.playerctl} next"
+      ];
+
       binde = [
         "SUPER_SHIFT, h, resizeactive, -20 0"
         "SUPER_SHIFT, j, resizeactive, 0 20"
@@ -199,6 +211,9 @@ in
         ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
         ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
         ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} s 5%-"
+        ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} s 5%+"
       ];
     };
   };

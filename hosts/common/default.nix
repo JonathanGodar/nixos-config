@@ -3,7 +3,8 @@
   inputs,
   pkgs-9f41,
   ...
-}: {
+}:
+{
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
     ../../overlays
@@ -37,18 +38,34 @@
 
   hardware.opentabletdriver = {
     enable = true;
-    package = (pkgs-9f41.opentabletdriver.override {
-          buildDotnetModule = attrs:
-            pkgs-9f41.buildDotnetModule (attrs
-              // {
-                dotnet-sdk = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
-                dotnet-runtime = with pkgs-9f41.dotnetCorePackages; combinePackages [sdk_6_0 sdk_7_0];
-                nugetDeps = ./deps.nix;
-                disabledTests = attrs.disabledTests ++ ["OpenTabletDriver.Tests.ConfigurationTest.Configurations_Are_Linted"];
-                dotnetInstallFlags = [];
-              });
-        })
-        .overrideAttrs (old: {
+    package =
+      (pkgs-9f41.opentabletdriver.override {
+        buildDotnetModule =
+          attrs:
+          pkgs-9f41.buildDotnetModule (
+            attrs
+            // {
+              dotnet-sdk =
+                with pkgs-9f41.dotnetCorePackages;
+                combinePackages [
+                  sdk_6_0
+                  sdk_7_0
+                ];
+              dotnet-runtime =
+                with pkgs-9f41.dotnetCorePackages;
+                combinePackages [
+                  sdk_6_0
+                  sdk_7_0
+                ];
+              nugetDeps = ./deps.nix;
+              disabledTests = attrs.disabledTests ++ [
+                "OpenTabletDriver.Tests.ConfigurationTest.Configurations_Are_Linted"
+              ];
+              dotnetInstallFlags = [ ];
+            }
+          );
+      }).overrideAttrs
+        (old: {
           src = inputs.opentablet-ugee; # Flake input of for source.
           nativeBuildInputs = old.nativeBuildInputs; # ++ [pkgs-9f41.git];
         });
@@ -87,11 +104,15 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "hyprland";
+  };
+
   # services.displayManager.sddm.package = pkgs.kdePackages.sddm;
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -121,8 +142,11 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Niklasson Godar";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -160,7 +184,7 @@
   ];
 
   # To be able to emulate RASPI-4
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -169,7 +193,10 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # font.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
   # For all nerd-fonts

@@ -45,6 +45,8 @@
     "**/venv/**"
     "**/node_modules/**"
 
+    "**/.stversions"
+
     "**/tmp/"
     "**/.git/"
     "**/pyc"

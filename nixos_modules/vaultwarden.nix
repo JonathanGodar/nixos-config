@@ -19,6 +19,7 @@
           ROCKET_PORT = 8222;
           DOMAIN = "https://pass.${config.home_network_url}";
         };
+        backupDir = "/mnt/ssd/vaultwarden_backup";
       };
 
       # Postgresql setup taken from atuin nixos service: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/atuin.nix

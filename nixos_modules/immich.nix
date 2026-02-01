@@ -16,6 +16,7 @@
 
       # TODO REMOVE, only for testing
       openFirewall = true;
+      mediaLocation = "/mnt/ssd/immich";
     };
 
   };

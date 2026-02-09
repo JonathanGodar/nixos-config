@@ -8,5 +8,6 @@
     ./external-backup.nix
     ./spotify.nix
     ./immich.nix
+    ./immich-ml.nix
   ];
 }

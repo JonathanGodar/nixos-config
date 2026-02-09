@@ -89,6 +89,24 @@ in
       ++ backup_helpers.ignore_directories;
   };
 
+  # services.immich = {
+  #   enable = true;
+  #   accelerationDevices = null;
+  # };
+
+  # preconf.immich-ml = {
+  #   enable = true;
+  #   host = "192.168.1.83";
+  #   workers = 8;
+  # };
+
+  # services.immich.machine-learning.environment.IMMICH_HOST = lib.mkForce "192.168.1.83";
+  #
+  # users.users.immich.extraGroups = [
+  #   "video"
+  #   "render"
+  # ];
+
   networking.hostName = "faccun";
   nix.settings = {
     builders-use-substitutes = true;

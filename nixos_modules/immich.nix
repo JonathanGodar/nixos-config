@@ -12,10 +12,8 @@
   config = lib.mkIf config.preconf.immich.enable {
     services.immich = {
       enable = true;
-      machine-learning.enable = false;
+      # machine-learning.enable = false;
 
-      # TODO REMOVE, only for testing
-      openFirewall = true;
       mediaLocation = "/mnt/ssd/immich";
     };
 

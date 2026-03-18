@@ -21,6 +21,7 @@
             name = "Jonathan Niklasson Godar";
             email = "jonathan.godar@hotmail.com";
           };
+          init.defaultBranch = "main";
         };
       };
 

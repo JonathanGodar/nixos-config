@@ -155,7 +155,8 @@ in
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
 
-        "$mod, SPACE, exec, rofi -show drun -show-icons"
+        "$mod, SPACE, exec, ${lib.getExe pkgs.vicinae} toggle"
+        # "$mod, SPACE, exec, rofi -show drun -show-icons"
 
         # HJKL to move active window position
         "SUPER_ALT, h, swapwindow, l"

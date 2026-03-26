@@ -7,6 +7,10 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+    };
+
     hyprcursor-phinger = {
       url = "github:jappie3/hyprcursor-phinger";
       inputs.nixpkgs.follows = "nixpkgs";

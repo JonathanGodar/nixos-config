@@ -16,6 +16,7 @@
   preconf.nu.enable = true;
   preconf.catppuccin.enable = true;
   preconf.lazyvim.enable = true;
+  preconf.vicinae.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";

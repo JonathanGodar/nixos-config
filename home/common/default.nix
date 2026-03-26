@@ -109,7 +109,8 @@
     arduino-ide
     freecad
     prusa-slicer
-    logisim-evolution
+
+    codex
   ];
 
   xdg.mimeApps = {

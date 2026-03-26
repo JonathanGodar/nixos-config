@@ -32,6 +32,12 @@
     };
 
     programs.zoxide.enableNushellIntegration = true;
+    programs.yazi = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
+
     programs.carapace.enable = true;
     programs.carapace.enableNushellIntegration = true;
     programs.eza.enableNushellIntegration = true;

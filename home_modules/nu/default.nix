@@ -36,6 +36,7 @@
       enable = true;
       enableNushellIntegration = true;
       enableZshIntegration = true;
+      shellWrapperName = "y";
     };
 
     programs.carapace.enable = true;

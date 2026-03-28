@@ -7,6 +7,8 @@
     ./hyprland_de.nix
     ./nu
 
+    ./zellij
+
     ./cursors.nix
     ./waybar.nix
     ./cli.nix

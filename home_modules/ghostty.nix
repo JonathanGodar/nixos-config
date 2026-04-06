@@ -13,7 +13,7 @@
       enable = true;
       settings = {
         font-size = 10;
-        command = "tmux";
+        command = "zellij";
       };
     };
     catppuccin.ghostty.enable = true;

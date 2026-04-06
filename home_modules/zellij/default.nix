@@ -12,7 +12,8 @@
       enable = true;
       extraConfig = builtins.readFile ./config.kdl;
       settings = {
-        pane_frames = false;
+        default_shell = "${lib.getExe pkgs.nushell}";
+        default_layout = "${./layouts/better_default.kdl}";
       };
       #   show_startup_tips = false;
     };

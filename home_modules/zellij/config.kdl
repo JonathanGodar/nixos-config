@@ -2,6 +2,12 @@ pane_frames  false;
 
 show_startup_tips false;
 
+// default_shell "nu";
+
+floating_panes {
+    default_size "80%" "70%"
+}
+
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl space" { SwitchToMode "normal"; }
@@ -48,6 +54,9 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; SwitchToMode "locked"; }
         bind "8" { GoToTab 8; SwitchToMode "locked"; }
         bind "9" { GoToTab 9; SwitchToMode "locked"; }
+
+        bind "\"" { NewPane "down"; }
+        bind "%" { NewPane "right"; }
     }
     tab {
         bind "left" { GoToPreviousTab; }
@@ -575,3 +584,23 @@ show_release_notes false
 // typically work best. Set to 0 to use the number of (physical) CPU cores.
 // Note: This only applies to web clients at the moment.
 // client_async_worker_tasks 4
+
+layout {
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    pane
+    pane size=1 borderless=true {
+        plugin location="status-bar"
+    }
+
+    swap_floating_layout{
+        floating_panes max_panes=1 {
+            pane width="95%" height="95%"
+        }
+        floating_panes max_panes=2 {
+            pane x="4%" y="5%" width="45%" height="90%"
+            pane x="51%" y="5%" width="45%" height="90%"
+        }
+    }
+}

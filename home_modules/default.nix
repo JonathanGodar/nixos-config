@@ -23,7 +23,9 @@
     ./zsh.nix
     ./fzf.nix
     ./lazygit.nix
-    ./lazyvim.nix
+    # ./lazyvim.nix
+    ./nvim
+
     ./zoxide.nix
     ./kth.nix
     ./matlab.nix

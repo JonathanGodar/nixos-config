@@ -14,21 +14,6 @@
 
   preconf.hyprland.extraMediaKeyKeybinds = true;
 
-  programs.vicinae = {
-    enable = true;
-    systemd.enable = true;
-
-    extensions = with inputs.vicinae-extensions.packages.${pkgs.system}; [
-      nix
-      it-tools
-      bluetooth
-      wifi-commander
-      process-manager
-      player-pilot
-      pulseaudio
-      power-profile
-    ];
-  };
   #   extensions = [
   # (config.lib.vicinae.mkExtension {
   # name = "test-extension";

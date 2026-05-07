@@ -17,6 +17,7 @@
   preconf.catppuccin.enable = true;
   preconf.lazyvim.enable = true;
   preconf.obsidian.enable = true;
+  preconf.vicinae.enable = true;
 
   home.username = "jonathan";
   home.homeDirectory = "/home/jonathan";
@@ -110,7 +111,8 @@
     arduino-ide
     freecad
     prusa-slicer
-    logisim-evolution
+
+    codex
   ];
 
   xdg.mimeApps = {

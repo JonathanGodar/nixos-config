@@ -7,6 +7,8 @@
     ./hyprland_de.nix
     ./nu
 
+    ./zellij
+
     ./cursors.nix
     ./waybar.nix
     ./cli.nix
@@ -17,6 +19,7 @@
     ./git.nix
     ./starship.nix
     ./tmux.nix
+    ./vicinae.nix
     ./zsh.nix
     ./fzf.nix
     ./lazygit.nix

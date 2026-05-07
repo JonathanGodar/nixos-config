@@ -16,7 +16,7 @@
   preconf.nu.enable = true;
   preconf.catppuccin.enable = true;
   preconf.nvim.enable = true;
-  # preconf.lazyvim.enable = true;
+  preconf.obsidian.enable = true;
   preconf.vicinae.enable = true;
 
   home.username = "jonathan";

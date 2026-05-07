@@ -29,5 +29,6 @@
     ./zoxide.nix
     ./kth.nix
     ./matlab.nix
+    ./obsidian.nix
   ];
 }

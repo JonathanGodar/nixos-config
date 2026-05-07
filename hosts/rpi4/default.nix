@@ -4,6 +4,9 @@
   config,
   ...
 }:
+let
+  backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
+in
 {
   imports = [
     ./base.nix
@@ -158,6 +161,15 @@
 
   preconf.vaultwarden.enable = true;
   preconf.immich.enable = true;
+
+  preconf.backup_to_external_drive = {
+    enable = true;
+    paths = [
+      "/mnt/ssd/"
+      "/var/lib"
+    ];
+    exclude = backup_helpers.ignore_directories;
+  };
 
   services.caddy = {
     enable = true;

@@ -17,13 +17,13 @@ in
   # services.desktopManager.cosmic.enable = true;
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 
-  preconf.backup_to_external_drive = {
-    enable = true;
-    paths = [ "/home/jonathan/" ];
-    exclude =
-      (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
-      ++ backup_helpers.ignore_directories;
-  };
+  # preconf.backup_to_external_drive = {
+  #   enable = true;
+  #   paths = [ "/home/jonathan/" ];
+  #   exclude =
+  #     (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
+  #     ++ backup_helpers.ignore_directories;
+  # };
 
   preconf.virtualbox.enable = false;
   preconf.spotify.enable = true;

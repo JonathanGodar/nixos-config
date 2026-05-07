@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./catppuccin.nix
 
@@ -23,5 +24,6 @@
     ./zoxide.nix
     ./kth.nix
     ./matlab.nix
+    ./obsidian.nix
   ];
 }

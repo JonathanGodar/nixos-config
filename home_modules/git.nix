@@ -12,6 +12,7 @@
     programs = {
       git = {
         enable = true;
+        signing.format = null;
 
         settings = {
           rerere.enabled = true;

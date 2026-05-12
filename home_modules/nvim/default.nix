@@ -64,7 +64,13 @@
 
       plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
-      initLua = ''
+      initLua = let
+        treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+        treesitterGrammars = pkgs.symlinkJoin {
+          name = "nvim-treesitter-grammars";
+          paths = treesitter.dependencies;
+        };
+      in ''
         require("lazy").setup({
           defaults = {
             lazy = true,
@@ -72,7 +78,15 @@
           spec =  {
             {"LazyVim/LazyVim", import="lazyvim.plugins"},
             { import = "plugins" },
-          }
+
+            {
+              "nvim-treesitter/nvim-treesitter",
+              build = "",
+              opts = {
+                install_dir = "${treesitterGrammars}",
+              },
+            },
+          },
         })
       '';
 

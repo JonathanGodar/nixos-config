@@ -9,6 +9,7 @@
 
   config = lib.mkIf config.preconf.nvim.enable {
 
+    catppuccin.nvim.enable = false;
     # General nix config taken from https://github.com/LazyVim/LazyVim/discussions/1972#discussioncomment-15985196
     programs.neovim = {
       enable = true;
@@ -42,7 +43,6 @@
 
         rust-analyzer
         rustfmt
-        tinymist
 
         # Markdown
         markdownlint-cli2

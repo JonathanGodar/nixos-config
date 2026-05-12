@@ -81,14 +81,6 @@ in
       };
   };
 
-  preconf.backup_to_external_drive = {
-    enable = true;
-    paths = [ "/home/jonathan/" ];
-    exclude =
-      (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
-      ++ backup_helpers.ignore_directories;
-  };
-
   # services.immich = {
   #   enable = true;
   #   accelerationDevices = null;
@@ -120,7 +112,7 @@ in
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # This is meant to make the suspend-timeout to 0 seconds but does not work at the moment
   #  services.pipewire.wireplumber.extraConfig = {
@@ -272,7 +264,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   environment.etc."nextcloud-admin-pass".text = "hejsanpådigsan";

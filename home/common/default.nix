@@ -41,8 +41,12 @@
     # package = pkgs.rofi-wayland;
   };
 
-  programs.firefox.enable = true;
-  programs.firefox.profiles.default.extensions.force = true;
+  programs.firefox = {
+    enable = true;
+    # Due to change in default and my older home state version
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    profiles.default.extensions.force = true;
+  };
 
   catppuccin.thunderbird.enable = true;
 

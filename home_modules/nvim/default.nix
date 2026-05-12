@@ -31,11 +31,11 @@
         bash-language-server
         nushell
 
-        matlab-language-server
+        # matlab-language-server
         jdt-language-server
 
         shfmt
-        nodePackages.prettier
+        prettier
         tree-sitter
 
         # Typescript + javascript

@@ -81,14 +81,6 @@ in
       };
   };
 
-  # preconf.backup_to_external_drive = {
-  #   enable = true;
-  #   paths = [ "/home/jonathan/" ];
-  #   exclude =
-  #     (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
-  #     ++ backup_helpers.ignore_directories;
-  # };
-
   # services.immich = {
   #   enable = true;
   #   accelerationDevices = null;

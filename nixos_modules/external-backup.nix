@@ -43,8 +43,9 @@
         device = "/dev/disk/by-uuid/${disk_uuid}";
         fsType = "ext4";
         options = [
+          "noauto"
           "nofail"
-          "x-systemd.device-timeout=0"
+          # "x-systemd.device-timeout=0"
           # "x-systemd.automount"
         ];
       };
@@ -58,6 +59,10 @@
       # };
 
       services = {
+        # From chatgpt
+        udev.extraRules = ''
+        ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="${disk_uuid}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="borgbackup-job-${config.preconf.backup_to_external_drive.job_name}.service"
+        '';
         borgbackup.jobs.${config.preconf.backup_to_external_drive.job_name} = {
           compression = "auto,zstd";
           paths = config.preconf.backup_to_external_drive.paths;

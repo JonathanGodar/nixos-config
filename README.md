@@ -33,7 +33,7 @@ Quirks:
 
 ### Remote deployment
 
-To update the raspberry pi with packages beeing build on a remote machine use
+To update the raspberry pi with packages being build on a remote machine use
 
 ```bash
 nixos-rebuild switch --flake .#rpi4 --target-host <user>@<raspberry pi host> --use-remote-sudo

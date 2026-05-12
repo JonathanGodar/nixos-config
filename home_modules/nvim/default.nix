@@ -16,12 +16,20 @@
       defaultEditor = true;
 
       extraPackages = with pkgs; [
+      	git
+        lazygit
+        ripgrep
+        fzf
+        fd
+        tree-sitter
+
         lua-language-server
         stylua
 
         # Nix
         nil
         nixfmt
+        statix
 
         # Python
         pyright
@@ -70,14 +78,29 @@
           name = "nvim-treesitter-grammars";
           paths = treesitter.dependencies;
         };
+
+	plugins = with pkgs.vimPlugins; [
+		lazy-nvim
+	];
+
+	mkEntryFromDrv = drv: if lib.isDerivation drv then { name = "${lib.getName drv}"; path = drv; } else drv;
+
+	lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+      # lua
       in ''
         require("lazy").setup({
           defaults = {
-            lazy = true,
+            -- lazy = true,
+          },
+          dev = {
+            path = "${lazyPath}",
+            patterns = {"."},
+            fallback = true,
           },
           spec =  {
             {"LazyVim/LazyVim", import="lazyvim.plugins"},
             { import = "plugins" },
+            { import = "lazyvim.plugins.extras.lang.nix" },
 
             {
               "nvim-treesitter/nvim-treesitter",

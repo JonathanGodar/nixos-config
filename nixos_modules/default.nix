@@ -9,5 +9,6 @@
     ./spotify.nix
     ./immich.nix
     ./immich-ml.nix
+    ./postgresql.nix
   ];
 }

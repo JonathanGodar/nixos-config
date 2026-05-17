@@ -21,6 +21,9 @@
   };
 
   config = lib.mkIf config.rpi4_fs.enable {
+    # Choose a linux kernel that does not have to be built from scratch
+    boot.kernelPackages = pkgs.linuxPackages;
+
     # This is set by the SD-installer and needs to be kept.
     fileSystems."/" = {
       device = "/dev/disk/by-label/NIXOS_SD";

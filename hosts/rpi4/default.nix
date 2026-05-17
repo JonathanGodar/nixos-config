@@ -159,6 +159,7 @@ in
     # openRegistration = true;
   };
 
+  preconf.postgresql.enable = true;
   preconf.vaultwarden.enable = true;
   preconf.immich.enable = true;
 

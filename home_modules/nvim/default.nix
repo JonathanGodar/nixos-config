@@ -14,9 +14,11 @@
     programs.neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
 
       extraPackages = with pkgs; [
-      	git
+        git
         lazygit
         ripgrep
         fzf
@@ -24,6 +26,7 @@
         tree-sitter
 
         lua-language-server
+        luarocks
         stylua
 
         # Nix
@@ -68,50 +71,62 @@
 
         # Required runtimes
         nodejs
+
+        # For file previewing
+        imagemagick
       ];
 
       plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
-      initLua = let
-        treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-        treesitterGrammars = pkgs.symlinkJoin {
-          name = "nvim-treesitter-grammars";
-          paths = treesitter.dependencies;
-        };
+      initLua =
+        let
+          treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+          treesitterGrammars = pkgs.symlinkJoin {
+            name = "nvim-treesitter-grammars";
+            paths = treesitter.dependencies;
+          };
 
-	plugins = with pkgs.vimPlugins; [
-		lazy-nvim
-	];
+          plugins = with pkgs.vimPlugins; [
+            lazy-nvim
+          ];
 
-	mkEntryFromDrv = drv: if lib.isDerivation drv then { name = "${lib.getName drv}"; path = drv; } else drv;
+          mkEntryFromDrv =
+            drv:
+            if lib.isDerivation drv then
+              {
+                name = "${lib.getName drv}";
+                path = drv;
+              }
+            else
+              drv;
 
-	lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-      # lua
-      in ''
-        require("lazy").setup({
-          defaults = {
-            -- lazy = true,
-          },
-          dev = {
-            path = "${lazyPath}",
-            patterns = {"."},
-            fallback = true,
-          },
-          spec =  {
-            {"LazyVim/LazyVim", import="lazyvim.plugins"},
-            { import = "plugins" },
-            { import = "lazyvim.plugins.extras.lang.nix" },
-
-            {
-              "nvim-treesitter/nvim-treesitter",
-              build = "",
-              opts = {
-                install_dir = "${treesitterGrammars}",
+          lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+          # lua
+        in
+        ''
+          require("lazy").setup({
+            defaults = {
+              -- lazy = true,
+            },
+            dev = {
+              path = "${lazyPath}",
+              patterns = {"."},
+              fallback = true,
+            },
+            spec =  {
+              {"LazyVim/LazyVim", import="lazyvim.plugins"},
+              { import = "lazyvim.plugins.extras.lang.nix" },
+              { import = "plugins" },
+              {
+                "nvim-treesitter/nvim-treesitter",
+                build = "",
+                opts = {
+                  install_dir = "${treesitterGrammars}",
+                },
               },
             },
-          },
-        })
-      '';
+          })
+        '';
 
     };
 
@@ -123,10 +138,5 @@
     xdg.configFile."nvim/lazy-lock.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home_modules/nvim/lazy-lock.json";
     };
-
-    # home.file = {
-    #   ".config/nvim".source = {
-    #   }
-    # };
   };
 }

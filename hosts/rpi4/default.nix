@@ -166,9 +166,20 @@ in
   preconf.backup_to_external_drive = {
     enable = true;
     paths = [
-      "/mnt/ssd/"
+      # Include the postgres backup
+      "/var/backup"
+
       "/var/lib"
+
+      # Backup immich
+      "/mnt/ssd/immich/backups"
+      "/mnt/ssd/library"
+      "/mnt/ssd/upload"
+      "/mnt/ssd/profile"
+
+      "/mnt/ssd/syncthing"
     ];
+
     exclude = backup_helpers.ignore_directories;
   };
 

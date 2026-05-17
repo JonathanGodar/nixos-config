@@ -161,7 +161,6 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    viAlias = true;
   };
 
   programs.zsh = {
@@ -183,18 +182,17 @@
     21027
   ];
 
-  preconf.backup_to_external_drive = 
-  let
-    backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
-  in
-  {
-    enable = true;
-    paths = [ "/home/jonathan/" ];
-    exclude =
-      (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
-      ++ backup_helpers.ignore_directories;
-  };
-
+  preconf.backup_to_external_drive =
+    let
+      backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
+    in
+    {
+      enable = true;
+      paths = [ "/home/jonathan/" ];
+      exclude =
+        (map (path: "/home/jonathan/" + path) backup_helpers.home_ignore_directories)
+        ++ backup_helpers.ignore_directories;
+    };
 
   # To be able to emulate RASPI-4
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

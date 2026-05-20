@@ -62,6 +62,9 @@
     overskride
     killall
 
+    # For analyzing diskspace left
+    ncdu
+
     thunderbird
 
     go

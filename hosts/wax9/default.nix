@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   backup_helpers = import ../../nixos_modules/backup_helpers.nix { };
 in
@@ -16,6 +16,10 @@ in
   services.libinput.touchpad.naturalScrolling = true;
   # services.desktopManager.cosmic.enable = true;
   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
+
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+  };
 
   # preconf.backup_to_external_drive = {
   #   enable = true;

@@ -4,14 +4,20 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   options.preconf.tmux.enable = lib.mkEnableOption "Enable tmux";
   config = lib.mkIf config.preconf.tmux.enable {
     programs.tmux = {
       enable = true;
 
       shortcut = "Space";
-      plugins = with pkgs.tmuxPlugins; [sensible vim-tmux-navigator catppuccin inputs.tmuxSessionX.packages."${pkgs.system}".default];
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+        vim-tmux-navigator
+        catppuccin
+        inputs.tmuxSessionX.packages."${pkgs.system}".default
+      ];
 
       terminal = "screen-256color";
       mouse = true;

@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = {
     preconf.kitty.enable = lib.mkEnableOption "Enable preconfigured kitty";
   };

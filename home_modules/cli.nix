@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     preconf.cli.enable = lib.mkEnableOption "Enable Core cli programes";
   };
@@ -26,7 +27,7 @@
       killall
       kondo # For removing unneeded files from software projects
       nh # Nix helper, provides nice diff when updating system
-      gh #Github cli tool
+      gh # Github cli tool
 
       fd # Used somewhere (?)
       jq

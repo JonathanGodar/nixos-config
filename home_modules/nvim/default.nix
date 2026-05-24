@@ -17,6 +17,9 @@
       viAlias = true;
       vimAlias = true;
 
+      withPython3 = false;
+      withRuby = false;
+
       extraPackages = with pkgs; [
         git
         lazygit
@@ -60,6 +63,7 @@
         marksman
 
         zk
+        lua
 
         # C/C++
         gcc
@@ -76,7 +80,17 @@
         imagemagick
       ];
 
-      plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+      plugins = with pkgs.vimPlugins; [
+        lazy-nvim
+
+        # nvim-treesitter
+        # nvim-treesitter-textobjects
+        # nvim-ts-autotag
+        # {
+        #   name = "catppuccin";
+        #   path = pkgs.vimPlugins.catppuccin-nvim; # catppuccin-nvim;
+        # }
+      ];
 
       initLua =
         let
@@ -114,18 +128,21 @@
               fallback = true,
             },
             spec =  {
-              {"LazyVim/LazyVim", import="lazyvim.plugins"},
-              { import = "lazyvim.plugins.extras.lang.nix" },
-              { import = "plugins" },
+              { "LazyVim/LazyVim", import="lazyvim.plugins" },
               {
                 "nvim-treesitter/nvim-treesitter",
-                build = "",
-                opts = {
-                  install_dir = "${treesitterGrammars}",
-                },
+                -- build = "",
+                -- opts = {
+                --   install_dir = "${treesitterGrammars}",
+                -- },
               },
+              { import = "lazyvim.plugins.extras.lang.nix" },
+              { import = "lazyvim.plugins.extras.lang.typescript" },
+              { import = "plugins" },
             },
-          })
+            -- checker = { enabled = false }, -- disable automatic update checking
+            -- install = { colorscheme = { "catppuccin" } },
+          });
         '';
 
     };

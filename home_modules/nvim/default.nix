@@ -116,7 +116,9 @@
             spec =  {
               {"LazyVim/LazyVim", import="lazyvim.plugins"},
               { import = "lazyvim.plugins.extras.lang.nix" },
+              { import = "extras" },
               { import = "plugins" },
+
               {
                 "nvim-treesitter/nvim-treesitter",
                 build = "",

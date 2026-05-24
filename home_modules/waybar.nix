@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.preconf.waybar.enable = lib.mkEnableOption "Enable preconfigured waybar";
   config = lib.mkIf config.preconf.waybar.enable {
     catppuccin.waybar.enable = true;
@@ -11,9 +12,18 @@
       enable = true;
       settings = {
         mainBar = {
-          modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
-          modules-center = ["hyprland/window"];
-          modules-right = ["tray" "battery" "clock" "wireplumber"];
+          modules-left = [
+            "hyprland/workspaces"
+            "hyprland/mode"
+            "wlr/taskbar"
+          ];
+          modules-center = [ "hyprland/window" ];
+          modules-right = [
+            "tray"
+            "battery"
+            "clock"
+            "wireplumber"
+          ];
         };
       };
     };

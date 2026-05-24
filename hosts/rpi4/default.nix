@@ -173,9 +173,9 @@ in
 
       # Backup immich
       "/mnt/ssd/immich/backups"
-      "/mnt/ssd/library"
-      "/mnt/ssd/upload"
-      "/mnt/ssd/profile"
+      "/mnt/ssd/immich/library"
+      "/mnt/ssd/immich/upload"
+      "/mnt/ssd/immich/profile"
 
       "/mnt/ssd/syncthing"
     ];

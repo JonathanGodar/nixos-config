@@ -129,6 +129,10 @@
             },
             spec =  {
               { "LazyVim/LazyVim", import="lazyvim.plugins" },
+              { import = "lazyvim.plugins.extras.lang.nix" },
+              { import = "extras" },
+              { import = "plugins" },
+
               {
                 "nvim-treesitter/nvim-treesitter",
                 -- build = "",
@@ -136,8 +140,6 @@
                 --   install_dir = "${treesitterGrammars}",
                 -- },
               },
-              { import = "lazyvim.plugins.extras.lang.nix" },
-              { import = "lazyvim.plugins.extras.lang.typescript" },
               { import = "plugins" },
             },
             -- checker = { enabled = false }, -- disable automatic update checking

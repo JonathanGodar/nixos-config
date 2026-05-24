@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     preconf.matlab.enable = lib.mkEnableOption "Enable matlab. Requires imperativ installation";
   };

@@ -12,8 +12,6 @@
   config = lib.mkIf config.preconf.kth.enable {
     home.packages = with pkgs; [
       python3
-      vscode
-
       typst
 
       libreoffice
@@ -21,7 +19,7 @@
 
       # gnumake
       # noweb
-      texlive.combined.scheme-small
+      # texlive.combined.scheme-small
 
       # rars
       # logisim-evolution

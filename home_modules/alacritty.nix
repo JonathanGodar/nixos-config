@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = {
     preconf.alacritty.enable = lib.mkEnableOption "Enable preconfigured alacritty";
   };

@@ -6,8 +6,12 @@
   opentabletdriver-ugee,
   inputs,
   ...
-}: {
-  imports = [./focusWindow ./navigateOpenWindows];
+}:
+{
+  imports = [
+    ./focusWindow
+    ./navigateOpenWindows
+  ];
   nixpkgs.overlays = [
     inputs.nix-matlab.overlay
   ];

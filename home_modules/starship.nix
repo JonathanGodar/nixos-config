@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     preconf.starship.enable = lib.mkEnableOption "Enable configured starship";
   };

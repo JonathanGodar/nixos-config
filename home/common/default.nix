@@ -11,41 +11,43 @@
   ];
   programs.nix-index-database.comma.enable = true;
 
-  preconf.hyprland_de.enable = true;
-  preconf.kitty.enable = true;
-  preconf.nu.enable = true;
-  preconf.catppuccin.enable = true;
-  preconf.nvim.enable = true;
-  preconf.obsidian.enable = true;
-  preconf.vicinae.enable = true;
+  preconf = {
+    hyprland_de.enable = true;
+    kitty.enable = true;
+    nu.enable = true;
+    catppuccin.enable = true;
+    nvim.enable = true;
+    obsidian.enable = true;
+    vicinae.enable = true;
+  };
 
-  home.username = "jonathan";
-  home.homeDirectory = "/home/jonathan";
+  home = {
+    username = "jonathan";
+    homeDirectory = "/home/jonathan";
+    stateVersion = "24.05";
+  };
 
   services.syncthing.enable = true;
-  home.stateVersion = "24.05";
-
-  programs.home-manager.enable = true;
-
   qt.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
+  programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
 
-    nix-direnv.enable = true;
-  };
-
-  programs.rofi = {
-    enable = true;
-    # package = pkgs.rofi-wayland;
-  };
-
-  programs.firefox = {
-    enable = true;
-    # Due to change in default and my older home state version
-    configPath = "${config.xdg.configHome}/mozilla/firefox";
-    profiles.default.extensions.force = true;
+      nix-direnv.enable = true;
+    };
+    rofi = {
+      enable = true;
+      # package = pkgs.rofi-wayland;
+    };
+    firefox = {
+      enable = true;
+      # Due to change in default and my older home state version
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+      profiles.default.extensions.force = true;
+    };
+    home-manager.enable = true;
   };
 
   catppuccin.thunderbird.enable = true;
@@ -64,8 +66,6 @@
 
     # For analyzing diskspace left
     ncdu
-
-    thunderbird
 
     go
     prismlauncher
@@ -86,7 +86,7 @@
 
     # inputs.nixvim.packages.${pkgs.system}.default
 
-    dust # Analyze disk usage
+    ncdu # Analyze disk usage
     tldr # "man" in short form
 
     # Needed to make the desktopEntries
@@ -115,7 +115,6 @@
 
     kdePackages.polkit-kde-agent-1
 
-    arduino-ide
     freecad
     prusa-slicer
 

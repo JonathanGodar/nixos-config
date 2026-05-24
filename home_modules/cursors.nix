@@ -1,4 +1,11 @@
-{ pkgs, inputs, lib, config, ...}: {
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
+{
   options.preconf.cursors = {
     enable = lib.mkEnableOption "Enable preconfigured cursors";
     size = lib.mkOption {
@@ -7,10 +14,11 @@
     };
   };
 
-  imports = [inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger];
+  imports = [ inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger ];
 
-  config = let
-    size = config.preconf.cursors.size;
+  config =
+    let
+      size = config.preconf.cursors.size;
     in
 
     lib.mkIf config.preconf.cursors.enable {
@@ -36,6 +44,6 @@
       #
       # # Imports phinger-hyprcursor variant
       # programs.hyprcursor-phinger.enable = lib.mkIf config.preconf.hyprland.enable true;
-  };
+    };
 
 }

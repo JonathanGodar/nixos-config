@@ -2,6 +2,7 @@
 {
   imports = [
     ./backup.nix
+    ./keyd.nix
     ./vaultwarden.nix
     ./ntfy.nix
     ./virtualbox.nix

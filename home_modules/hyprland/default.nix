@@ -111,7 +111,6 @@ in
       input = {
         kb_layout = "se";
         kb_variant = "nodeadkeys";
-        kb_options = "caps:swapescape";
       };
 
       "$mod" = "SUPER";

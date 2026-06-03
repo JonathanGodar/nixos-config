@@ -96,7 +96,6 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver = {
     enable = true;
-    xkb.options = "caps:swapescape";
   };
 
   # Music player daemon
@@ -182,6 +181,7 @@
     21027
   ];
 
+  preconf.keyd.enable = true;
   preconf.backup_to_external_drive =
     let
       backup_helpers = import ../../nixos_modules/backup_helpers.nix { };

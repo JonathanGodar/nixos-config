@@ -78,6 +78,9 @@
 
         # For file previewing
         imagemagick
+
+        # For sql
+        sqls
       ];
 
       plugins = with pkgs.vimPlugins; [

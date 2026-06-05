@@ -78,7 +78,7 @@ in
       };
     };
 
-    catppuccin.hyprland.enable = true;
+    catppuccin.hyprland.enable = false;
     # wayland.windowManager.hyprland.catppuccin.enable = true;
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {

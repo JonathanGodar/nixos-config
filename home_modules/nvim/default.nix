@@ -45,7 +45,6 @@
         bash-language-server
         nushell
 
-        # matlab-language-server
         jdt-language-server
 
         shfmt

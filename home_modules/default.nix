@@ -23,12 +23,12 @@
     ./zsh.nix
     ./fzf.nix
     ./lazygit.nix
-    # ./lazyvim.nix
+
     ./nvim
+    ./nh.nix
 
     ./zoxide.nix
     ./kth.nix
-    ./matlab.nix
     ./obsidian.nix
   ];
 }

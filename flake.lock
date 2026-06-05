@@ -37,22 +37,6 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1747046372,
-        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-compat_2": {
-      "flake": false,
-      "locked": {
         "lastModified": 1767039857,
         "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
         "owner": "NixOS",
@@ -141,26 +125,6 @@
         "type": "github"
       }
     },
-    "lazyvim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775506079,
-        "narHash": "sha256-JMr2FL7RrSAShb8LXO8dbw52xbLJAW6T8jOuvVPWZZg=",
-        "owner": "JonathanGodar",
-        "repo": "LazyVim",
-        "rev": "d2e544c9dcde023834c5fa881845a5c8589ea4ef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JonathanGodar",
-        "repo": "LazyVim",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -179,27 +143,6 @@
         "owner": "nix-community",
         "repo": "nix-index-database",
         "type": "github"
-      }
-    },
-    "nix-matlab": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754476755,
-        "narHash": "sha256-vSF0VMEmPMzwNkrXIZwkhOSYmKES9BaDK/LlEe7/q8E=",
-        "owner": "doronbehar",
-        "repo": "nix-matlab",
-        "rev": "0e9c9fb660f9e1a1e4d59fd083e0212a15b513e2",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "doronbehar",
-        "repo": "nix-matlab",
-        "type": "gitlab"
       }
     },
     "nixos-hardware": {
@@ -372,9 +315,7 @@
         "catppuccin-wallpaper-repo": "catppuccin-wallpaper-repo",
         "home-manager": "home-manager",
         "hyprcursor-phinger": "hyprcursor-phinger",
-        "lazyvim": "lazyvim",
         "nix-index-database": "nix-index-database",
-        "nix-matlab": "nix-matlab",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-9f41": "nixpkgs-9f41",
@@ -483,7 +424,7 @@
     },
     "vicinae-extensions": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat",
         "nixpkgs": "nixpkgs_5",
         "systems": "systems_2",
         "vicinae": "vicinae"

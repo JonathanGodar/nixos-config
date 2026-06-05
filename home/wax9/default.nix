@@ -11,7 +11,6 @@
   preconf = {
     cli_full.enable = true;
     kth.enable = true;
-    matlab.enable = true;
 
     hyprland.extraMediaKeyKeybinds = true;
   };

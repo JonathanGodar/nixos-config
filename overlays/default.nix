@@ -13,6 +13,5 @@
     ./navigateOpenWindows
   ];
   nixpkgs.overlays = [
-    inputs.nix-matlab.overlay
   ];
 }

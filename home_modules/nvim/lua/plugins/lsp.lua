@@ -1,8 +1,6 @@
 return {
-  "neovim/nvim-lspconfig",
-  opts = {
-    servers = {
-      matlab_ls = {},
-    },
-  },
+	"neovim/nvim-lspconfig",
+	opts = {
+		servers = {},
+	},
 }

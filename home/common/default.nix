@@ -19,6 +19,7 @@
     nvim.enable = true;
     obsidian.enable = true;
     vicinae.enable = true;
+    nh.enable = true;
   };
 
   home = {

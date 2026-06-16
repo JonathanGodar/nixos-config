@@ -104,8 +104,6 @@ in
         "systemctl --user start hyprpolkitagent"
         # "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
 
-        "wl-paste --type text --watch cliphist store" # Make text available in clipboard history
-        "wl-paste --type image --watch cliphist store" # Make images available in clipboard history
       ];
 
       input = {
@@ -164,7 +162,7 @@ in
         "SUPER_ALT, l, swapwindow, r"
 
         # View clipboard history
-        "SUPER, V, exec, cliphist list | tofi | cliphist decode | wl-copy"
+        "SUPER, V, exec, vicinae vicinae://launch/clipboard/history?toggle=true"
 
         # Copy screen selection as image
         ",Print, exec, grim -g \"$(slurp)\" - | wl-copy" # grim -g \"$(slurp)\ | wl-copy"

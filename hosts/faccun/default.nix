@@ -99,13 +99,6 @@ in
   #   "render"
   # ];
 
-  networking.hostName = "faccun";
-  nix.settings = {
-    builders-use-substitutes = true;
-  };
-
-  networking.hostId = "354736d9";
-  programs.steam.enable = true;
   # services.flatpak.enable = true;
 
   # Configure network proxy if necessary
@@ -146,7 +139,6 @@ in
   # services.xserver.displayManager.autoLogin.user = "jonathan";
 
   # Install firefox.
-  programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

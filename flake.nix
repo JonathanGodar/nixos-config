@@ -31,6 +31,9 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    import-tree.url = "github:denful/import-tree";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -46,116 +49,8 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
-      nixpkgs-9f41,
-      home-manager,
-      nixos-hardware,
+      flake-parts,
       ...
     }@inputs:
-    let
-      mkSystem =
-        {
-          hostname,
-          system,
-          extraModules ? [ ],
-        }:
-        (nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit hostname;
-            pkgs-9f41 = import nixpkgs-9f41 {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          };
-          modules = [
-            ./nixos_modules
-            ./overlays
-            ./hosts/${hostname}
-            ./vars.nix
-            {
-              networking.hostName = hostname;
-            }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.backupFileExtension = "rebuild_backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit hostname;
-              };
-
-              home-manager.users.jonathan = {
-                imports = [
-                  inputs.catppuccin.homeModules.catppuccin
-                  ./vars.nix
-                  ./home_modules
-                  ./home/${hostname}
-                ];
-              };
-            }
-          ]
-          ++ extraModules;
-        });
-    in
-    rec {
-      nixosConfigurations = {
-        faccun = mkSystem rec {
-          system = "x86_64-linux";
-          hostname = "faccun";
-          extraModules = [
-          ];
-        };
-        wax9 = mkSystem rec {
-          system = "x86_64-linux";
-          hostname = "wax9";
-          extraModules = [
-            nixos-hardware.nixosModules.huawei-machc-wa
-            inputs.rnote-export.nixosModules.${system}.default
-            {
-              services.rnote-export = {
-                enable = true;
-                user = "jonathan";
-                group = "users";
-                inputDirectory = "/home/jonathan/kth/pde/";
-                includeString = "föreläsningar/F*.rnote";
-              };
-            }
-          ];
-        };
-        rpi4 = mkSystem rec {
-          system = "aarch64-linux";
-          hostname = "rpi4";
-          extraModules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            inputs.rnote-export.nixosModules.${system}.default
-          ];
-        };
-      };
-
-      # Copied from https://github.com/MatthewCroughan/raspberrypi-nixos-example/blob/master/flake.nix
-      images = {
-        rpi4 =
-          (self.nixosConfigurations.rpi4.extendModules {
-            modules = [
-              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-              {
-                disabledModules = [
-                  nixos-hardware.nixosModules.raspberry-pi-4
-                ];
-              }
-              {
-                sdImage.compressImage = false;
-
-                # Let the sd-image thing take care of the file system paths
-                rpi4_fs.enable = false;
-              }
-            ];
-          }).config.system.build.sdImage;
-      };
-    };
+    flake-parts.lib.mkFlake { inherit inputs; } (inputs.import_tree ./modules);
 }

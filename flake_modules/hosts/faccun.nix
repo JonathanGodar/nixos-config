@@ -2,6 +2,7 @@
 {
   flake = {
     nixosConfigurations.faccun = [ self.nixosModules.faccunConfig ];
+    homeConfigurations.faccun = [ self.nixosModules.faccunConfig ];
 
     nixosModules.faccunConfig =
       {

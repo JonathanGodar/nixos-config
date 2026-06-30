@@ -52,5 +52,11 @@
       flake-parts,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } (inputs.import_tree ./modules);
+    flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+      }
+      (
+        (inputs.import-tree ./modules) // { imports = [ inputs.home-manager.flakeModules.home-manager ]; }
+      );
 }

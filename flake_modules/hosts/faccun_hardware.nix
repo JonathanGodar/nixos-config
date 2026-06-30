@@ -1,3 +1,4 @@
+{ ... }:
 {
   flake.nixosModules.faccunHardware =
     {

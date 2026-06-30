@@ -1,13 +1,55 @@
 { self, ... }:
 {
   flake.nixosModules.gui =
-    { _ }:
+    { pkgs, ... }:
     {
-      programs.firefox.enable = true;
+      programs = {
+        firefox.enable = true;
+        dconf.enable = true;
+      };
+
+      # Enables wayland support for chromium and electron based apps
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+      # Music player daemon
+      services = {
+        mpd.enable = true;
+        displayManager = {
+          sddm = {
+            enable = true;
+            wayland.enable = true;
+          };
+          defaultSession = "hyprland";
+        };
+
+      };
+
+      xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      };
+
+      # Enable CUPS to print documents.
+      services.printing.enable = true;
+
+      # Enable sound with pipewire.
+      services.pulseaudio.enable = false;
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        wireplumber.enable = true;
+      };
+
+      fonts.packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+      ];
     };
 
   flake.homeModules.gui =
-    { _ }:
+    { ... }:
     {
 
     };

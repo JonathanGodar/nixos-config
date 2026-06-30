@@ -1,6 +1,7 @@
 {
   inputs,
+  ...
 }:
 {
-  imports = [ inputs.home-manager.flakeModlues.home-manager ];
+  imports = [ inputs.home-manager.flakeModules.home-manager ];
 }

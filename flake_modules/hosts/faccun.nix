@@ -1,8 +1,12 @@
-{ nixpkgs, self, ... }:
+{ inputs, self, ... }:
 {
   flake = {
-    nixosConfigurations.faccun = [ self.nixosModules.faccunConfig ];
-    homeConfigurations.faccun = [ self.nixosModules.faccunConfig ];
+    nixosConfigurations.faccun = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        self.nixosModules.faccunConfig
+      ];
+    };
 
     nixosModules.faccunConfig =
       {
@@ -15,6 +19,7 @@
         imports = with self.nixosModules; [
           base
           gui
+          hyprland
           faccunHardware
           steam
         ];

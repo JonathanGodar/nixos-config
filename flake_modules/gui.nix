@@ -1,10 +1,9 @@
 { self, ... }:
 {
-  flake.nixosModules.gui =
+  flake.modules.nixos.gui =
     { pkgs, ... }:
     {
       programs = {
-        firefox.enable = true;
         dconf.enable = true;
       };
 
@@ -48,7 +47,7 @@
       ];
     };
 
-  flake.homeModules.gui =
+  flake.modules.homeManager.gui =
     { ... }:
     {
 

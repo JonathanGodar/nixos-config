@@ -1,14 +1,14 @@
 { self, ... }:
 {
-  flake.nixosModules.worksation =
+  flake.modules.nixos.worksation =
     { pkgs, ... }:
     {
-      imports = with self.nixosModules; [
+      imports = with self.modules.nixos; [
         gui
       ];
     };
 
-  flake.homeModules.worksation =
+  flake.modules.homeManager.worksation =
     { pkgs, ... }:
     {
       imports = with self.homeModlues; [

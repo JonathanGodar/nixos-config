@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.hyprland =
+  flake.modules.nixos.hyprland =
     { pkgs, ... }:
     {
       programs.hyprland = {

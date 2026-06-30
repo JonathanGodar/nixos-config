@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.nixosModules.nix = {
+  flake.modules.nixos.nix = {
     nix.settings = {
       builders-use-substitutes = true;
     };

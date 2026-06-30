@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.faccunHardware =
+  flake.modules.nixos.faccunHardware =
     {
       config,
       lib,

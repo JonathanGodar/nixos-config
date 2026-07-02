@@ -50,6 +50,5 @@
   flake.modules.homeManager.gui =
     { ... }:
     {
-
     };
 }

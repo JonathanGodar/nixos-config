@@ -1,7 +1,25 @@
-{ ... }:
+{ inputs, ... }:
 {
+  flake.modules.homeManager.vicinae =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      programs.vicinae = {
+        enable = true;
+        systemd.enable = true;
 
+        extensions = with inputs.vicinae-extensions.packages.${pkgs.system}; [
+          nix
+          it-tools
+          bluetooth
+          wifi-commander
+          process-manager
+          player-pilot
+          pulseaudio
+          power-profile
+        ];
+      };
+    };
 }
-# environment.systemPackages = with pkgs; [
-# pulseaudio # Hopefully just installs pactl - needed for vicinae
-# ];

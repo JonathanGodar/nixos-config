@@ -42,21 +42,6 @@
         LC_TIME = "sv_SE.UTF-8";
       };
 
-      # Enable networking
-      networking = {
-        networkmanager.enable = true;
-
-        # Open ports in the firewall.
-        firewall.allowedTCPPorts = [
-          22000 # Syncthing
-        ];
-        firewall.allowedUDPPorts = [
-          # Syncthing
-          22000
-          21027
-        ];
-      };
-
       # Configure console keymap
       console.keyMap = "sv-latin1";
 

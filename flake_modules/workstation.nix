@@ -19,6 +19,10 @@ in
 
         syncthing # Opens ports
       ];
+
+      systemOptions = {
+        flakePath = "/home/jonathan/nixos/";
+      };
     };
 
   flake.modules.homeManager.workstation =
@@ -32,6 +36,11 @@ in
         ghostty
         vicinae
         syncthing
+        zsh
+        nh
+        zellij
+        # sioyek
+        firefox
       ];
 
       home.packages = with pkgs; [
@@ -40,7 +49,6 @@ in
       ];
 
       programs = {
-        firefox.enable = true;
         discord.enable = true;
         kitty.enable = true;
         nh.enable = true;

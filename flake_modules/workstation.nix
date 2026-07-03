@@ -39,8 +39,12 @@ in
         zsh
         nh
         zellij
+        starship
+        carapace
+        fzf
         # sioyek
         firefox
+        atuin
       ];
 
       home.packages = with pkgs; [

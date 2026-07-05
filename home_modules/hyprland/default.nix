@@ -9,36 +9,6 @@ let
   focusApp = windowClass: failLaunch: "${lib.getExe pkgs.focusScript} ${windowClass} ${failLaunch}";
 
   # GTK cursor size fix? https://discourse.nixos.org/t/cursor-size-in-wayland-sway/25112/4
-
-  changeWallpaper = pkgs.writeShellApplication {
-    name = "changeWallpaper";
-    text = ''
-      wallpapers=$(echo "${wallpaperPaths}" | tr ' ' '\n')
-           chosenwallpaper=$(echo "$wallpapers" | shuf -n 1)
-
-           hyprctl hyprpaper preload "$chosenwallpaper"
-           hyprctl hyprpaper wallpaper ",$chosenwallpaper"
-
-           hyprctl hyprpaper unload all
-           echo "$chosenwallpaper"
-    '';
-  };
-
-  wallpaperPaths = lib.concatStringsSep " " (
-    map (path: "${inputs.catppuccin-wallpaper-repo}/${path}") [
-      "landscapes/forrest.png"
-      "landscapes/Clearnight.jpg"
-      # "landscapes/Cloudsday.jpg"
-      "landscapes/Cloudsnight.jpg"
-      "landscapes/tropic_island_night.jpg"
-
-      "minimalistic/list-horizontal.png"
-
-      "misc/cat_bunnies.png"
-      "misc/windows-error.jpg"
-      "waves/cat-waves.png"
-    ]
-  );
 in
 {
   options = {
@@ -52,13 +22,6 @@ in
       hyprpolkitagent
       xdg-utils
     ];
-
-    xdg.desktopEntries = {
-      changeWallpaper = {
-        name = "Change Wallpaper";
-        exec = "${lib.getExe changeWallpaper}";
-      };
-    };
 
     catppuccin.dunst.enable = true;
     services.dunst = {
@@ -99,7 +62,6 @@ in
         "syncthing &"
         "dunst"
         "dbus-update-activation-environment --systemd --all"
-        "${lib.getExe changeWallpaper}"
         "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
         "systemctl --user start hyprpolkitagent"
         # "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"

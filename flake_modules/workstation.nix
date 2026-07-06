@@ -14,8 +14,11 @@ in
       imports = with self.modules.nixos; [
         base
         gui
-        hyprland
         catppuccin
+        jonathan
+
+        hyprland
+        keyd
 
         syncthing # Opens ports
       ];
@@ -29,33 +32,43 @@ in
     { pkgs, ... }:
     {
       imports = with self.modules.homeManager; [
+        hyprland
+
         gui
-        nvim
         catppuccin
-        homeManager
         ghostty
         vicinae
         syncthing
-        zsh
-        nh
         zellij
+        sioyek
+        obsidian
+
+        firefox
+        prismlauncher
+
+        homeManager
+
+        zsh
+        zoxide
+        nvim
+        nushell
+        nh
         starship
         carapace
         fzf
-        # sioyek
-        firefox
         atuin
+        yazi
+        git
       ];
 
       home.packages = with pkgs; [
-        mattermost
+        mattermost-desktop
         spotify
       ];
 
       programs = {
         discord.enable = true;
         kitty.enable = true;
-        nh.enable = true;
       };
     };
 }

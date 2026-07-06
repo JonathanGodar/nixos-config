@@ -25,6 +25,9 @@
         timeout = 1;
       };
 
+      # Enable networking
+      networking.networkmanager.enable = true;
+
       # Set your time zone.
       time.timeZone = "Europe/Stockholm";
 
@@ -45,6 +48,12 @@
 
       # Configure console keymap
       console.keyMap = "sv-latin1";
+
+      # TODO remove maybe?
+      services.xserver.xkb = {
+        variant = "nodeadkeys";
+        layout = "se";
+      };
 
       users.users.jonathan = {
         isNormalUser = true;

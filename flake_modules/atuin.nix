@@ -25,9 +25,8 @@
           sync_address = "${config.flake.serviceEndpoints.atuin}";
           invert = true;
         };
+        enableNushellIntegration = true;
       };
-
-      programs.atuin.enableNushellIntegration = true;
     };
   };
 }

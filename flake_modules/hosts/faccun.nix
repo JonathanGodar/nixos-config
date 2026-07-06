@@ -2,10 +2,9 @@
 {
   flake = {
     # Innan kan byta
-    # keyd
-    # vicinae
-    # ghostty
-    # zsh?
+    # direnv
+    # dusnt
+    # comma
     nixosConfigurations.faccun = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

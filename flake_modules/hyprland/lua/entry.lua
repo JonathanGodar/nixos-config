@@ -18,7 +18,12 @@ hl.gesture({
 })
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
-hl.bind(mainMod .. " + enter", hl.dsp.exec_cmd("ghostty"))
-hl.bind(mainMod .. " + spaace", hl.dsp.exec_cmd("vicinae toggle"))
-hl.bind(mainMod .. " + shift + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("ghostty"))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("vicinae toggle"))
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
+
+-- TODO move so that this is required in flake/some config option is available in lua.
+require("lua/faccun_monitors")

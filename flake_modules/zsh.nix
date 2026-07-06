@@ -1,4 +1,3 @@
-{ ... }:
 {
   flake.modules.homeManager.zsh =
     {
@@ -36,25 +35,33 @@
           }
         ];
 
-        initContent = lib.mkBefore ''
-          # Make it so that zsh-vi-mode does not override any later keybinding configurations
-          ZVM_INIT_MODE=sourcing
-        '';
+        initContent = lib.mkMerge [
+          (lib.mkBefore
+            # bash
+            ''
+              # Make it so that zsh-vi-mode does not override any later keybinding configurations
+              ZVM_INIT_MODE=sourcing
+            ''
+          )
 
-        initExtra = ''
-          # Case insensitive completion
-          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-          zstyle ':completion:*' menu no
+          (lib.mkAfter
+            # bash
+            ''
+              # Case insensitive completion
+              zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+              zstyle ':completion:*' menu no
 
-          # Supposed to make the <Ctrl-P> and N shortcuts "prefix sensitive"
-          bindkey '^p' history-search-backward
-          bindkey '^n' history-search-forward
+              # Supposed to make the <Ctrl-P> and N shortcuts "prefix sensitive"
+              bindkey '^p' history-search-backward
+              bindkey '^n' history-search-forward
 
-          FD_OPTIONS="--hidden --no-ignore . --exclude node_modules --exclude target --exclude __pycache__ --exclude .git -L"
-          export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
-          export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
-          export MANPAGER='nvim +Man!'
-        '';
+              FD_OPTIONS="--hidden --no-ignore . --exclude node_modules --exclude target --exclude __pycache__ --exclude .git -L"
+              export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+              export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+              export MANPAGER='nvim +Man!'
+            ''
+          )
+        ];
       };
     };
 }

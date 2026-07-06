@@ -1,0 +1,808 @@
+
+CHANGED
+[C.] at-spi2-core                                                                                     2.52.0, 2.60.1-dev, <others> -> <others>
+[C.] audit                                                                                            3.1.2, <others> -> <others>
+[C.] bash                                                                                             5.2p26, <others> -> <others>
+[D*] bash-interactive                                                                                 5.3p9 ×3, 5.3p9-man ×2, 5.2p26, <others> -> 5.3p9, 5.3p9-man, <others>
+[C*] bind                                                                                             9.20.23-dnsutils, <others> -> <others>
+[D.] boost                                                                                            1.89.0 ×2, 1.86.0, 1.88.0, 1.89.0-dev -> 1.89.0
+[C.] brotli                                                                                           1.1.0-lib, <others> -> <others>
+[D*] bzip2                                                                                            1.0.8 ×3, 1.0.8-bin ×2, 1.0.8-dev, <others> -> 1.0.8 ×2, 1.0.8-bin, <others>
+[C.] cairo                                                                                            1.18.0, 1.18.4-dev, <others> -> <others>
+[C.] coreutils                                                                                        9.5, <others> -> <others>
+[C.] cracklib                                                                                         2.9.11, <others> -> <others>
+[C.] cryptsetup                                                                                       2.7.1, <others> -> <others>
+[C*] cups                                                                                             2.4.8-lib, 2.4.19-dev, <others> -> <others>
+[C*] curl                                                                                             8.8.0, <others> -> <others>
+[C*] dbus                                                                                             1.14.10-lib, <others> -> <others>
+[C*] dconf                                                                                            0.40.0-lib, <others> -> <others>
+[C.] dns-root-data                                                                                    2023-11-27, <others> -> <others>
+[C.] double-conversion                                                                                3.3.1-dev, <others> -> <others>
+[C.] elfutils                                                                                         0.191, <others> -> <others>
+[C.] expat                                                                                            2.6.2, 2.8.0-dev, <others> -> <others>
+[C.] eza                                                                                              0.23.4-man, <others> -> <others>
+[C.] file                                                                                             5.47-man, <others> -> <others>
+[C*] fontconfig                                                                                       2.15.0, 2.15.0-lib, 2.17.1-dev, <others> -> <others>
+[C.] freetype                                                                                         2.13.2, 2.14.2-dev, <others> -> <others>
+[C.] fribidi                                                                                          1.0.13, 1.0.16-dev, <others> -> <others>
+[C.] gcc                                                                                              13.3.0-lib, 13.3.0-libgcc, <others> -> <others>
+[C.] gdk-pixbuf                                                                                       2.42.12, 2.44.6-dev, <others> -> <others>
+[C*] getent-glibc                                                                                     2.39-52, <others> -> <others>
+[C.] glib                                                                                             2.80.2, <others> -> <others>
+[D*] glibc                                                                                            2.42-61-bin ×2, 2.39-52, 2.39-52-getent, <others> -> 2.42-61-bin, <others>
+[C.] glibmm                                                                                           2.88.0, <others> -> <others>
+[D.] gmp-with-cxx                                                                                     6.3.0 ×6, 6.3.0-dev -> 6.3.0 ×4
+[C*] gnugrep                                                                                          3.11, <others> -> <others>
+[C.] gnupg                                                                                            2.4.5, <others> -> <others>
+[C.] gnutls                                                                                           3.8.5, <others> -> <others>
+[C.] gobject-introspection                                                                            1.80.1, <others> -> <others>
+[C.] graphics-drivers                                                                                 32bit, <others> -> <others>
+[D.] graphite2                                                                                        1.3.14 ×3, 1.3.14-dev -> 1.3.14 ×2
+[C.] gsettings-desktop-schemas                                                                        46.0, <others> -> <others>
+[C.] gtk+3                                                                                            3.24.42, 3.24.52-dev, <others> -> <others>
+[C*] gzip                                                                                             1.13, <others> -> <others>
+[C.] harfbuzz                                                                                         8.4.0, 13.2.1-dev, <others> -> <others>
+[C.] hwloc                                                                                            2.13.0, 2.13.0-dev, <others> -> <others>
+[C.] icu4c                                                                                            73.2, 77.1, <others> -> <others>
+[D*] iptables                                                                                         1.8.13 ×2, 1.8.13-lib ×2, 1.8.10, <others> -> 1.8.13, 1.8.13-lib, <others>
+[C.] iso-codes                                                                                        4.16.0, <others> -> <others>
+[C.] jq                                                                                               1.8.1-man, <others> -> <others>
+[C.] json-c                                                                                           0.17, <others> -> <others>
+[C.] json-glib                                                                                        1.8.0, <others> -> <others>
+[C*] kbd                                                                                              2.6.4, <others> -> <others>
+[C*] kexec-tools                                                                                      2.0.28, <others> -> <others>
+[C.] lerc                                                                                             4.0.0, <others> -> <others>
+[C.] libapparmor                                                                                      3.1.7, <others> -> <others>
+[C.] libassuan                                                                                        2.5.7, <others> -> <others>
+[C.] libbpf                                                                                           1.4.2, <others> -> <others>
+[C*] libcap                                                                                           2.69-lib, <others> -> <others>
+[C.] libcbor                                                                                          0.11.0, <others> -> <others>
+[D.] libdatrie                                                                                        2019-12-20-lib ×3, 2019-12-20, 2019-12-20-bin, 2019-12-20-dev -> 2019-12-20-lib ×2
+[C.] libdeflate                                                                                       1.20, <others> -> <others>
+[U.] libdisplay-info                                                                                  0.3.0 ×2 -> 0.3.0, 0.2.0
+[D.] libepoxy                                                                                         1.5.10 ×2, 1.5.10-dev -> 1.5.10
+[C.] libevdev                                                                                         1.13.1, <others> -> <others>
+[C.] libffi                                                                                           3.4.6, <others> -> <others>
+[C.] libfido2                                                                                         1.14.0, <others> -> <others>
+[C.] libgcrypt                                                                                        1.10.3, <others> -> <others>
+[D.] libglvnd                                                                                         1.7.0 ×3, 1.7.0-dev -> 1.7.0 ×2
+[C.] libgpg-error                                                                                     1.49, <others> -> <others>
+[C.] libice                                                                                           1.1.2-dev, <others> -> <others>
+[C.] libidn2                                                                                          2.3.7, <others> -> <others>
+[C.] libjpeg-turbo                                                                                    3.0.3, 3.1.4-bin, 3.1.4-dev, <others> -> <others>
+[C.] libmicrohttpd                                                                                    0.9.77, <others> -> <others>
+[D.] libnetfilter_conntrack                                                                           1.1.1 ×2, 1.0.9 -> 1.1.1
+[D.] libnftnl                                                                                         1.3.1 ×2, 1.2.6 -> 1.3.1
+[D.] libnl                                                                                            3.12.0 ×2, 3.8.0 -> 3.12.0
+[C.] libnotify                                                                                        0.8.3, <others> -> <others>
+[C.] libogg                                                                                           1.3.6-dev, <others> -> <others>
+[D.] libpcap                                                                                          1.10.6-lib ×2, 1.10.4 -> 1.10.6-lib
+[C.] libpng-apng                                                                                      1.6.43, 1.6.56-dev, <others> -> <others>
+[C.] libproxy                                                                                         0.5.12-dev, <others> -> <others>
+[C.] librsvg                                                                                          2.58.1, <others> -> <others>
+[C.] libseccomp                                                                                       2.5.5-lib, <others> -> <others>
+[C.] libselinux                                                                                       3.6, 3.10-bin, 3.10-dev, <others> -> <others>
+[C.] libsigc++                                                                                        3.6.0, <others> -> <others>
+[C.] libsm                                                                                            1.2.6-dev, <others> -> <others>
+[C.] libsoup                                                                                          2.74.3, 3.4.4, <others> -> <others>
+[C.] libssh2                                                                                          1.11.0, <others> -> <others>
+[C.] libtasn1                                                                                         4.19.0, <others> -> <others>
+[C.] libthai                                                                                          0.1.29, 0.1.30-dev, <others> -> <others>
+[C.] libtheora                                                                                        1.2.0-dev, <others> -> <others>
+[C.] libtiff                                                                                          4.6.0, 4.7.1-bin, 4.7.1-dev, <others> -> <others>
+[C.] libunistring                                                                                     1.1, <others> -> <others>
+[C.] liburcu                                                                                          0.14.0, 0.15.6-dev, <others> -> <others>
+[C.] libvorbis                                                                                        1.3.7-dev, <others> -> <others>
+[C.] libwebp                                                                                          1.4.0, <others> -> <others>
+[C.] libx11                                                                                           1.8.13-dev, <others> -> <others>
+[C.] libxau                                                                                           1.0.12-dev, <others> -> <others>
+[D.] libxcb                                                                                           1.17.0 ×3, 1.17.0-dev -> 1.17.0 ×2
+[C.] libxcb-cursor                                                                                    0.1.6-dev, <others> -> <others>
+[C.] libxcb-image                                                                                     0.4.1-dev, <others> -> <others>
+[D.] libxcb-keysyms                                                                                   0.4.1 ×2, 0.4.1-dev -> 0.4.1
+[C.] libxcb-render-util                                                                               0.3.10-dev, <others> -> <others>
+[C.] libxcb-util                                                                                      0.4.1-dev, <others> -> <others>
+[C.] libxcb-wm                                                                                        0.4.2-dev, <others> -> <others>
+[C.] libxcomposite                                                                                    0.4.7-dev, <others> -> <others>
+[C.] libxcrypt                                                                                        4.4.36, 4.5.2-man, <others> -> <others>
+[C.] libxcursor                                                                                       1.2.3-dev, <others> -> <others>
+[C.] libxdamage                                                                                       1.1.7-dev, <others> -> <others>
+[C.] libxdmcp                                                                                         1.1.5-dev, <others> -> <others>
+[C.] libxext                                                                                          1.3.7-dev, <others> -> <others>
+[C.] libxfixes                                                                                        6.0.2-dev, <others> -> <others>
+[C.] libxft                                                                                           2.3.9-dev, <others> -> <others>
+[C.] libxi                                                                                            1.8.2-dev, <others> -> <others>
+[C.] libxinerama                                                                                      1.1.6-dev, <others> -> <others>
+[C.] libxkbcommon                                                                                     1.7.0, 1.13.1-dev, <others> -> <others>
+[C.] libxml2                                                                                          2.12.7, 2.15.2-bin, 2.15.2-dev, <others> -> <others>
+[D.] libxrandr                                                                                        1.5.5 ×2, 1.5.5-dev -> 1.5.5
+[C.] libxrender                                                                                       0.9.12-dev, <others> -> <others>
+[C.] libxslt                                                                                          1.1.45-bin, 1.1.45-dev, <others> -> <others>
+[C*] linux-pam                                                                                        1.6.1, <others> -> <others>
+[D.] lttng-ust                                                                                        2.12.2 ×2, 2.14.0-bin, 2.14.0-dev, <others> -> 2.12.2, <others>
+[C*] lvm2                                                                                             2.03.23-lib, <others> -> <others>
+[C.] lz4                                                                                              1.9.4, 1.10.0, 1.10.0-dev, <others> -> <others>
+[C.] md4c                                                                                             0.5.2, 0.5.2-dev, <others> -> <others>
+[C*] ncurses                                                                                          6.4.20221231, <others> -> <others>
+[C.] nettle                                                                                           3.9.1, <others> -> <others>
+[C.] nghttp2                                                                                          1.61.0-lib, <others> -> <others>
+[C.] npth                                                                                             1.7, <others> -> <others>
+[C.] onetbb                                                                                           2022.3.0-dev, <others> -> <others>
+[C.] openssl                                                                                          3.0.13, <others> -> <others>
+[C.] p11-kit                                                                                          0.25.3, <others> -> <others>
+[C.] pango                                                                                            1.52.2, 1.57.1-bin, 1.57.1-dev, <others> -> <others>
+[C.] pciutils                                                                                         3.15.0-man, <others> -> <others>
+[C.] pcre2                                                                                            10.43, 10.46-bin, 10.46-dev, <others> -> <others>
+[C.] pcsclite                                                                                         2.1.0-lib, <others> -> <others>
+[C.] pixman                                                                                           0.43.4, <others> -> <others>
+[D*] polkit                                                                                           127 ×2, 127-dev, <others> -> 127, <others>
+[C.] publicsuffix-list                                                                                0-unstable-2024-01-07, <others> -> <others>
+[C.] qtbase                                                                                           5.15.18, 5.15.18-bin, 6.11.0-dev, <others> -> <others>
+[C.] qtdeclarative                                                                                    5.15.18, 5.15.18-bin, <others> -> <others>
+[C-] qtsvg                                                                                            5.15.18, 5.15.18-bin, 6.11.0-dev, <others> -> <others>
+[C.] qttranslations                                                                                   5.15.18, <others> -> <others>
+[C.] qtwayland                                                                                        5.15.18, 5.15.18-bin, <others> -> <others>
+[C.] readline                                                                                         8.2p10, <others> -> <others>
+[C.] rustc                                                                                            1.95.0-man, <others> -> <others>
+[C.] rustc-wrapper                                                                                    1.95.0-man, <others> -> <others>
+[C.] sqlite                                                                                           3.45.3, <others> -> <others>
+[C*] systemd                                                                                          255.6, 260.1-dev, <others> -> <others>
+[C.] systemd-minimal                                                                                  255.6, <others> -> <others>
+[C.] systemd-minimal-libs                                                                             255.6, 260.1-dev, <others> -> <others>
+[C.] taglib                                                                                           1.13.1, <others> -> <others>
+[C.] unbound                                                                                          1.20.0-lib, <others> -> <others>
+[C*] util-linux                                                                                       2.42, 2.42-dev, <others> -> <others>
+[C.] util-linux-minimal                                                                               2.39.4-lib, 2.39.4-login, 2.39.4-mount, 2.39.4-swap, <others> -> <others>
+[C.] vulkan-loader                                                                                    1.4.341.0-dev, <others> -> <others>
+[C.] wayland                                                                                          1.22.0, 1.25.0-dev, <others> -> <others>
+[C.] xgcc                                                                                             13.3.0-libgcc, <others> -> <others>
+[C.] xkeyboard-config                                                                                 2.41, <others> -> <others>
+[C*] xz                                                                                               5.4.6, 5.4.6-bin, 5.8.3-dev, <others> -> <others>
+[C.] zlib                                                                                             1.3.1, <others> -> <others>
+[C.] zlib-ng                                                                                          2.3.3-dev, <others> -> <others>
+[C*] zstd                                                                                             1.5.6, 1.5.6-bin, <others> -> <others>
+
+ADDED
+[A.] aml                                                                                              0.3.0
+[A.] discord-settings                                                                                 <none>
+[A.] etc-gitconfig                                                                                    <none>
+[A.] freerdp                                                                                          3.26.0
+[A.] hm_hypr.luarc.json                                                                               <none>
+[A.] hm_hyprhyprland.lua                                                                              <none>
+[A.] hm_sioyekprefs_user.config                                                                       <none>
+[A.] neatvnc                                                                                          0.9.6
+[A.] plutosvg                                                                                         0.0.8
+[A.] plutovg                                                                                          1.3.3
+[A.] sdl3-ttf                                                                                         3.2.2
+[A.] uriparser                                                                                        1.0.2
+[A.] weston                                                                                           15.0.0
+[A.] weston.ini                                                                                       <none>
+
+REMOVED
+[R-] OpenTabletDriver                                                                                 0.6.4.0
+[R.] SDL2_image                                                                                       2.8.12
+[R.] X-Restart-Triggers-systemd-binfmt                                                                <none>
+[R.] Xresources-Xft                                                                                   <none>
+[R.] Xsetup                                                                                           <none>
+[R.] Xstop                                                                                            <none>
+[R.] a52dec                                                                                           0.8.0
+[R.] aardvark-dns                                                                                     1.17.1
+[R.] acEvent.sh                                                                                       <none>
+[R.] acpi-events                                                                                      <none>
+[R.] acpid                                                                                            2.0.34
+[R.] adios2                                                                                           2.11.0
+[R.] alacritty                                                                                        0.17.0, 0.17.0-terminfo
+[R.] alacritty.toml                                                                                   <none>
+[R.] alembic                                                                                          1.8.8-lib
+[R.] all                                                                                              <none>
+[R.] aspell                                                                                           0.60.8.2
+[R.] atkmm                                                                                            2.28.4
+[R.] babl                                                                                             0.1.126
+[R.] bat                                                                                              0.26.1
+[R.] blas                                                                                             3, 3-dev
+[R-] blueman                                                                                          2.4.6
+[R-] borg-job-external_drive_backup-wrapper                                                           <none>
+[R-] borg-job-faccback-wrapper                                                                        <none>
+[R-] borgbackup                                                                                       1.4.4, 1.4.4-doc, 1.4.4-man
+[R.] borgbackup-job-external_drive_backup-script                                                      <none>
+[R.] borgbackup-job-external_drive_backup.conf                                                        <none>
+[R.] borgbackup-job-faccback-script                                                                   <none>
+[R.] borgbackup-job-faccback.conf                                                                     <none>
+[R.] breeze-icons                                                                                     6.26.0
+[R.] brightnessctl                                                                                    0.5.1
+[R.] brunsli                                                                                          0.1
+[R.] c-blosc                                                                                          1.21.6
+[R.] c-blosc2                                                                                         2.23.1
+[R.] cairomm                                                                                          1.14.5, 1.18.0
+[R.] capnproto                                                                                        1.4.0
+[R.] capstone                                                                                         5.0.7
+[R.] catalyst                                                                                         2.0.0
+[R.] catatonit                                                                                        0.2.1
+[R.] catppuccin-alacritty                                                                             0-unstable-2024-10-28
+[R.] catppuccin-atuin                                                                                 0-unstable-2026-03-02
+[R.] catppuccin-bat                                                                                   0-unstable-2025-06-29
+[R.] catppuccin-dunst                                                                                 0-unstable-2024-12-24
+[R.] catppuccin-ghostty                                                                               0-unstable-2026-01-07
+[R.] catppuccin-glamour                                                                               0-unstable-2025-05-02
+[R.] catppuccin-kvantum                                                                               0-unstable-2025-12-27
+[R.] catppuccin-lazygit                                                                               0-unstable-2026-04-01
+[R.] catppuccin-nushell                                                                               0-unstable-2025-12-24
+[R.] catppuccin-rofi                                                                                  0-unstable-2025-07-19
+[R-] catppuccin-sddm                                                                                  0-unstable-2025-09-08
+[R.] catppuccin-waybar                                                                                0-unstable-2024-07-13
+[R.] catppuccin-yazi                                                                                  0-unstable-2026-05-14
+[R.] catppuccin-zsh-syntax-highlighting                                                               0-unstable-2024-07-20
+[R.] cef-binary                                                                                       6533
+[R.] cfitsio                                                                                          4.6.4
+[R.] cgns                                                                                             4.5.1
+[R.] chatgpt.sh                                                                                       <none>
+[R.] chromium                                                                                         148.0.7778.215, 148.0.7778.215-sandbox
+[R.] chromium-unwrapped                                                                               148.0.7778.215, 148.0.7778.215-sandbox
+[R.] cinnamon-desktop                                                                                 6.6.2
+[R.] cinnamon-translations                                                                            6.6.2
+[R.] clang-wrapper                                                                                    21.1.8
+[R.] cli11                                                                                            2.6.2
+[R.] clucene-core                                                                                     2.3.3.4
+[R.] cminpack                                                                                         1.3.11
+[R.] cni-plugins                                                                                      1.9.0
+[R.] codex                                                                                            0.135.0
+[R.] coin                                                                                             4.0.8
+[R.] coinmp                                                                                           1.8.4
+[R.] comma                                                                                            2.4.1
+[R.] comma-with-db                                                                                    2.4.1
+[R.] compiler-rt-libc                                                                                 21.1.8, 21.1.8-dev
+[R.] conmon                                                                                           2.2.1
+[R.] container-init                                                                                   <none>
+[R.] containers.conf                                                                                  <none>
+[R.] criu                                                                                             4.1.1
+[R.] crun                                                                                             1.27.1
+[R.] crypto++                                                                                         8.9.0
+[R.] dbus-glib                                                                                        0.114
+[R.] dconf-cleanup                                                                                    <none>
+[R.] dconf-editor                                                                                     49.0
+[R.] dconf-keys.json                                                                                  <none>
+[R.] difftastic                                                                                       0.69.0
+[R.] direnv                                                                                           2.37.1
+[R.] disable-for-gdm-greeter                                                                          <none>
+[R.] dlib                                                                                             20.0
+[R.] dotnet-core-combined                                                                             <none>
+[R.] dotnet-sdk                                                                                       6.0.423, 7.0.410
+[R.] dtc                                                                                              1.7.2
+[R.] dunst                                                                                            1.13.2, 1.13.2-man
+[R.] dunst.service                                                                                    <none>
+[R.] egl-gbm                                                                                          1.1.3
+[R.] egl-wayland                                                                                      1.1.21
+[R.] egl-wayland2                                                                                     1.0.1
+[R.] egl-x11                                                                                          1.0.5
+[R.] eigen                                                                                            3.4.1
+[R.] enchant                                                                                          2.6.9
+[R.] etc-nextcloud-admin-pass                                                                         <none>
+[R.] excludefile                                                                                      <none>
+[R.] exempi                                                                                           2.6.6
+[R.] exfat                                                                                            1.4.0
+[R.] exiv2                                                                                            0.28.8-lib
+[R.] exprtk                                                                                           0.0.3
+[R.] f2fs-tools                                                                                       1.16.0, 1.16.0-lib
+[R.] fhsenv-ensure-gsettings-schemas-directory                                                        <none>
+[R.] find-xml-catalogs-hook                                                                           <none>
+[R.] firefox-policies.json                                                                            <none>
+[R.] fix-qt-builtin-paths.sh                                                                          <none>
+[R.] fix-qt-module-paths.sh                                                                           <none>
+[R.] fltk                                                                                             1.3.11
+[R.] focusWindow                                                                                      <none>
+[R.] font-adobe                                                                                       100dpi-1.0.4, 75dpi-1.0.4
+[R.] font-alias                                                                                       1.0.6
+[R.] font-cursor-misc                                                                                 1.0.4
+[R.] font-misc-misc                                                                                   1.1.3
+[R.] freecad                                                                                          1.1.1
+[R.] freeglut                                                                                         3.8.0
+[R.] freexl                                                                                           2.0.0
+[R.] fuse-overlayfs                                                                                   1.16
+[R.] fzy                                                                                              1.1
+[R.] gdal-minimal                                                                                     3.12.4
+[R.] gegl                                                                                             0.4.68
+[R.] geos                                                                                             3.14.1
+[R.] getopt                                                                                           1.1.6
+[R.] gexiv2                                                                                           0.14.6
+[R.] gfortran                                                                                         15.2.0, 15.2.0-lib, 15.2.0-libgcc
+[R.] gfortran-wrapper                                                                                 15.2.0
+[R.] gfxstream                                                                                        0.1.2
+[R.] gh                                                                                               2.93.0
+[R.] gimp                                                                                             3.2.4, 3.2.4-man
+[R.] git-minimal                                                                                      2.54.0
+[R.] gjs                                                                                              1.88.0
+[R.] gl2ps                                                                                            1.4.2
+[R.] glew                                                                                             2.2.0
+[R.] glib-static-x86_64-unknown-linux-musl                                                            2.88.1
+[R.] glibc-multi                                                                                      2.42-61, 2.42-61-bin
+[R.] glu                                                                                              9.0.3
+[R.] gmp-with-cxx-static-x86_64-unknown-linux-musl                                                    6.3.0
+[R.] gmsh                                                                                             4.15.0
+[R.] gnutls-static-x86_64-unknown-linux-musl                                                          3.8.13
+[R.] go                                                                                               1.26.3
+[R.] gpgmepp                                                                                          2.0.0
+[R.] gpsd                                                                                             3.27.5
+[R.] graphviz                                                                                         12.2.1
+[R.] grim                                                                                             1.5.0
+[R.] gspell                                                                                           1.14.3
+[R.] gst-libav                                                                                        1.26.11
+[R.] gst-plugins-ugly                                                                                 1.26.11
+[R.] gtk-layer-shell                                                                                  0.10.1
+[R.] gtkmm                                                                                            3.24.10, 4.22.0
+[R.] gts                                                                                              0.7.6
+[R.] gvfs                                                                                             1.60.0
+[R.] harfbuzz-icu                                                                                     13.2.1
+[R.] hdf5-cpp                                                                                         1.14.6, 1.14.6-bin, 1.14.6-dev
+[R.] hdf5-threadsafe                                                                                  1.14.6
+[R.] hfst-ospell                                                                                      0.5.4
+[R.] hidapi                                                                                           0.15.0
+[R.] hm-dconf.ini                                                                                     <none>
+[R.] hm_Kvantumkvantum.kvconfig                                                                       <none>
+[R.] hm_batconfig                                                                                     <none>
+[R.] hm_dunstdunstrc                                                                                  <none>
+[R.] hm_gitconfig                                                                                     <none>
+[R.] hm_homejonathan.configmozillafirefoxdefaultbrowserextensiondataFirefoxColormozilla.comstorage.js <none>
+[R.] hm_homejonathan.configmozillafirefoxdefaultuser.js                                               <none>
+[R.] hm_homejonathan.configroficonfig.rasi                                                            <none>
+[R.] hm_homejonathan.configsioyekkeys_user.config                                                     <none>
+[R.] hm_hyprhyprland.conf                                                                             <none>
+[R.] hm_hyprhyprpaper.conf                                                                            <none>
+[R.] hm_rofithemescustom.rasi                                                                         <none>
+[R.] hm_tmuxtmux.conf                                                                                 <none>
+[R.] hspell                                                                                           1.4
+[R-] htop                                                                                             3.5.1, 3.5.1-man
+[R.] hunspell                                                                                         1.7.2
+[R.] hyphen                                                                                           2.8.8
+[R.] hyprpaper                                                                                        0.8.4
+[R.] hyprpaper.service                                                                                <none>
+[R.] hyprpolkitagent                                                                                  0.1.3
+[R.] hyprtoolkit                                                                                      0.5.4
+[R-] iceauth                                                                                          1.0.10
+[R.] index-x86_64-linux                                                                               <none>
+[R.] index-x86_64-linux-small                                                                         <none>
+[R.] index.theme                                                                                      <none>
+[R.] inih                                                                                             62
+[R.] iniparser                                                                                        4.2.6
+[R.] inxi                                                                                             3.3.40-1
+[R.] ipopt                                                                                            3.14.19, 3.14.19-bin, 3.14.19-dev
+[R.] jsoncpp                                                                                          1.9.7, 1.9.7-dev
+[R.] karchive                                                                                         6.26.0
+[R.] kcolorscheme                                                                                     6.26.0
+[R.] kconfig                                                                                          6.26.0
+[R.] kcoreaddons                                                                                      6.26.0
+[R.] kcrash                                                                                           6.26.0
+[R.] kdbusaddons                                                                                      6.26.0
+[R.] kglobalaccel                                                                                     6.26.0
+[R.] kguiaddons                                                                                       6.26.0
+[R.] ki18n                                                                                            6.26.0
+[R.] kiconthemes                                                                                      6.26.0
+[R.] killall-psmisc                                                                                   23.7
+[R.] kirigami                                                                                         6.26.0
+[R.] kirigami-addons                                                                                  1.12.1
+[R.] kitemmodels                                                                                      6.26.0
+[R.] kitty-themes                                                                                     0-unstable-2026-03-31
+[R.] knotifications                                                                                   6.26.0
+[R.] kondo                                                                                            0.9
+[R.] kwidgetsaddons                                                                                   6.26.0
+[R.] kwindowsystem                                                                                    6.26.0
+[R.] lapack                                                                                           3, 3-dev
+[R.] laszip                                                                                           2.2.0
+[R.] ldconfig                                                                                         <none>
+[R.] leptonica                                                                                        1.87.0
+[R.] libGL                                                                                            1.7.0
+[R.] libX11                                                                                           1.8.9
+[R.] libXau                                                                                           1.0.11
+[R.] libXcomposite                                                                                    0.4.6
+[R.] libXcursor                                                                                       1.2.2
+[R.] libXdamage                                                                                       1.1.6
+[R.] libXdmcp                                                                                         1.1.5
+[R.] libXext                                                                                          1.3.6
+[R.] libXfixes                                                                                        6.0.1
+[R.] libXft                                                                                           2.3.8
+[R.] libXi                                                                                            1.8.1
+[R.] libXinerama                                                                                      1.1.5
+[R.] libXrandr                                                                                        1.5.4
+[R.] libXrender                                                                                       0.9.11
+[R.] libXtst                                                                                          1.2.4
+[R.] libaacs                                                                                          0.11.1
+[R.] libabw                                                                                           0.1.3
+[R.] libaec                                                                                           1.1.6
+[R.] libamplsolver                                                                                    1.0.1
+[R.] libargon2                                                                                        20190702
+[R.] libasyncns                                                                                       0.8
+[R.] libatasmart                                                                                      0.19
+[R.] libbacktrace                                                                                     0-unstable-2024-03-02
+[R.] libbdplus                                                                                        0.2.0
+[R.] libblockdev                                                                                      3.4.0
+[R.] libbytesize                                                                                      2.12
+[R.] libcacard                                                                                        2.8.2
+[R.] libcddb                                                                                          1.3.2
+[R.] libcdr                                                                                           0.1.8
+[R.] libcmis                                                                                          0.6.2
+[R.] libdatachannel                                                                                   0.24.1
+[R.] libdicom                                                                                         1.0.5
+[R.] libdovi                                                                                          3.3.1
+[R.] libdvbpsi                                                                                        1.3.3
+[R.] libe-book                                                                                        0.1.3
+[R.] libebml                                                                                          1.4.5
+[R.] libepubgen                                                                                       0.1.1
+[R.] libetonyek                                                                                       0.1.13
+[R.] libexttextcat                                                                                    3.4.6
+[R.] libfabric                                                                                        2.5.1
+[R.] libgeotiff                                                                                       1.7.4
+[R.] libgnomekbd                                                                                      3.28.1
+[R.] libgphoto2                                                                                       2.5.33
+[R.] libgsf                                                                                           1.14.55
+[R.] libgtop                                                                                          2.41.3
+[R.] libhandy                                                                                         1.8.3
+[R.] libharu                                                                                          2.4.5
+[R.] libidn2-static-x86_64-unknown-linux-musl                                                         2.3.8
+[R.] libiff                                                                                           0-unstable-2024-03-02
+[R.] libilbm                                                                                          0-unstable-2024-03-02
+[R.] libimagequant                                                                                    4.4.1
+[R.] libimobiledevice                                                                                 1.4.0
+[R.] libimobiledevice-glue                                                                            1.3.2
+[R.] libiscsi                                                                                         1.20.3
+[R.] libixion                                                                                         0.20.0
+[R.] libkate                                                                                          0.4.3
+[R.] libkrb5                                                                                          1.21.2
+[R.] libkrun                                                                                          1.17.4
+[R.] libkrunfw                                                                                        5.3.0
+[R.] liblangtag                                                                                       0.6.7
+[R.] liblas                                                                                           1.8.1-unstable-2025-11-08
+[R.] libmanette                                                                                       0.2.13
+[R.] libmatekbd                                                                                       1.28.0
+[R.] libmatemixer                                                                                     1.28.0
+[R.] libmateweather                                                                                   1.28.2
+[R.] libmatroska                                                                                      1.7.1
+[R.] libmicrodns                                                                                      0.2.0
+[R.] libmpeg2                                                                                         0.5.1
+[R.] libmtp                                                                                           1.1.22
+[R.] libmwaw                                                                                          0.3.22
+[R.] libmypaint                                                                                       1.6.1
+[R.] libndctl                                                                                         83, 83-man
+[R.] libnet                                                                                           1.3
+[R.] libnvme                                                                                          1.16.1
+[R.] libodfgen                                                                                        0.1.8
+[R.] liborcus                                                                                         0.20.1
+[R.] libplacebo                                                                                       5.264.1
+[R.] libplist                                                                                         2.7.0
+[R.] libpng                                                                                           1.6.56
+[R.] libpsm2                                                                                          12.0.1
+[R.] libredwg                                                                                         0.13.4.8200
+[R.] libreoffice                                                                                      25.8.5.2, 25.8.5.2-wrapped
+[R.] librevenge                                                                                       0.0.5
+[R.] librttopo                                                                                        1.1.0
+[R.] libsepol                                                                                         3.10, 3.10-bin, 3.10-dev
+[R.] libslirp                                                                                         4.9.1
+[R.] libspatialite                                                                                    5.1.0
+[R.] libspnav                                                                                         1.2
+[R.] libtasn1-static-x86_64-unknown-linux-musl                                                        4.21.0
+[R.] libtatsu                                                                                         1.0.5
+[R.] libtiger                                                                                         0.3.4
+[R.] libtraceevent                                                                                    1.9
+[R.] libtracefs                                                                                       1.8.3
+[R.] libudev0-shim                                                                                    1
+[R.] libunistring-static-x86_64-unknown-linux-musl                                                    1.4.2
+[R.] libusb-compat                                                                                    0.1.8
+[R.] libusbmuxd                                                                                       2.1.1
+[R.] libutempter                                                                                      1.2.3
+[R.] libvisio                                                                                         0.1.11
+[R.] libvlc                                                                                           3.0.23-2
+[R.] libvoikko                                                                                        4.3.3
+[R.] libvpl                                                                                           2.16.0
+[R.] libwmf                                                                                           0.2.13
+[R.] libwnck                                                                                          43.3
+[R.] libwpd                                                                                           0.10.3
+[R.] libwpg                                                                                           0.3.4
+[R.] libwps                                                                                           0.4.14
+[R.] libxaw                                                                                           1.0.16
+[R.] libxklavier                                                                                      5.4
+[R.] libxpresent                                                                                      1.0.2
+[R.] libxres                                                                                          1.2.3
+[R.] libzmf                                                                                           0.0.2
+[R.] lidEvent.sh                                                                                      <none>
+[R.] live555                                                                                          2024.09.20
+[R.] lksctp-tools                                                                                     1.0.21
+[R.] lndir                                                                                            1.0.5
+[R.] lp_solve                                                                                         5.5.2.14
+[R.] lsb_release                                                                                      <none>
+[R.] marco                                                                                            1.28.2
+[R.] mariadb-connector-odbc                                                                           3.2.6
+[R.] mate-desktop                                                                                     1.28.2
+[R.] mate-menus                                                                                       1.28.1
+[R.] mate-panel                                                                                       1.28.7
+[R.] mate-settings-daemon                                                                             1.28.0
+[R.] mcpp                                                                                             2.7.2.3
+[R.] mdadm                                                                                            4.4
+[R.] medfile                                                                                          6.0.1
+[R.] metis                                                                                            5.2.1
+[R.] mimeapps.list                                                                                    <none>
+[R.] mumps                                                                                            5.9.0
+[R.] munge                                                                                            0.5.18
+[R.] mynixos.sh                                                                                       <none>
+[R.] mypaint-brushes                                                                                  2.0.2
+[R.] mythes                                                                                           1.2.4
+[R.] navigateOpenWindows                                                                              <none>
+[R.] ncdu                                                                                             2.9.2
+[R.] nemo                                                                                             6.6.4, 6.6.4-man
+[R.] netavark                                                                                         1.17.2
+[R.] netcdf                                                                                           4.9.3
+[R.] nettle-static-x86_64-unknown-linux-musl                                                          3.10.2
+[R.] nilfs-utils                                                                                      2.2.12
+[R.] nix-direnv                                                                                       3.1.2
+[R.] nix-index                                                                                        0.1.10
+[R.] nix-index-database                                                                               <none>
+[R.] nix-index-with-full-db                                                                           0.1.10
+[R.] nix.png                                                                                          <none>
+[R.] nlohmann_json                                                                                    3.12.0
+[R.] nlopt                                                                                            2.10.1
+[R.] ntfs3g                                                                                           2026.2.25, 2026.2.25-man
+[R-] ntfy-sh                                                                                          2.23.0
+[R.] nuspell                                                                                          5.1.7-lib
+[R.] nvidia-egl-external-platforms                                                                    <none>
+[R.] nvidia-egl-external-platforms-x32                                                                <none>
+[R.] nvidia-kernel-modules                                                                            580.142-6.18.33
+[R-] nvidia-settings                                                                                  580.142
+[R.] nvidia-vaapi-driver                                                                              0.0.17
+[R-] nvidia-x11                                                                                       580.142, 580.142-bin, 580.142-firmware, 580.142-lib32
+[R-] obex-data-server                                                                                 0.4.6
+[R.] obs-studio                                                                                       32.1.2
+[R.] ocrCopy.desktop                                                                                  <none>
+[R.] ocrcopy                                                                                          <none>
+[R.] openblas                                                                                         0.3.32
+[R.] opencascade-occt                                                                                 7.6.1, 7.6.2, 7.9.3
+[R.] openjdk-minimal-jre                                                                              21.0.12+2
+[R.] openmpi                                                                                          5.0.10, 5.0.10-man
+[R.] openobex                                                                                         1.7.2
+[R.] openslide                                                                                        4.0.0
+[R.] openturns                                                                                        1.26
+[R.] openvdb                                                                                          12.1.0
+[R.] overskride                                                                                       0.6.6
+[R.] pagmo2                                                                                           2.19.1
+[R.] pangomm                                                                                          2.46.4, 2.56.1
+[R.] parted                                                                                           3.7
+[R.] passt                                                                                            2025_09_19.623dbf6
+[R.] patternsfile                                                                                     <none>
+[R.] pavucontrol                                                                                      6.2
+[R.] pdal                                                                                             2.9.3
+[R.] perl5.42.0-Cpanel-JSON-XS                                                                        4.37
+[R.] phinger-cursors                                                                                  2.1
+[R.] playerctl                                                                                        2.4.1
+[R.] pmix                                                                                             6.1.0
+[R-] podman                                                                                           5.8.2, 5.8.2-man
+[R-] podman-compose                                                                                   1.5.0
+[R.] podman-helper-binary-wrapper                                                                     <none>
+[R.] podman-tmpfiles-nixos                                                                            <none>
+[R.] policy                                                                                           <none>
+[R.] polkit-kde-agent                                                                                 1-6.6.5
+[R.] polkit-qt                                                                                        1-0.201.1
+[R.] poly2tri-c                                                                                       0.1.0
+[R.] portaudio                                                                                        190700_20210406
+[R.] powerEvent.sh                                                                                    <none>
+[R.] powerMenu.sh                                                                                     <none>
+[R.] proj                                                                                             9.8.1, 9.8.1-dev
+[R.] prrte                                                                                            4.1.0
+[R.] prusa-slicer                                                                                     2.9.5
+[R.] ps-procps                                                                                        4.0.6
+[R.] psmisc                                                                                           23.7
+[R.] psqlodbc                                                                                         18.00.0001
+[R.] pugixml                                                                                          1.15
+[R-] pulseaudio                                                                                       17.0
+[R.] pybind11-setup-hook                                                                              <none>
+[R.] pypa-build-hook.sh                                                                               <none>
+[R.] pyside6                                                                                          6.11.0
+[R.] python3.13-adios2                                                                                2.11.0
+[R.] python3.13-aiodns                                                                                4.0.0
+[R.] python3.13-aiohappyeyeballs                                                                      2.6.1
+[R.] python3.13-aiohttp                                                                               3.13.5
+[R.] python3.13-aiosignal                                                                             1.4.0
+[R.] python3.13-attrs                                                                                 26.1.0
+[R.] python3.13-backports-zstd                                                                        1.3.0
+[R.] python3.13-brotli                                                                                1.2.0
+[R.] python3.13-build                                                                                 1.4.4
+[R.] python3.13-catalyst                                                                              2.0.0
+[R.] python3.13-certifi                                                                               2026.01.04
+[R.] python3.13-cffi                                                                                  2.0.0
+[R.] python3.13-charset-normalizer                                                                    3.4.7
+[R.] python3.13-contourpy                                                                             1.3.3
+[R.] python3.13-cycler                                                                                0.12.1
+[R.] python3.13-ddt                                                                                   1.7.2
+[R.] python3.13-defusedxml                                                                            0.8.0rc2
+[R.] python3.13-fonttools                                                                             4.61.1
+[R.] python3.13-frozenlist                                                                            1.8.0
+[R.] python3.13-gitdb                                                                                 4.0.12
+[R.] python3.13-gitpython                                                                             3.1.50
+[R.] python3.13-httpie                                                                                3.2.4
+[R.] python3.13-idna                                                                                  3.13
+[R.] python3.13-ifcopenshell                                                                          0.8.0
+[R.] python3.13-isodate                                                                               0.7.2
+[R.] python3.13-kiwisolver                                                                            1.4.9
+[R.] python3.13-lark                                                                                  1.3.1
+[R.] python3.13-markdown-it-py                                                                        4.0.0
+[R.] python3.13-matplotlib                                                                            3.10.9
+[R.] python3.13-mdurl                                                                                 0.1.2
+[R.] python3.13-msgpack                                                                               1.1.2
+[R.] python3.13-multidict                                                                             6.7.1
+[R.] python3.13-numpy                                                                                 2.4.4
+[R.] python3.13-opencamlib                                                                            2023.01.11
+[R.] python3.13-outcome                                                                               1.3.0.post0
+[R.] python3.13-pillow                                                                                12.2.0
+[R.] python3.13-pivy                                                                                  0.6.11
+[R.] python3.13-ply                                                                                   3.11
+[R.] python3.13-propcache                                                                             0.4.1
+[R.] python3.13-psutil                                                                                7.2.2
+[R.] python3.13-pybind11                                                                              3.0.4
+[R.] python3.13-pycares                                                                               5.0.1
+[R.] python3.13-pycollada                                                                             0.9.3
+[R.] python3.13-pycparser                                                                             3.00
+[R.] python3.13-pyfuse3                                                                               3.5.0
+[R.] python3.13-pygments                                                                              2.20.0
+[R.] python3.13-pyparsing                                                                             3.3.2
+[R.] python3.13-pyproject-hooks                                                                       1.2.0
+[R.] python3.13-pyserial                                                                              3.5
+[R.] python3.13-pysocks                                                                               1.7.1
+[R.] python3.13-python-dateutil                                                                       2.9.0.post0
+[R.] python3.13-python-dotenv                                                                         1.2.2
+[R.] python3.13-python-xapp                                                                           3.0.3
+[R.] python3.13-pyyaml                                                                                6.0.3
+[R.] python3.13-regex                                                                                 2026.4.4
+[R.] python3.13-requests                                                                              2.33.1
+[R.] python3.13-requests-toolbelt                                                                     1.0.0
+[R.] python3.13-rich                                                                                  14.3.3
+[R.] python3.13-scipy                                                                                 1.17.1
+[R.] python3.13-setproctitle                                                                          1.3.7
+[R.] python3.13-shapely                                                                               2.1.2
+[R.] python3.13-shtab                                                                                 1.8.0
+[R.] python3.13-smmap                                                                                 6.0.0
+[R.] python3.13-sniffio                                                                               1.3.1
+[R.] python3.13-sortedcontainers                                                                      2.4.0
+[R.] python3.13-termcolor                                                                             3.3.0
+[R.] python3.13-tkinter                                                                               3.13.13
+[R.] python3.13-trio                                                                                  0.32.0
+[R.] python3.13-typing-extensions                                                                     4.15.0
+[R.] python3.13-urllib3                                                                               2.6.3
+[R.] python3.13-vtk                                                                                   9.5.2
+[R.] python3.13-wheel                                                                                 0.46.1
+[R.] python3.13-wslink                                                                                2.5.7
+[R.] python3.13-yarl                                                                                  1.23.0
+[R.] qemu                                                                                             10.2.2, 10.2.2-ga
+[R.] qemu-user-static-x86_64-unknown-linux-musl                                                       10.2.2
+[R.] qhull                                                                                            2020.2
+[R.] qqc2-desktop-style                                                                               6.26.0
+[R.] qt5compat                                                                                        6.11.0
+[R.] qtcharts                                                                                         6.11.0
+[R.] qtconnectivity                                                                                   6.11.0
+[R.] qtdatavis3d                                                                                      6.11.0
+[R.] qtgraphs                                                                                         6.11.0
+[R.] qthttpserver                                                                                     6.11.0
+[R.] qtlocation                                                                                       6.11.0
+[R.] qtpositioning                                                                                    6.11.0
+[R.] qtquickcontrols                                                                                  5.15.18
+[R.] qtremoteobjects                                                                                  6.11.0
+[R.] qtscxml                                                                                          6.11.0
+[R.] qtsensors                                                                                        6.11.0
+[R.] qtserialbus                                                                                      6.11.0
+[R.] qtserialport                                                                                     6.11.0
+[R.] qtstyleplugin-kvantum                                                                            1.1.7
+[R.] qtstyleplugin-kvantum5                                                                           1.1.7
+[R.] qtwebchannel                                                                                     6.11.0
+[R.] qtwebengine                                                                                      6.11.0
+[R.] qtwebsockets                                                                                     6.11.0
+[R.] qtwebview                                                                                        6.11.0
+[R.] qtx11extras                                                                                      5.15.18
+[R.] rasqal                                                                                           0.9.33
+[R.] rdma-core                                                                                        62.0
+[R.] redland                                                                                          1.0.17
+[R.] registries.conf                                                                                  <none>
+[R.] rnote                                                                                            0.14.2
+[R.] rofi                                                                                             2.0.0
+[R.] rofi-unwrapped                                                                                   2.0.0
+[R.] runc                                                                                             1.4.2
+[R.] rutabaga_gfx                                                                                     0.1.6
+[R.] schroedinger                                                                                     1.0.11
+[R.] scotch                                                                                           7.0.11
+[R.] server.yml                                                                                       <none>
+[R-] setxkbmap                                                                                        1.3.4
+[R.] shaderc                                                                                          2026.1-lib
+[R.] shiboken6                                                                                        6.11.0
+[R.] shiboken6-generator                                                                              6.11.0
+[R.] simde                                                                                            0.8.2
+[R.] snappy                                                                                           1.2.2
+[R.] sonnet                                                                                           6.26.0
+[R.] soqt                                                                                             1.6.4
+[R.] spdlog                                                                                           1.17.0
+[R.] spice                                                                                            0.16.0
+[R.] spidermonkey                                                                                     140.9.0
+[R.] spral                                                                                            2025.09.18
+[R.] sqlite-connector-odbc                                                                            0.99991
+[R-] steam                                                                                            1.0.0.85, 1.0.0.85-bwrap, 1.0.0.85-fhsenv-profile, 1.0.0.85-fhsenv-rootfs, 1.0.0.85-init
+[R-] steam-run                                                                                        1.0.0.85, 1.0.0.85-bwrap, 1.0.0.85-fhsenv-profile, 1.0.0.85-fhsenv-rootfs, 1.0.0.85-init, <none>
+[R.] steam-unwrapped                                                                                  1.0.0.85
+[R.] steam-wrapped                                                                                    <none>
+[R.] storage.conf                                                                                     <none>
+[R.] suitesparse                                                                                      5.13.0
+[R.] system-sendmail                                                                                  1.0
+[R.] tcl                                                                                              8.6.16
+[R.] tesseract                                                                                        5.5.2
+[R.] thin-provisioning-tools                                                                          1.3.2
+[R.] tiledb                                                                                           2.30.0
+[R.] tk                                                                                               8.6.16
+[R.] tldr                                                                                             3.4.4
+[R.] tmux                                                                                             3.6a, 3.6a-man
+[R.] tmuxplugin-catppuccin                                                                            0-unstable-2026-04-08, 2.1.3
+[R.] tmuxplugin-sensible-unstable                                                                     2022-08-14
+[R.] tmuxplugin-sessionx-dev                                                                          <none>
+[R.] tmuxplugin-vim-tmux-navigator-unstable                                                           2025-07-15
+[R.] tofi                                                                                             0.9.1
+[R.] tracker                                                                                          3.7.3
+[R.] typst                                                                                            0.14.2
+[R.] ucc                                                                                              1.7.0
+[R.] ucx                                                                                              1.20.1
+[R.] udisks                                                                                           2.11.1
+[R.] unit-acpid.service                                                                               <none>
+[R.] unit-borgbackup-job-external_drive_backup.service                                                <none>
+[R.] unit-borgbackup-job-external_drive_backup.timer                                                  <none>
+[R.] unit-borgbackup-job-faccback.service                                                             <none>
+[R.] unit-borgbackup-job-faccback.timer                                                               <none>
+[R.] unit-ntfy-sh.service                                                                             <none>
+[R.] unit-opentabletdriver.service                                                                    <none>
+[R.] unit-podman-prune.service                                                                        <none>
+[R.] unit-podman-prune.timer                                                                          <none>
+[R.] unit-podman.service                                                                              <none>
+[R.] unit-podman.socket                                                                               <none>
+[R.] unit-script-borgbackup-job-external_drive_backup-start                                           <none>
+[R.] unit-script-borgbackup-job-faccback-start                                                        <none>
+[R.] unit-script-display-manager-pre-start                                                            <none>
+[R.] unit-systemd-binfmt.service                                                                      <none>
+[R.] upower                                                                                           1.91.1
+[R.] usbredir                                                                                         0.15.0
+[R.] usbutils                                                                                         019, 019-man
+[R.] utf8cpp                                                                                          4.0.9
+[R.] vde2                                                                                             2.3.3
+[R.] verdict                                                                                          1.4.4
+[R.] vicinae-settings                                                                                 <none>
+[R.] virglrenderer                                                                                    1.3.0
+[R.] viskores                                                                                         1.1.0
+[R.] vlc                                                                                              3.0.23-2
+[R.] volume_key                                                                                       0.3.11
+[R.] vte                                                                                              0.84.0
+[R.] vtk                                                                                              9.5.2
+[R.] vulkan-headers                                                                                   1.4.341.0
+[R.] waybar                                                                                           0.15.0
+[R.] waybar-config.json                                                                               <none>
+[R.] waybar-style.css                                                                                 <none>
+[R.] wayland-protocols                                                                                1.48
+[R.] wayland-scanner                                                                                  1.25.0, 1.25.0-bin, 1.25.0-dev
+[R.] webkitgtk                                                                                        2.52.3+abi=4.1
+[R.] wxwidgets                                                                                        3.2.9
+[R.] x11-ssh-askpass                                                                                  1.2.4.1
+[R.] xapp                                                                                             3.2.2, 3.2.2-dev
+[R.] xapp-symbolic-icons                                                                              1.1.0
+[R.] xcb-imdkit                                                                                       1.0.9
+[R.] xerces-c                                                                                         3.3.0
+[R-] xf86-input-evdev                                                                                 2.11.0
+[R-] xf86-input-libinput                                                                              1.5.0
+[R.] xfsprogs                                                                                         6.19.0, 6.19.0-bin
+[R-] xinput                                                                                           1.6.4
+[R.] xlock.pam                                                                                        <none>
+[R-] xlsclients                                                                                       1.1.5
+[R.] xmlsec                                                                                           1.3.7
+[R.] xorg-locale                                                                                      <none>
+[R-] xorg-server                                                                                      21.1.22
+[R-] xprop                                                                                            1.2.8
+[R-] xrdb                                                                                             1.2.2
+[R.] xserver-wrapper                                                                                  <none>
+[R.] xserver.conf                                                                                     <none>
+[R.] xsession-wrapper                                                                                 <none>
+[R-] xset                                                                                             1.2.5
+[R-] xsetroot                                                                                         1.1.3
+[R-] xterm                                                                                            410
+[R.] yajl                                                                                             2.1.0-unstable-2024-02-01
+[R.] yaml-cpp                                                                                         0.8.0
+[R.] z3                                                                                               4.16.0-lib
+[R.] zeromq                                                                                           4.3.5
+[R.] zfp                                                                                              1.0.1
+[R.] zlib-static-x86_64-unknown-linux-musl                                                            1.3.2
+[R.] zsh-fzf-tab                                                                                      1.3.0
+[R.] zsh-vi-mode                                                                                      0.12.0

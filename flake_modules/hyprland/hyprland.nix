@@ -16,11 +16,12 @@
       {
         wayland.windowManager.hyprland = {
           enable = true;
+          configType = "lua";
 
           extraConfig =
             # lua
             ''
-              require('lua/entry.lua')
+              require('lua/entry')
             '';
         };
 

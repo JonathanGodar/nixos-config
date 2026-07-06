@@ -5,5 +5,3 @@ $env.config.cursor_shape = {
 }
 
 $env.config.edit_mode = 'vi'
-
-# source /home/jonathan/nixos/home_modules/nu/config_testing.nu

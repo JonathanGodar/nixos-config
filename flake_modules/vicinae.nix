@@ -10,7 +10,7 @@
         enable = true;
         systemd.enable = true;
 
-        extensions = with inputs.vicinae-extensions.packages.${pkgs.system}; [
+        extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
           nix
           it-tools
           bluetooth

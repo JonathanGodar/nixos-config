@@ -14,7 +14,6 @@
 
           flavor = "mocha";
           grub.enable = true;
-          cursors.enable = true;
           sddm.enable = true;
           tty.enable = true;
         };
@@ -34,7 +33,6 @@
           atuin.enable = true;
           bat.enable = true;
           btop.enable = true;
-          cursors.enable = true;
           dunst.enable = true;
           eza.enable = true;
           firefox.enable = true;

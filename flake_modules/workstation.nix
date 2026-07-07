@@ -42,6 +42,7 @@ in
         zellij
         sioyek
         obsidian
+        cursors
 
         firefox
         prismlauncher

@@ -49,6 +49,7 @@ in
 
         homeManager
 
+        hyprpaper
         zsh
         lazygit
         nvim

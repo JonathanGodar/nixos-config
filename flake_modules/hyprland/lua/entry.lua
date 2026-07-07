@@ -9,6 +9,9 @@ hl.config({
 			natural_scroll = true,
 		},
 	},
+	misc = {
+		disable_splash_rendering = true,
+	},
 })
 
 hl.gesture({

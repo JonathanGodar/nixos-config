@@ -54,7 +54,8 @@
           vicinae.enable = true;
           waybar.enable = true;
           yazi.enable = true;
-          zsh-syntax-highlighting.enable = false;
+          zellij.enable = true;
+          # zsh-syntax-highlighting.enable = false;
 
           nvim.enable = false;
         };

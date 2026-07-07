@@ -49,7 +49,7 @@ in
         homeManager
 
         zsh
-        zoxide
+        lazygit
         nvim
         nushell
         nh
@@ -59,6 +59,7 @@ in
         atuin
         yazi
         git
+        zoxide
       ];
 
       home.packages = with pkgs; [

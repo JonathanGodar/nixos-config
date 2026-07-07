@@ -7,6 +7,17 @@
         imports = [
           inputs.catppuccin.nixosModules.catppuccin
         ];
+
+        catppuccin = {
+          enable = true;
+          autoEnable = false;
+
+          flavor = "mocha";
+          grub.enable = true;
+          cursors.enable = true;
+          sddm.enable = true;
+          tty.enable = true;
+        };
       };
 
     homeManager.catppuccin =
@@ -15,6 +26,40 @@
         imports = [
           inputs.catppuccin.homeModules.catppuccin
         ];
+
+        catppuccin = {
+          enable = true;
+          autoEnable = false;
+
+          atuin.enable = true;
+          bat.enable = true;
+          btop.enable = true;
+          cursors.enable = true;
+          dunst.enable = true;
+          eza.enable = true;
+          firefox.enable = true;
+          fzf.enable = true;
+          ghostty.enable = true;
+          # gtk.enable = true;
+          # helix.enable = true;
+          hyprland.enable = true;
+          # hyprlock.enable = true;
+          kitty.enable = true;
+          lazygit.enable = true;
+          nushell.enable = true;
+          obsidian.enable = true;
+          rofi.enable = true;
+          sioyek.enable = true;
+          starship.enable = true;
+          thunderbird.enable = true;
+          # tmux.enable = true;
+          vicinae.enable = true;
+          waybar.enable = true;
+          yazi.enable = true;
+          zsh-syntax-highlighting.enable = false;
+
+          nvim.enable = false;
+        };
       };
   };
 

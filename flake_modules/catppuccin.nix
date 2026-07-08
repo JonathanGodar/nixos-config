@@ -20,11 +20,19 @@
       };
 
     homeManager.catppuccin =
-      { ... }:
+      { pkgs, ... }:
       {
         imports = [
           inputs.catppuccin.homeModules.catppuccin
         ];
+
+        gtk = {
+          enable = true;
+          theme = {
+            package = pkgs.catppuccin-gtk;
+            name = "Catppuccin-Mocha-Standard-Blue-Dark";
+          };
+        };
 
         catppuccin = {
           enable = true;
@@ -38,7 +46,6 @@
           firefox.enable = true;
           fzf.enable = true;
           ghostty.enable = true;
-          # gtk.enable = true;
           # helix.enable = true;
           hyprland.enable = true;
           # hyprlock.enable = true;

@@ -67,6 +67,7 @@ in
       home.packages = with pkgs; [
         mattermost-desktop
         spotify
+        rnote
       ];
 
       programs = {

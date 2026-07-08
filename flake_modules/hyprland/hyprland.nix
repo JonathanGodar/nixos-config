@@ -25,6 +25,10 @@
             '';
         };
 
+        home.packages = with pkgs; [
+          grimblast
+        ];
+
         xdg.configFile."hypr/lua" = {
           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/flake_modules/hyprland/lua";
           recursive = true;

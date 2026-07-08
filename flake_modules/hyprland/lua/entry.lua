@@ -26,7 +26,12 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("ghostty -e zellij"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + SHIFT + X", hl.dsp.window.kill())
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("sioyek"))
+hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("rnote"))
+hl.bind("Print", hl.dsp.exec_cmd("grimblast copy area"))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
 
 hl.config({
 	misc = {
@@ -64,7 +69,15 @@ local dir_map = {
 
 for key, dir in pairs(dir_map) do
 	hl.bind(mainMod .. "+" .. key, hl.dsp.focus({ direction = dir }))
+	hl.bind(mainMod .. "+ ALT + " .. key, hl.dsp.window.swap({ direction = dir }))
 end
+
+-- Scrolling
+-- hl.config({
+-- 	general = {
+-- 		layout = "scrolling",
+-- 	},
+-- })
 
 -- TODO move so that this is required in flake/some config option is available in lua.
 require("lua/faccun_monitors")

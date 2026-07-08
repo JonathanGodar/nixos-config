@@ -33,6 +33,8 @@ hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("rnote"))
 hl.bind("Print", hl.dsp.exec_cmd("grimblast copy area"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
 
+hl.bind(mainMod .. "+ V", hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history?toggle=true"))
+
 hl.config({
 	misc = {
 		force_default_wallpaper = 0, -- to 0 or 1 to disable the anime mascot wallpapers

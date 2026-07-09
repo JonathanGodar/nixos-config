@@ -60,6 +60,7 @@ in
         fzf
         atuin
         yazi
+        comma
         git
         zoxide
       ];

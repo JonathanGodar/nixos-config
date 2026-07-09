@@ -52,23 +52,6 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_2"
-      },
-      "locked": {
-        "lastModified": 1709336216,
-        "narHash": "sha256-Dt/wOWeW6Sqm11Yh+2+t0dfEWxoMxGBvv3JpIocFl9E=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "f7b3c975cf067e56e7cda6cb098ebe3fb4d74ca2",
-        "type": "github"
-      },
-      "original": {
-        "id": "flake-parts",
-        "type": "indirect"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -104,26 +87,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "hyprcursor-phinger": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763845612,
-        "narHash": "sha256-78zH5GrYa35bEkzeVnl8uXFbZ/zsiSHayjxZlNt+Xe8=",
-        "owner": "jappie3",
-        "repo": "hyprcursor-phinger",
-        "rev": "1207a845501a28e0e00d4a8e935ee0c9cab30650",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jappie3",
-        "repo": "hyprcursor-phinger",
         "type": "github"
       }
     },
@@ -194,22 +157,6 @@
         "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs-9f41": {
-      "locked": {
-        "lastModified": 1720031269,
-        "narHash": "sha256-rwz8NJZV+387rnWpTYcXaRNvzUSnnF9aHONoJIYmiUQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9f4128e00b0ae8ec65918efeba59db998750ead6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9f4128e00b0ae8ec65918efeba59db998750ead6",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1777168982,
@@ -222,24 +169,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs-lib_2": {
-      "locked": {
-        "dir": "lib",
-        "lastModified": 1709237383,
-        "narHash": "sha256-cy6ArO4k5qTx+l5o+0mL9f5fa86tYUX3ozE1S+Txlds=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1536926ef5621b09bba54035ae2bb6d806d72ac8",
-        "type": "github"
-      },
-      "original": {
-        "dir": "lib",
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -304,23 +233,6 @@
         "type": "github"
       }
     },
-    "opentablet-ugee": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1717004229,
-        "narHash": "sha256-gyGfsW/csaJ24oCDMDe13oTUWgw8JvqFSMFlSd9qC6Y=",
-        "owner": "Spencer-Sawyer",
-        "repo": "OpenTabletDriver",
-        "rev": "2b84e38477bd3a2e8790d96bdbf4bcaae8e49e80",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Spencer-Sawyer",
-        "repo": "OpenTabletDriver",
-        "rev": "2b84e38477bd3a2e8790d96bdbf4bcaae8e49e80",
-        "type": "github"
-      }
-    },
     "rnote-export": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -346,15 +258,11 @@
         "catppuccin": "catppuccin",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
-        "hyprcursor-phinger": "hyprcursor-phinger",
         "import-tree": "import-tree",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-9f41": "nixpkgs-9f41",
-        "opentablet-ugee": "opentablet-ugee",
         "rnote-export": "rnote-export",
-        "tmuxSessionX": "tmuxSessionX",
         "vicinae-extensions": "vicinae-extensions"
       }
     },
@@ -406,27 +314,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tmuxSessionX": {
-      "inputs": {
-        "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776544171,
-        "narHash": "sha256-ve1nZslZil30yWfrlzYGEMY9hRH2lJjoPuEBjwHvBz4=",
-        "owner": "omerxx",
-        "repo": "tmux-sessionx",
-        "rev": "c9aaa1d309791871b5e8c1f9bfb91ecc5fa7da3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "omerxx",
-        "repo": "tmux-sessionx",
         "type": "github"
       }
     },

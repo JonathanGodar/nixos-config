@@ -23,6 +23,12 @@ in
         syncthing # Opens ports
       ];
 
+      # Open minecraft server firewall.
+      networking.firewall = {
+        allowedTCPPorts = [ 25565 ];
+        allowedUDPPorts = [ 25565 ];
+      };
+
       systemOptions = {
         flakePath = "/home/jonathan/nixos/";
       };
@@ -34,6 +40,7 @@ in
       imports = with self.modules.homeManager; [
         hyprland
 
+        ashell
         gui
         catppuccin
         ghostty

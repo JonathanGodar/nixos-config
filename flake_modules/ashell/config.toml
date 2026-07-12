@@ -1,0 +1,4 @@
+[modules]
+left = [ "Workspaces" ]
+center = [ "Tray" ]
+right = [ ["Tempo", "MediaPlayer"], ["Notifications", "Privacy", "Settings" ] ]

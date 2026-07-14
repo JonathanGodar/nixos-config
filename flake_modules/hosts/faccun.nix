@@ -35,11 +35,17 @@
           networking.hostName = "faccun";
           networking.hostId = "354736d9";
 
+          services.xserver.videoDrivers = [ "nvidia" ];
+          # boot.initrd.kernelModules = [
+          #   "nvidia"
+          #   "i915"
+          #   "nvidia_modeset"
+          #   "nvidia_drm"
+          # ];
+
           hardware.graphics = {
             enable = true;
           };
-
-          services.xserver.videoDrivers = [ "nvidia" ];
 
           hardware.nvidia = {
             # Modesetting is required.

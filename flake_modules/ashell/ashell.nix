@@ -7,6 +7,10 @@
         systemd.enable = true;
       };
 
+      systemd.user.services.ashell.Service.Environment = [
+        "WGPU_BACKEND=gl"
+      ];
+
       xdg.configFile."ashell/config.toml" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/flake_modules/ashell/config.toml";
       };

@@ -10,13 +10,17 @@
       # Enables wayland support for chromium and electron based apps
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+      services.xserver = {
+        enable = true;
+      };
+
       # Music player daemon
       services = {
         mpd.enable = true;
         displayManager = {
           sddm = {
             enable = true;
-            wayland.enable = true;
+            #   wayland.enable = true;
           };
           defaultSession = "hyprland";
         };

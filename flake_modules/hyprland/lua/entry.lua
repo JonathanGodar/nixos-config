@@ -32,6 +32,7 @@ hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("rnote"))
 hl.bind("Print", hl.dsp.exec_cmd("grimblast copy area"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
 
+hl.bind(mainMod .. "+SHIFT+Q", hl.dsp.exec_cmd("vicinae vicinae://launch/power"))
 hl.bind(mainMod .. "+ V", hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history?toggle=true"))
 
 hl.config({
@@ -69,15 +70,39 @@ local dir_map = {
 
 for key, dir in pairs(dir_map) do
 	hl.bind(mainMod .. "+" .. key, hl.dsp.focus({ direction = dir }))
-	hl.bind(mainMod .. "+ ALT + " .. key, hl.dsp.window.swap({ direction = dir }))
+	hl.bind(mainMod .. "+ SHIFT + " .. key, hl.dsp.window.swap({ direction = dir }))
 end
 
+-- Experimental keybinds for scrolling layout
+hl.bind("SUPER + P", hl.dsp.layout("promote"))
+hl.bind("SUPER + E", hl.dsp.layout("expel"))
+hl.bind("SUPER + C", hl.dsp.layout("consume"))
+
+hl.bind("SUPER + period", hl.dsp.layout("colresize +conf"))
+hl.bind("SUPER + comma", hl.dsp.layout("colresize -conf"))
+
+hl.bind(mainMod .. "+ ALT + L", hl.dsp.layout("swapcol r"))
+hl.bind(mainMod .. "+ ALT + h", hl.dsp.layout("swapcol l"))
+
 -- Scrolling
--- hl.config({
--- 	general = {
--- 		layout = "scrolling",
--- 	},
--- })
+hl.config({
+	general = {
+		layout = "scrolling",
+		gaps_in = 0,
+		gaps_out = 0,
+	},
+	decoration = {
+		blur = {
+			enabled = false,
+		},
+		shadow = {
+			enabled = false,
+		},
+	},
+	animations = {
+		enabled = false,
+	},
+})
 
 -- TODO move so that this is required in flake/some config option is available in lua.
 require("lua/faccun_monitors")

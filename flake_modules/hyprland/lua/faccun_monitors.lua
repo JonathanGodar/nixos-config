@@ -21,9 +21,13 @@ hl.monitor({
 })
 
 for i = 1, 7 do
-	hl.workspace_rule({ workspace = i, monitor = mainMonitor })
+	hl.workspace_rule({ workspace = i, monitor = mainMonitor, default = (i == 1) })
 end
 
 for i = 8, 10 do
-	hl.workspace_rule({ workspace = i, monitor = secondMonitor })
+	hl.workspace_rule({ workspace = i, monitor = secondMonitor, default = (i == 8) })
 end
+
+-- hl.on("hyprland.start", function()
+-- 	hl.dispatch(hl.dsp.focus({ monitor = mainMonitor }))
+-- end)

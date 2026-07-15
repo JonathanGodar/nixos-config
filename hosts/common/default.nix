@@ -174,11 +174,17 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22000 # Syncthing
+
+    # Minecraft lan
+    33637
   ];
   networking.firewall.allowedUDPPorts = [
     # Syncthing
     22000
     21027
+
+    # Minecraft lan
+    33637
   ];
 
   preconf.keyd.enable = true;

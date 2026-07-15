@@ -10,6 +10,7 @@
 
       programs = {
         git.enable = true;
+        htop.enable = true;
       };
 
       hardware = {

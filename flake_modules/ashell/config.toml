@@ -1,4 +1,4 @@
 [modules]
 left = [ "Workspaces" ]
 center = [ "WindowTitle" ]
-right = [ ["Tempo", "MediaPlayer"], ["Tray", "Notifications", "Privacy", "Settings" ] ]
+right = [  ["MediaPlayer"], ["Tempo"], ["Tray", "Notifications", "Privacy", "Settings" ] ]

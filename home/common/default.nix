@@ -109,7 +109,6 @@
     slurp
     tesseract
     wl-clipboard
-    cliphist
 
     tofi
 

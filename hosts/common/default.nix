@@ -34,6 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     podman-compose
+    pulseaudio # Hopefully just installs pactl - needed for vicinae
   ];
 
   hardware.opentabletdriver = {

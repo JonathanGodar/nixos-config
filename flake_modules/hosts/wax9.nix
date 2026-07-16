@@ -14,6 +14,7 @@
         {
           imports = with self.modules.nixos; [
             workstation
+            upower
 
             wax9Hardware
             homeManager

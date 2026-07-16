@@ -23,6 +23,7 @@
 
     lib.mkIf config.preconf.cursors.enable {
       home.pointerCursor = {
+        enable = true;
         name = "phinger-cursors-dark";
         package = pkgs.phinger-cursors;
         inherit size;

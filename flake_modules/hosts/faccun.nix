@@ -36,12 +36,6 @@
           networking.hostId = "354736d9";
 
           services.xserver.videoDrivers = [ "nvidia" ];
-          # boot.initrd.kernelModules = [
-          #   "nvidia"
-          #   "i915"
-          #   "nvidia_modeset"
-          #   "nvidia_drm"
-          # ];
 
           hardware.graphics = {
             enable = true;
@@ -128,8 +122,15 @@
           imports = with self.modules.homeManager; [
             workstation
           ];
-          # with self.modules.homeManager; [
-          # homeManager
+
+          wayland.windowManager.hyprland = {
+            extraConfig =
+              # lua
+              ''
+                require("lua/faccun_monitors")
+              '';
+          };
+
         };
     };
   };

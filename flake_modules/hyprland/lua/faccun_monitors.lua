@@ -1,10 +1,3 @@
-hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
-	scale = "auto",
-})
-
 local mainMonitor = "desc:AOC 32G1WG4 0x00001C80"
 local secondMonitor = "desc:Acer Technologies Acer XF240H 0x7320DBB0"
 

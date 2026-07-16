@@ -28,6 +28,7 @@
 
         gtk = {
           enable = true;
+          gtk4.theme = null;
           theme = {
             package = pkgs.catppuccin-gtk;
             name = "Catppuccin-Mocha-Standard-Blue-Dark";

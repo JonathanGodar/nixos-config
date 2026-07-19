@@ -21,5 +21,9 @@
           power-profile
         ];
       };
+
+      home.packages = with pkgs; [
+        playerctl
+      ];
     };
 }

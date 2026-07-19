@@ -27,6 +27,7 @@
 
         home.packages = with pkgs; [
           grimblast
+          playerctl
         ];
 
         xdg.configFile."hypr/lua" = {

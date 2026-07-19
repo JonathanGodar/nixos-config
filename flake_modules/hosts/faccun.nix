@@ -71,49 +71,6 @@
             # Optionally, you may need to select the appropriate driver version for your specific GPU.
             package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
           };
-          # hardware.opengl = {
-          #   enable = true;
-          #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-          #   # For 32-bit support (needed for Minecraft, Steam, etc.)
-          #   extraPackages = with config.boot.kernelPackages.nvidiaPackages.stable; [
-          #     lib32
-          #   ];
-          # };
-          #
-          # # Load kernel modules
-          # boot.kernelModules = [
-          #   "nvidia"
-          #   "nvidia_drm"
-          #   "nvidia_modeset"
-          # ];
-          # boot.extraModprobeConfig = ''
-          #   options nvidia-drm modeset=1
-          # '';
-          #
-          # # Enable DRM (Direct Rendering Manager) for better Wayland support
-          # hardware.nvidia = {
-          #   open = false;
-          #   modesetting.enable = true;
-          #   # powerManagement.enable = true;
-          #   # prime = {
-          #   # offload.enable = true;
-          #   # sync.enable = true;
-          #   # };
-          # };
-
-          # For X11 (if using Xorg)
-          # services.xserver = {
-          #   enable = true;
-          #   libinput.enable = true;
-          #   videoDrivers = [ "nvidia" ];
-          # };
-
-          # For Wayland (Hyprland, Sway, etc.)
-          # environment.sessionVariables = {
-          #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-          #   __NV_PRIME_RENDER_OFFLOAD = "1";
-          #   __GL_SYNC_DISPLAY_DEVICE = "GPU-${builtins.toString (builtins.length (builtins.readFile "/sys/class/drm/card*-device/uevent"))}";
-          # };
         };
 
       homeManager.faccun =
@@ -130,7 +87,6 @@
                 require("lua/faccun_monitors")
               '';
           };
-
         };
     };
   };

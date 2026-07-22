@@ -40,6 +40,7 @@ in
           jonathan
           nvim
 
+          immich
           syncthing
           openssh-server
           postgresql

@@ -6,7 +6,7 @@ let
   inherit (config.flake) meta;
 in
 {
-  flake.modules.nixos = {
+  flake.modules.nixos.caddy = {
     services.caddy = {
       enable = true;
       virtualHosts = {

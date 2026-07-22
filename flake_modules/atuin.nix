@@ -6,8 +6,6 @@
     nixos.atuin-server = {
       services.atuin = {
         enable = true;
-        enableZshIntegration = true;
-        enableNushellIntegration = true;
         database.createLocally = true;
       };
 

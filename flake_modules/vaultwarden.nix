@@ -19,12 +19,13 @@ in
           };
         };
 
-        services.caddy.virtualHosts = {
-          ${meta.services.vaultwarden.url} =
-            let
-              inherit (config.services.vaultwarden) config;
-            in
-            "reverse_proxy ${config.ROCKET_ADDRESS}:${config.ROCKET_PORT}";
+        caddy.virtualHosts = {
+          ${meta.services.vaultwarden.url} = {
+            extraConfig = "reverse_proxy :8222";
+          };
+          # let
+          #   inherit (config.services.vaultwarden) config;
+          # in
         };
 
         # Postgresql setup taken from atuin nixos service: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/misc/atuin.nix

@@ -1,6 +1,16 @@
 {
   flake.modules.nixos.postgresql = {
-    enable = true;
-    backupAll = true;
+
+    services = {
+      postgresql = {
+        enable = true;
+      };
+
+      postgresqlBackup = {
+        enable = true;
+        backupAll = true;
+      };
+    };
+
   };
 }

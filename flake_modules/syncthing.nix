@@ -1,32 +1,31 @@
 { self, ... }:
 {
-  flake.modules.nixos = {
-    syncthing = {
-      imports = self.modules.nixos.syncthing-ports;
-      services.syncthing.enable = true;
-    };
+  flake.modules = {
+    nixos = {
+      syncthing = {
+        imports = [ self.modules.nixos.syncthing-ports ];
+        services.syncthing.enable = true;
+      };
 
-    syncthing-ports = {
+      syncthing-ports = {
 
-      networking = {
-        # Open ports in the firewall.
-        firewall.allowedTCPPorts = [
-          22000
-        ];
+        networking = {
+          # Open ports in the firewall.
+          firewall.allowedTCPPorts = [
+            22000
+          ];
 
-        firewall.allowedUDPPorts = [
-          22000
-          21027
-        ];
+          firewall.allowedUDPPorts = [
+            22000
+            21027
+          ];
+        };
       };
     };
-  };
-
-  flake.modules.homeManager.syncthing =
-    { ... }:
-    {
+    homeManager.syncthing = {
       services.syncthing = {
         enable = true;
       };
     };
+  };
 }

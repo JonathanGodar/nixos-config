@@ -32,7 +32,7 @@ in
     };
 
     modules = {
-      nixos.rpi4 = { config, ... }: {
+      nixos.rpi4 = { config, pkgs, ... }: {
         imports = with self.modules.nixos; [
           inputs.nixos-hardware.nixosModules.raspberry-pi-4
 
@@ -45,7 +45,7 @@ in
           postgresql
           ddclient
           caddy
-          atuin
+          atuin-server
           vaultwarden
         ];
 
@@ -82,14 +82,14 @@ in
           };
         };
 
-        services.rnote-export = {
-          enable = true;
-          user = "syncthing";
-          group = "syncthing";
-
-          inputDirectory = "/mnt/ssd/syncthing/kth";
-          includeString = "*/föreläsningar/F*.rnote";
-        };
+        # services.rnote-export = {
+        #   enable = true;
+        #   user = "syncthing";
+        #   group = "syncthing";
+        #
+        #   inputDirectory = "/mnt/ssd/syncthing/kth";
+        #   includeString = "*/föreläsningar/F*.rnote";
+        # };
 
         services.postgresql = {
           dataDir = "/mnt/ssd/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
@@ -115,57 +115,12 @@ in
         #
         #   exclude = backup_helpers.ignore_directories;
         # };
-
-        services.caddy = {
-          enable = true;
-          virtualHosts = {
-            "ant.${config.home_network_url}" = {
-              extraConfig = ''
-                root * /var/lib/rnote-export/
-                file_server browse
-                header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
-              '';
-            };
-
-            "atuin.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy :8888
-              '';
-            };
-
-            "faccun.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy 192.168.1.83:3344
-              '';
-            };
-
-            "pass.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT}
-              '';
-            };
-
-            "immich.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy [::1]:${toString config.services.immich.port}
-              '';
-            };
-
-            "tun1.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy :9001
-              '';
-            };
-
-            "tun2.${config.home_network_url}" = {
-              extraConfig = ''
-                reverse_proxy :9002
-              '';
-            };
-          };
-        };
       };
       homeManager.rpi4 = {
+        imports = with self.modules.homeManager; [
+          homeManager
+        ];
+
       };
     };
   };

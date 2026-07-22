@@ -50,6 +50,7 @@ in
           vaultwarden
         ];
 
+        networking.hostName = "rpi4";
         boot.kernelPackages = pkgs.linuxPackages;
 
         # This is set by the SD-installer and needs to be kept.
@@ -119,7 +120,7 @@ in
       };
       homeManager.rpi4 = {
         imports = with self.modules.homeManager; [
-          homeManager
+          base
         ];
 
       };

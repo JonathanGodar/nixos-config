@@ -13,15 +13,9 @@ in
       };
 
       services.caddy.virtualHosts = {
-        ${meta.services.immich.url} =
-          let
-            inherit (config.services) immich;
-          in
-          {
-            # Maybe change to this
-            # reverse_proxy [::1]:${toString config.services.immich.port}
-            extraConfig = "reverse_proxy ${immich.host}:${toString immich.port}";
-          };
+        ${meta.services.immich.url} = {
+          extraConfig = "reverse_proxy [::1]:${toString config.services.immich.port}";
+        };
       };
     };
   };

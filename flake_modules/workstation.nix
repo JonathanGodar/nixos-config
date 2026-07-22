@@ -46,6 +46,7 @@ in
     { pkgs, ... }:
     {
       imports = with self.modules.homeManager; [
+        base
         hyprland
 
         ashell
@@ -62,22 +63,14 @@ in
         firefox
         prismlauncher
 
-        homeManager
-
         hyprpaper
-        zsh
         lazygit
         nvim
         nushell
-        nh
         starship
         carapace
-        fzf
         atuin
-        yazi
         comma
-        git
-        zoxide
       ];
 
       home.packages = with pkgs; [

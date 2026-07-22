@@ -13,8 +13,11 @@ in
     services = lib.mkOption {
       type = types.attrsOf (
         types.submodule {
-          options = lib.mkOption {
-            url = lib.str;
+          options = {
+            url = lib.mkOption {
+              type = types.str;
+              description = "Service endpoint";
+            };
           };
         }
       );

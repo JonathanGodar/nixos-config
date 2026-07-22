@@ -19,13 +19,12 @@
       };
 
       # Bootloader.
-      boot.loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
+      boot = {
+        kernel.sysctl = {
+          "fs.inotify.max_user_watches" = "524288"; # Increase default
+        };
 
-        timeout = 1;
       };
-
       # Enable networking
       networking.networkmanager.enable = true;
 
@@ -93,5 +92,6 @@
         "nix-command"
         "flakes"
       ];
+
     };
 }

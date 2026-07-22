@@ -11,10 +11,13 @@ in
     };
 
     services = lib.mkOption {
-      type = types.lazyAttrsOf types.str;
-      default = {
-        hejsan = "svejsan";
-      };
+      type = types.attrsOf (
+        types.submodule {
+          options = lib.mkOption {
+            url = lib.str;
+          };
+        }
+      );
       description = "Urls for self-hosted services";
     };
   };

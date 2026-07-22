@@ -34,6 +34,8 @@ in
     modules = {
       nixos.rpi4 = { config, ... }: {
         imports = with self.modules.nixos; [
+          inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
           base
           jonathan
           nvim
@@ -44,7 +46,27 @@ in
           ddclient
           caddy
           atuin
+          vaultwarden
         ];
+
+        boot.kernelPackages = pkgs.linuxPackages;
+
+        # This is set by the SD-installer and needs to be kept.
+        fileSystems."/" = {
+          device = "/dev/disk/by-label/NIXOS_SD";
+          fsType = "ext4";
+        };
+
+        fileSystems."/mnt/ssd" = {
+          device = "/dev/vg-ssd/lv-home";
+          fsType = "ext4";
+        };
+
+        systemd.tmpfiles.settings.rpi4-fs."/mnt/ssd".d = {
+          # group = cfg.group;
+          # user = cfg.user;
+          mode = "0755";
+        };
 
         services = {
           syncthing.dataDir = "/mnt/ssd/syncthing";
@@ -73,10 +95,7 @@ in
           dataDir = "/mnt/ssd/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}";
         };
 
-        preconf.postgresql.enable = true;
-        preconf.vaultwarden.enable = true;
-        preconf.immich.enable = true;
-
+        services.immich.mediaLocation = "/mnt/ssd/immich";
         # preconf.backup_to_external_drive = {
         #   enable = true;
         #   paths = [

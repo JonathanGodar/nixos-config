@@ -23,6 +23,14 @@ in
         syncthing-ports # Opens ports
       ];
 
+      # This is here since we do not want it together with the raspberry pi
+      boot.loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+
+        timeout = 1;
+      };
+
       # Open minecraft server firewall.
       networking.firewall = {
         allowedTCPPorts = [ 25565 ];

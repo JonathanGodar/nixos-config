@@ -1,5 +1,15 @@
 { ... }:
 {
+
+  flake.modules.nixos.nvim = {
+    # Make root have access to neovim
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+    };
+  };
+
   flake.modules.homeManager.nvim =
     {
       config,

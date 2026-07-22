@@ -1,39 +1,35 @@
 { inputs, self, ... }:
 {
   flake = {
-    # Innan kan byta
-    # direnv
-    # dusnt
-    # comma
-    nixosConfigurations.faccun = inputs.nixpkgs.lib.nixosSystem {
+    meta.hosts.wax9 = {
+      publicKey = builtins.readFile ./wax9.pub;
+    };
+
+    nixosConfigurations.wax9 = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        self.modules.nixos.faccunConfig
+        self.modules.nixos.wax9
       ];
     };
 
     modules = {
-      nixos.faccunConfig =
-        {
-          config,
-          pkgs,
-          ...
-        }:
+      nixos.wax9 =
+        { config, ... }:
         {
           imports = with self.modules.nixos; [
             workstation
-            faccunHardware
+            upower
 
-            # For home-manager
-            homeManager # Activates home-manager options
+            wax9Hardware
+            homeManager
             {
               home-manager.users.jonathan.imports = [
-                self.modules.homeManager.faccun # Bootstraps the first home-manager module for the system
+                self.modules.homeManager.wax9
               ];
             }
           ];
-          networking.hostName = "faccun";
-          networking.hostId = "354736d9";
+
+          networking.hostName = "wax9";
 
           services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -73,21 +69,20 @@
           };
         };
 
-      homeManager.faccun =
-        { pkgs, ... }:
-        {
-          imports = with self.modules.homeManager; [
-            workstation
-          ];
+      homeManager.wax9 = {
+        imports = with self.modules.homeManager; [
+          workstation
+        ];
 
-          wayland.windowManager.hyprland = {
-            extraConfig =
-              # lua
-              ''
-                require("lua/faccun_monitors")
-              '';
-          };
+        wayland.windowManager.hyprland = {
+          extraConfig =
+            # lua
+            ''
+              require("lua/wax9_monitors")
+            '';
         };
+      };
     };
   };
+
 }

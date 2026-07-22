@@ -13,7 +13,7 @@
           autoEnable = false;
 
           flavor = "mocha";
-          grub.enable = true;
+          grub.enable = false;
           sddm.enable = true;
           tty.enable = true;
         };

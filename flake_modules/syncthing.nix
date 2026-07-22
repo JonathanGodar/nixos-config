@@ -1,8 +1,12 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.modules.nixos.syncthing =
-    { ... }:
-    {
+  flake.modules.nixos = {
+    syncthing = {
+      imports = self.modules.nixos.syncthing-ports;
+      services.syncthing.enable = true;
+    };
+
+    syncthing-ports = {
 
       networking = {
         # Open ports in the firewall.
@@ -15,8 +19,8 @@
           21027
         ];
       };
-
     };
+  };
 
   flake.modules.homeManager.syncthing =
     { ... }:

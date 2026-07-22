@@ -20,7 +20,7 @@ in
         hyprland
         keyd
 
-        syncthing # Opens ports
+        syncthing-ports # Opens ports
       ];
 
       # Open minecraft server firewall.

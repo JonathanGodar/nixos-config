@@ -9,8 +9,6 @@
           systemOptions
         ];
 
-        systemOptions.flakePath = "/home/joanthan/nixos";
-
         programs = {
           git.enable = true;
           htop.enable = true;

@@ -53,6 +53,8 @@ in
         networking.hostName = "rpi4";
         boot.kernelPackages = pkgs.linuxPackages;
 
+        systemOptions.flakePath = "/home/joanthan/nixos";
+
         # This is set by the SD-installer and needs to be kept.
         fileSystems."/" = {
           device = "/dev/disk/by-label/NIXOS_SD";

@@ -22,6 +22,8 @@
 
           s = "${lib.getExe pkgs.atuin} scripts";
           r = "${lib.getExe pkgs.atuin} scripts run";
+
+          rpi4 = ''with-env { TERM: "xterm-256color" } {ssh jonathan@ngodag.com}'';
         };
       };
     };

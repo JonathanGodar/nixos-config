@@ -70,12 +70,17 @@ in
         starship
         carapace
         comma
+        direnv
       ];
 
       home.packages = with pkgs; [
         mattermost-desktop
         spotify
         rnote
+
+        # Diskspace analyzer
+        ncdu
+        nemo
       ];
 
       programs = {

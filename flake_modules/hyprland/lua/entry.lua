@@ -75,13 +75,23 @@ for key, dir in pairs(dir_map) do
 	hl.bind(mainMod .. "+ SHIFT + " .. key, hl.dsp.window.swap({ direction = dir }))
 end
 
--- Experimental keybinds for scrolling layout
-hl.bind("SUPER + P", hl.dsp.layout("promote"))
-hl.bind("SUPER + E", hl.dsp.layout("expel"))
-hl.bind("SUPER + C", hl.dsp.layout("consume"))
+-- Poweroff / shutdown etc
+hl.bind(mainMod .. "+ CONTROL + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
+hl.bind(mainMod .. "+ CONTROL + r", hl.dsp.exec_cmd("systemctl soft-reboot"))
 
-hl.bind("SUPER + period", hl.dsp.layout("colresize +conf"))
-hl.bind("SUPER + comma", hl.dsp.layout("colresize -conf"))
+hl.bind(mainMod .. "+ CONTROL + p", hl.dsp.exec_cmd("poweroff"))
+
+-- The keybind below should lock once I get the time to fix hyprlock
+-- hl.bind(mainMod .. "+ + CONTROL + l", hl.dsp.exit())
+hl.bind(mainMod .. "+ SHIFT + CONTROL + l", hl.dsp.exit())
+
+-- Experimental keybinds for scrolling layout
+hl.bind(mainMod .. "+ P", hl.dsp.layout("promote"))
+hl.bind(mainMod .. "+ E", hl.dsp.layout("expel"))
+hl.bind(mainMod .. "+ C", hl.dsp.layout("consume"))
+
+hl.bind(mainMod .. "+ period", hl.dsp.layout("colresize +conf"))
+hl.bind(mainMod .. "+ comma", hl.dsp.layout("colresize -conf"))
 
 hl.bind(mainMod .. "+ ALT + L", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. "+ ALT + h", hl.dsp.layout("swapcol l"))

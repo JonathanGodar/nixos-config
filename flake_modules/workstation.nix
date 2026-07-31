@@ -20,8 +20,16 @@ in
         hyprland
         keyd
 
-        syncthing # Opens ports
+        syncthing-ports # Opens ports
       ];
+
+      # This is here since we do not want it together with the raspberry pi
+      boot.loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+
+        timeout = 1;
+      };
 
       # Open minecraft server firewall.
       networking.firewall = {
@@ -38,6 +46,7 @@ in
     { pkgs, ... }:
     {
       imports = with self.modules.homeManager; [
+        base
         hyprland
 
         ashell
@@ -54,28 +63,24 @@ in
         firefox
         prismlauncher
 
-        homeManager
-
         hyprpaper
-        zsh
         lazygit
         nvim
         nushell
-        nh
         starship
         carapace
-        fzf
-        atuin
-        yazi
         comma
-        git
-        zoxide
+        direnv
       ];
 
       home.packages = with pkgs; [
         mattermost-desktop
         spotify
         rnote
+
+        # Diskspace analyzer
+        ncdu
+        nemo
       ];
 
       programs = {

@@ -96,6 +96,30 @@ hl.bind(mainMod .. "+ comma", hl.dsp.layout("colresize -conf"))
 hl.bind(mainMod .. "+ ALT + L", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. "+ ALT + h", hl.dsp.layout("swapcol l"))
 
+-- Media keys
+-- # Raise and lower volume
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ repeating = true }
+)
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { repeating = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { repeating = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { repeating = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { repeating = true })
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ repeating = true }
+)
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("${lib.getExe pkgs.brightnessctl} s 5%-"), { repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("${lib.getExe pkgs.brightnessctl} s 5%+"), { repeating = true })
+
 -- Scrolling
 hl.config({
 	general = {

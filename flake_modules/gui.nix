@@ -15,8 +15,8 @@
       # };
       #
 
-      # Music player daemon
       services = {
+        # Music player daemon
         mpd.enable = true;
         displayManager = {
           ly = {

@@ -1,6 +1,10 @@
 { inputs, self, ... }:
 {
   flake = {
+    meta.hosts.wax9 = {
+      publicKey = builtins.readFile ./wax9.pub;
+    };
+
     nixosConfigurations.wax9 = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

@@ -21,7 +21,18 @@ in
         keyd
 
         syncthing-ports # Opens ports
+
+        backup_drive
       ];
+
+      services.backup = {
+        include_paths = [
+          "/home/jonathan/"
+        ];
+        exclude_paths = [
+          "**/.cache"
+        ];
+      };
 
       # This is here since we do not want it together with the raspberry pi
       boot.loader = {
@@ -40,6 +51,7 @@ in
       systemOptions = {
         flakePath = "/home/jonathan/nixos/";
       };
+
     };
 
   flake.modules.homeManager.workstation =
@@ -81,6 +93,8 @@ in
         # Diskspace analyzer
         ncdu
         nemo
+
+        ragenix
       ];
 
       programs = {

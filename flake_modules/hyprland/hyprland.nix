@@ -28,6 +28,7 @@
         home.packages = with pkgs; [
           grimblast
           playerctl
+          brightnessctl
         ];
 
         xdg.configFile."hypr/lua" = {

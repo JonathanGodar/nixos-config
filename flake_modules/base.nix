@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.modules = {
     nixos.base =
@@ -7,6 +7,7 @@
         imports = with self.modules.nixos; [
           nix
           systemOptions
+          inputs.agenix.nixosModules.default
         ];
 
         programs = {

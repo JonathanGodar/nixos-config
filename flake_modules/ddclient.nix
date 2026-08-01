@@ -4,12 +4,13 @@ let
 in
 {
   flake.modules.nixos.ddclient = {
+    age.secrets.namecheap_ddns_password.file = ../secrets/namecheap_ddns_token.age;
+
     services.ddclient = {
       enable = true;
       protocol = "namecheap";
       username = "${meta.homeNetworkUrl}";
-      # TODO fix this with ragenix instead
-      passwordFile = "/mnt/ssd/syncthing/misc/secrets/namecheap_ddns_password";
+      passwordFile = config.age.secrets.namecheap_ddns_password.path;
       domains = [
         "@"
         "*"

@@ -155,12 +155,12 @@
         };
 
         xdg.configFile."nvim/lua" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home_modules/nvim/lua";
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/flake_modules/nvim/lua";
           recursive = true;
         };
 
         xdg.configFile."nvim/lazy-lock.json" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home_modules/nvim/lazy-lock.json";
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/flake_modules/nvim/lazy-lock.json";
         };
       };
     };

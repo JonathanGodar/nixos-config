@@ -21,6 +21,7 @@ in
         keyd
 
         syncthing-ports # Opens ports
+        podman
 
         backup_drive
       ];

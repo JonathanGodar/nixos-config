@@ -6,7 +6,7 @@
       ...
     }:
     {
-      virtualization.podman.enable = true;
+      virtualisation.podman.enable = true;
       environment.systemPackages = with pkgs; [
         podman-compose
       ];

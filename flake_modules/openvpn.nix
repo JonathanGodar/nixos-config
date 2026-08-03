@@ -9,17 +9,17 @@
       ${config.age.secrets.openvpn_client.path}
     '';
 
-    # services.openvpn = {
-    #   servers.home = {
-    #     config = "
-    #       auth-user-pass ${config.age.secrets.openvpn_auth_user_pass.path}
-    #       config ${config.age.secrets.openvpn_client.path}
-    #       ";
-    #   };
-    # };
+    services.openvpn = {
+      servers.home = {
+        config = "
+          config ${config.age.secrets.openvpn_client.path}
+          ";
+
+        authUserPass = config.age.secrets.openvpn_auth_user_pass.path;
+      };
+    };
     # environment.systemPackages = with pkgs; [
     #   networkmanager-openvpn
     # ];
-
   };
 }

@@ -26,6 +26,8 @@ in
         backup_drive
       ];
 
+      services.flatpak.enable = true;
+
       services.backup = {
         include_paths = [
           "/home/jonathan/"

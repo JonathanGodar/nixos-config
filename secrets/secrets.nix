@@ -15,4 +15,7 @@ let
 in
 {
   "namecheap_ddns_token.age".publicKeys = [ rpi4 ];
+  "ovpn_client.age".publicKeys = [ wax9 ];
+  "openvpn_auth_user_pass.age".publicKeys = [ wax9 ];
+  "mullvad_account.age".publicKeys = workstations;
 }

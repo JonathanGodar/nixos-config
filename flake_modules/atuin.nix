@@ -1,16 +1,23 @@
 { config, ... }:
+let
+  inherit (config.flake) meta;
+in
 {
-  flake.serviceEndpoints.atuin = "https://atuin.ngodag.com";
+  flake.meta.services.atuin.url = "atuin.${meta.homeNetworkUrl}";
 
   flake.modules = {
     nixos.atuin-server = {
-      services.atuin = {
-        enable = true;
-        database.createLocally = true;
-      };
+      services = {
+        atuin = {
+          enable = true;
+          database.createLocally = true;
+        };
 
-      services.postgresql = {
-        enable = true;
+        postgresql = {
+          enable = true;
+        };
+
+        caddy.virtualHosts."${meta.services.atuin.url}".extraConfig = "reverse_proxy :8888";
       };
     };
 
@@ -20,7 +27,7 @@
         daemon.enable = true;
         settings = {
           sync_frequency = "0";
-          sync_address = "${config.flake.serviceEndpoints.atuin}";
+          sync_address = "https://${meta.services.atuin.url}";
           invert = true;
         };
         enableNushellIntegration = true;

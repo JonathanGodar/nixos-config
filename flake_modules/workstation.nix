@@ -23,6 +23,8 @@ in
         syncthing-ports # Opens ports
         podman
 
+        notifaj
+
         backup_drive
       ];
 

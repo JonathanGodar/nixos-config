@@ -29,7 +29,7 @@ in
                   name = "notifaj";
                   runtimeInputs = [ pkgs.ntfy-sh ];
                   text = ''
-                    NTFY_HOST="https://${meta.services.ntfy-sh.url}" NTFY_USER="${ntfy_cli_user}:$(< ${config.age.secrets.ntfy_password.path})" ntfy "$@"
+                    NTFY_CONFIG="${pkgs.writeText "ntfy_confg.txt" "default-host: https://${meta.services.ntfy-sh.url}"}" NTFY_USER="${ntfy_cli_user}:$(< ${config.age.secrets.ntfy_password.path})" ntfy "$@"
                   '';
                 })
               ];

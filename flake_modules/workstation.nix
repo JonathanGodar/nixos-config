@@ -100,6 +100,9 @@ in
         nemo
 
         ragenix
+
+        fd
+        ripgrep
       ];
 
       programs = {

@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.openvpn = { config, pkgs, ... }: {
     # Home network config
-    age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
     age.secrets.openvpn_client.file = ../secrets/ovpn_client.age;
     age.secrets.openvpn_auth_user_pass.file = ../secrets/openvpn_auth_user_pass.age;
 

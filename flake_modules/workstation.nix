@@ -28,6 +28,7 @@ in
         backup_drive
       ];
 
+      age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
       services.flatpak.enable = true;
 
       services.backup = {

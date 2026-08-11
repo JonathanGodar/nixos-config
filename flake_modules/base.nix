@@ -7,17 +7,13 @@
         imports = with self.modules.nixos; [
           nix
           systemOptions
+          bluetooth
           inputs.agenix.nixosModules.default
         ];
 
         programs = {
           git.enable = true;
           htop.enable = true;
-        };
-
-        hardware = {
-          bluetooth.enable = true; # enables support for Bluetooth
-          bluetooth.powerOnBoot = true;
         };
 
         # Bootloader.
@@ -67,7 +63,7 @@
           packages = [ ];
         };
 
-        users.defaultUserShell = pkgs.zsh;
+        # users.defaultUserShell = pkgs.zsh;
 
         programs.neovim = {
           enable = true;

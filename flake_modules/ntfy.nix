@@ -8,7 +8,7 @@ in
       ntfy_internal_port = "8329";
     in
     {
-      meta.services.ntfy-sh.url = "tun1.${meta.homeNetworkUrl}";
+      meta.services.ntfy-sh.url = "ntfy.${meta.homeNetworkUrl}";
 
       modules.nixos =
         let

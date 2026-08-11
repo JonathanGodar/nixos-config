@@ -26,6 +26,7 @@ in
         notifaj
 
         backup_drive
+        mullvad
       ];
 
       age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];

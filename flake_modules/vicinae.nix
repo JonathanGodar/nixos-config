@@ -24,6 +24,7 @@
 
       home.packages = with pkgs; [
         playerctl
+        pulseaudio # Needed for pulseaudio extension
       ];
     };
 }

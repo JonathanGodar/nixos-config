@@ -20,7 +20,6 @@
             workstation
             upower
 
-            mullvad
             openvpn
             wax9Hardware
             homeManager

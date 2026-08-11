@@ -3,6 +3,20 @@ let
   inherit (lib) types;
 in
 {
+  #For rapsberry pi
+  #
+  # # Include the postgres backup
+  # "/var/backup"
+  #
+  # "/var/lib"
+  #
+  # # Backup immich
+  # "/mnt/ssd/immich/backups"
+  # "/mnt/ssd/immich/library"
+  # "/mnt/ssd/immich/upload"
+  # "/mnt/ssd/immich/profile"
+  #
+  # "/mnt/ssd/syncthing"
   flake = {
     modules.nixos =
       let

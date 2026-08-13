@@ -48,6 +48,7 @@ in
           caddy
           atuin-server
           vaultwarden
+          ntfy-sh
         ];
 
         networking.hostName = "rpi4";

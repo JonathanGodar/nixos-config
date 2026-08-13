@@ -25,7 +25,9 @@ in
 
         notifaj
 
+        backup
         backup_drive
+        backup_rpi4
         mullvad
       ];
 

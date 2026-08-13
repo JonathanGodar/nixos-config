@@ -1,5 +1,6 @@
 { self, lib, ... }:
 let
+  inherit (self) meta;
   inherit (lib) types;
 in
 {
@@ -21,6 +22,34 @@ in
     modules.nixos =
       let
         ntfy_topic = "backup";
+        borg_common_options =
+          backupTarget:
+          ({ config, ... }: {
+            persistentTimer = true;
+            inhibitsSleep = true;
+
+            paths = config.services.backup.include_paths;
+            exclude = config.services.backup.exclude_paths;
+
+            encryption.mode = "none";
+            compression = "auto,lzma";
+            startAt = "daily";
+
+            extraCreateArgs = "--verbose --stats";
+
+            # Exit codes come from https://borgbackup.readthedocs.io/en/stable/usage/general.html
+            postHook = ''
+              if [[ $exitStatus -eq 0 ]]; then
+                notifaj ${ntfy_topic} "Backup ${config.networking.hostName} -> ${backupTarget} done. Exit code $exitStatus"
+              elif (( ($exitStatus >= 2 &&  $exitStatus <= 99))); then
+                notifaj ${ntfy_topic} "ERROR: Backup ${config.networking.hostName} -> ${backupTarget} failed, exit $exitStatus"
+              elif (( ($exitStatus == 1) ||  ($exitStatus <= 127 && $exitStatus >= 100))); then
+                notifaj ${ntfy_topic} "Warning: Backup ${config.networking.hostName} -> ${backupTarget} failed, exit $exitStatus"
+              else
+                notifaj ${ntfy_topic} "Backup ${config.networking.hostName} -> ${backupTarget} exited $exitStatus";
+              fi
+            '';
+          });
       in
       {
         backup = {
@@ -44,76 +73,41 @@ in
         backup_rpi4 =
           {
             config,
-            lib,
             ...
-          }:
+          }@args:
           let
-            job_name = "${config.networking.hostName}_rpi4_backup";
+            backup_target = "rpi4";
           in
           {
 
-            imports = [
-              self.modules.nixos.notifaj
+            imports = with self.modules.nixos; [
+              notifaj
             ];
 
             systemd = {
-              services."borgbackup-job-${job_name}" = {
+              services."borgbackup-job-${backup_target}" = {
                 requires = [ "network-online.target" ];
                 after = [ "network-online.target" ];
               };
             };
 
-            services.borgbackup.jobs."${job_name}" = {
-              persistentTimer = true;
-
-              preHook = ''
-                notifaj ${ntfy_topic} "Starting ${config.networking.hostName}->RPI backup"
-              '';
-
-              postHook = ''
-                if [[ $exitStatus -eq 0 ]]; then
-                  notifaj ${ntfy_topic} "Backup ${config.networking.hostName} -> RPI done"
-                else
-                  notifaj ${ntfy_topic} "Backup  ${config.networking.hostName} -> RPI failed, Backup job exited with status $exitStatus"
-                fi
-              '';
-
-              paths = config.services.backup.include_paths;
-
-              exclude = config.services.backup.exclude_paths;
-
+            services.borgbackup.jobs."${backup_target}" = (borg_common_options backup_target args) // {
               environment = {
                 BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
-
-                # Required to let notify-session access DBUS.
-                # This is really ugly because i have hard coded the my users UID (which is 1000).
-                DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
               };
-
-              extraCreateArgs = "--verbose --stats";
-
               user = "jonathan";
-              # Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
-
-              repo = "borg@${config.home_network_url}:./";
-              encryption.mode = "none";
-              compression = "auto,lzma";
-              startAt = "daily";
+              repo = "borg@${meta.homeNetworkUrl}:./";
             };
           };
 
         backup_drive =
-          { config, ... }:
+          { config, ... }@args:
           let
             disk_uuid = "05fbbe4b-540c-4705-81d3-df2bb043d47e";
             mount_location = "/backup";
-            job_name = "${config.networking.hostName}_external_drive_backup";
+            job_name = "external_drive_backup";
           in
           {
-
-            imports = [
-              self.modules.nixos.backup
-            ];
 
             fileSystems."${mount_location}" = {
               device = "/dev/disk/by-uuid/${disk_uuid}";
@@ -121,8 +115,6 @@ in
               options = [
                 "noauto"
                 "nofail"
-                # "x-systemd.device-timeout=0"
-                # "x-systemd.automount"
               ];
             };
             services = {
@@ -130,18 +122,24 @@ in
               udev.extraRules = ''
                 ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="${disk_uuid}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="borgbackup-job-${job_name}.service"
               '';
-              borgbackup.jobs.${job_name} = {
-                compression = "auto,zstd";
-                paths = config.services.backup.include_paths;
-                exclude = config.services.backup.exclude_paths;
+              borgbackup.jobs.${job_name} = (borg_common_options job_name args) // {
                 repo = "${mount_location}/borgbackup";
-                startAt = "daily";
-                encryption.mode = "none";
-                persistentTimer = true;
-                extraCreateArgs = "--verbose --stats";
               };
             };
           };
+
+        backup-server = {
+          services.borgbackup.repos = {
+            borg_repo = {
+              authorizedKeys = with meta.hosts; [
+                faccun.publicKey
+                wax9.publicKey
+              ];
+              path = "/mnt/ssd/borg";
+            };
+          };
+
+        };
       };
 
     meta.backup = {

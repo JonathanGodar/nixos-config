@@ -43,6 +43,7 @@ in
           immich
           syncthing
           openssh-server
+          backup-server
           postgresql
           ddclient
           caddy

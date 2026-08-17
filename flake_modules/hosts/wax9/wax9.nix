@@ -20,7 +20,7 @@
             workstation
             upower
 
-            openvpn
+            # openvpn
             wax9Hardware
             homeManager
             {

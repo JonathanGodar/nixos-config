@@ -50,6 +50,9 @@ in
           atuin-server
           vaultwarden
           ntfy-sh
+
+          backup
+          backup_drive
         ];
 
         networking.hostName = "rpi4";
@@ -86,6 +89,14 @@ in
             ];
             path = "/mnt/ssd/borg";
           };
+        };
+
+        services.backup = {
+          include_paths = with config; [
+            services.immich.mediaLocation
+            services.postgresqlBackup.location # This should cover atuin and vaultwarden.
+            services.syncthing.dataDir
+          ];
         };
 
         # services.rnote-export = {

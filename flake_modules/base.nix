@@ -9,6 +9,7 @@
           systemOptions
           bluetooth
           inputs.agenix.nixosModules.default
+          notifaj
         ];
 
         programs = {

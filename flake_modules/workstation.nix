@@ -25,6 +25,7 @@ in
 
         notifaj
 
+        notifaj
         backup
         backup_drive
         backup_rpi4
@@ -37,9 +38,6 @@ in
       services.backup = {
         include_paths = [
           "/home/jonathan/"
-        ];
-        exclude_paths = [
-          "**/.cache"
         ];
       };
 

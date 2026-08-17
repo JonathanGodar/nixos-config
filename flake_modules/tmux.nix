@@ -1,13 +1,5 @@
 {
-  pkgs,
-  lib,
-  inputs,
-  config,
-  ...
-}:
-{
-  options.preconf.tmux.enable = lib.mkEnableOption "Enable tmux";
-  config = lib.mkIf config.preconf.tmux.enable {
+  flake.modules.homeManager.tmux = { pkgs, lib, ... }: {
     programs.tmux = {
       enable = true;
 

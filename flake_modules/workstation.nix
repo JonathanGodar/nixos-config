@@ -26,17 +26,19 @@ in
         notifaj
 
         media
+        notifaj
+        backup
         backup_drive
+        backup_rpi4
+        mullvad
       ];
 
+      age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
       services.flatpak.enable = true;
 
       services.backup = {
         include_paths = [
           "/home/jonathan/"
-        ];
-        exclude_paths = [
-          "**/.cache"
         ];
       };
 

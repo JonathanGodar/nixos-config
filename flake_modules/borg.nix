@@ -1,12 +1,61 @@
 { self, lib, ... }:
 let
+  inherit (self) meta;
   inherit (lib) types;
 in
 {
+  #For rapsberry pi
+  #
+  # # Include the postgres backup
+  # "/var/backup"
+  #
+  # "/var/lib"
+  #
+  # # Backup immich
+  # "/mnt/ssd/immich/backups"
+  # "/mnt/ssd/immich/library"
+  # "/mnt/ssd/immich/upload"
+  # "/mnt/ssd/immich/profile"
+  #
+  # "/mnt/ssd/syncthing"
   flake = {
     modules.nixos =
       let
         ntfy_topic = "backup";
+        borg_common_options =
+          backupTarget:
+          (
+            { config, pkgs, ... }@args:
+            let
+              ntfy-w = lib.getExe (self.lib.ntfy-w args);
+            in
+            {
+              persistentTimer = true;
+              # inhibitsSleep = true;
+
+              paths = config.services.backup.include_paths;
+              exclude = config.services.backup.exclude_paths;
+
+              encryption.mode = "none";
+              compression = "auto,lzma";
+              startAt = "daily";
+
+              extraCreateArgs = "--verbose --stats";
+
+              # Exit codes come from https://borgbackup.readthedocs.io/en/stable/usage/general.html
+              postHook = ''
+                if [[ $exitStatus -eq 0 ]]; then
+                  ${ntfy-w} pub ${ntfy_topic} "Backup ${config.networking.hostName} -> ${backupTarget} done. Exit code $exitStatus"
+                elif (( ($exitStatus >= 2 &&  $exitStatus <= 99))); then
+                  ${ntfy-w} pub ${ntfy_topic} "ERROR: Backup ${config.networking.hostName} -> ${backupTarget} failed, exit $exitStatus"
+                elif (( ($exitStatus == 1) ||  ($exitStatus <= 127 && $exitStatus >= 100))); then
+                  ${ntfy-w} pub ${ntfy_topic} "Warning: Backup ${config.networking.hostName} -> ${backupTarget} failed, exit $exitStatus"
+                else
+                  ${ntfy-w} pub ${ntfy_topic} "Backup ${config.networking.hostName} -> ${backupTarget} exited $exitStatus";
+                fi
+              '';
+            }
+          );
       in
       {
         backup = {
@@ -14,13 +63,13 @@ in
             services.backup = {
               include_paths = lib.mkOption {
                 type = types.listOf types.str;
-                default = [ ];
+                default = [ "/" ];
                 description = "Paths to include in backups";
               };
 
               exclude_paths = lib.mkOption {
                 type = types.listOf types.str;
-                default = [ ];
+                default = self.meta.backup.home_ignores ++ self.meta.backup.wild_card_ignores;
                 description = "Paths to exclude from backups";
               };
             };
@@ -30,76 +79,37 @@ in
         backup_rpi4 =
           {
             config,
-            lib,
+            pkgs,
             ...
-          }:
+          }@args:
           let
-            job_name = "${config.networking.hostName}_rpi4_backup";
+            backup_target = "rpi4";
           in
           {
-
-            imports = [
-              self.modules.nixos.notifaj
-            ];
-
             systemd = {
-              services."borgbackup-job-${job_name}" = {
+              services."borgbackup-job-${backup_target}" = {
                 requires = [ "network-online.target" ];
                 after = [ "network-online.target" ];
               };
             };
 
-            services.borgbackup.jobs."${job_name}" = {
-              persistentTimer = true;
-
-              preHook = ''
-                notifaj ${ntfy_topic} "Starting ${config.networking.hostName}->RPI backup"
-              '';
-
-              postHook = ''
-                if [[ $exitStatus -eq 0 ]]; then
-                  notifaj ${ntfy_topic} "Backup ${config.networking.hostName} -> RPI done"
-                else
-                  notifaj ${ntfy_topic} "Backup  ${config.networking.hostName} -> RPI failed, Backup job exited with status $exitStatus"
-                fi
-              '';
-
-              paths = config.services.backup.include_paths;
-
-              exclude = config.services.backup.exclude_paths;
-
+            services.borgbackup.jobs."${backup_target}" = (borg_common_options backup_target args) // {
               environment = {
                 BORG_RSH = "ssh -i /home/jonathan/.ssh/id_ed25519";
-
-                # Required to let notify-session access DBUS.
-                # This is really ugly because i have hard coded the my users UID (which is 1000).
-                DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
               };
-
-              extraCreateArgs = "--verbose --stats";
-
               user = "jonathan";
-              # Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
-
-              repo = "borg@${config.home_network_url}:./";
-              encryption.mode = "none";
-              compression = "auto,lzma";
-              startAt = "daily";
+              repo = "borg@${meta.homeNetworkUrl}:./";
             };
           };
 
         backup_drive =
-          { config, ... }:
+          { config, pkgs, ... }@args:
           let
             disk_uuid = "05fbbe4b-540c-4705-81d3-df2bb043d47e";
             mount_location = "/backup";
-            job_name = "${config.networking.hostName}_external_drive_backup";
+            job_name = "external_drive";
           in
           {
-
-            imports = [
-              self.modules.nixos.backup
-            ];
 
             fileSystems."${mount_location}" = {
               device = "/dev/disk/by-uuid/${disk_uuid}";
@@ -107,8 +117,6 @@ in
               options = [
                 "noauto"
                 "nofail"
-                # "x-systemd.device-timeout=0"
-                # "x-systemd.automount"
               ];
             };
             services = {
@@ -116,21 +124,67 @@ in
               udev.extraRules = ''
                 ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="${disk_uuid}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="borgbackup-job-${job_name}.service"
               '';
-              borgbackup.jobs.${job_name} = {
-                compression = "auto,zstd";
-                paths = config.services.backup.include_paths;
-                exclude = config.services.backup.exclude_paths;
-                repo = "${mount_location}/borgbackup";
-                startAt = "daily";
-                encryption.mode = "none";
-                persistentTimer = true;
-                extraCreateArgs = "--verbose --stats";
-              };
+
+              borgbackup.jobs.${job_name} =
+                let
+                  job_cfg = (borg_common_options job_name args);
+                in
+                job_cfg
+                // {
+                  repo = "${mount_location}/borgbackup";
+                  # postHook = job_cfg.postHook + "\n ${lib.getExe pkgs.umount} ${mount_location}";
+                };
             };
           };
+
+        backup-server = {
+          services.borgbackup.repos = {
+            borg_repo = {
+              authorizedKeys = with meta.hosts; [
+                faccun.publicKey
+                wax9.publicKey
+              ];
+              path = "/mnt/ssd/borg";
+            };
+          };
+        };
       };
 
     meta.backup = {
+      home_ignores = map (x: "/home/*/" + x) [
+        ".cargo/"
+        ".eclipse/"
+        ".discord-rpc/"
+        ".java/"
+        ".julia/"
+        ".nix-profile/"
+        ".ssh/"
+        ".vscode/"
+        ".zconpdump"
+        ".zshenv"
+        ".zshrc"
+        "Downloads/"
+
+        ".mozilla/firefox/*.default-release/cache2/"
+        ".mozilla/firefox/"
+        ".config/discord/"
+        ".config/google-chrome/Default/Cache/"
+        ".config/chromium/"
+        ".local/share/Trash/"
+        ".local/share/containers/"
+        ".local/share/Steam/"
+
+        ".npm/"
+        ".m2/repository/"
+        ".gradle/caches/"
+        ".virtualenvs/"
+
+        # From WAX9
+        "VirtualBox VMs/"
+        "bin/MATLAB/"
+        ".MathWorks"
+      ];
+
       wild_card_ignores = [
         "**/Cache"
         "**/cache"

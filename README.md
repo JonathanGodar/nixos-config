@@ -37,4 +37,10 @@ To update the raspberry pi with packages being build on a remote machine use
 
 ```bash
 nixos-rebuild switch --flake .#rpi4 --target-host <user>@<raspberry pi host> --use-remote-sudo
+
 ```
+
+## Quirks
+
+### Borg
+To make syncing to remote borg work you have to ssh into it once to get the known hosts in manually, bc cannot be bothered to fix that.

@@ -1,14 +1,5 @@
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-{
-  options = {
-    preconf.alacritty.enable = lib.mkEnableOption "Enable preconfigured alacritty";
-  };
-  config = lib.mkIf config.preconf.alacritty.enable {
+  flake.modules.homeManager.alacritty = {
     programs.alacritty = {
       enable = true;
       settings = {

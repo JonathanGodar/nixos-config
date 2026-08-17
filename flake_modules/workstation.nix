@@ -25,6 +25,7 @@ in
 
         notifaj
 
+        media
         backup_drive
       ];
 

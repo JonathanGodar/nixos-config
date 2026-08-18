@@ -107,6 +107,7 @@ in
 
         fd
         ripgrep
+        wl-clipboard
       ];
 
       programs = {

@@ -9,6 +9,9 @@ in
       # TODO set netowrking refresh thing so that the dns name resolution is periodically updated!
       # Set this in laptop and desktop config!
       # dynamicEndpointRefreshSeconds = 20;
+
+      age.secrets.wg_rpi4_pk.file = ../secrets/wg_rpi4_pk.age;
+
       networking.wireguard = {
         interfaces.wg0 = {
           ips = [ "10.100.0.1/24" ]; # Have last byte for subnet
@@ -23,6 +26,11 @@ in
           ];
         };
       };
+
+      networking.firewall.allowedUDPPorts = [
+        32232
+      ];
+
     };
 
     wireguard_client =

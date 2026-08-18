@@ -57,6 +57,8 @@ in
 
           backup
           backup_drive
+
+          wireguard_server
         ];
 
         networking.hostName = "rpi4";

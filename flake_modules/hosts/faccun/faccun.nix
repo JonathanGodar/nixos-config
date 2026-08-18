@@ -12,6 +12,8 @@
     {
       meta.hosts.faccun = {
         publicKey = builtins.readFile ./faccun.pub;
+        wgPublicKey = "X2GbP/AIKtMFskcVU4bKwGJ5YMStIP4xuH6Vt//HaTE=";
+        wgIp = "10.100.0.2";
       };
       # Innan kan byta
       # direnv
@@ -33,6 +35,8 @@
           }:
           {
             imports = with self.modules.nixos; [
+              steam
+              wireguard_client
               workstation
               faccunHardware
 

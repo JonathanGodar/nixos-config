@@ -18,6 +18,10 @@ let
 in
 {
   flake = { pkgs, ... }: {
+    meta.hosts.rpi4 = {
+      wgPublicKey = "VFltFcvkDZrEfa/M2Gt6+eKvJryNUYhpCBvuIljlOAw=";
+    };
+
     nixosConfigurations.rpi4 = inputs.nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = with self.modules.nixos; [

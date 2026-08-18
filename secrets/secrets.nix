@@ -16,11 +16,14 @@ let
   all = workstations ++ server;
 in
 {
-  "namecheap_ddns_token.age".publicKeys = [ rpi4 ];
-  "ovpn_client.age".publicKeys = [ wax9 ];
-  "openvpn_auth_user_pass.age".publicKeys = [ wax9 ];
-  "mullvad_account.age".publicKeys = workstations;
-  "ntfy_password.age".publicKeys = all;
+  # "namecheap_ddns_token.age".publicKeys = [ rpi4 ];
+  # "ovpn_client.age".publicKeys = [ wax9 ];
+  # "openvpn_auth_user_pass.age".publicKeys = [ wax9 ];
+  # "mullvad_account.age".publicKeys = workstations;
+  # "ntfy_password.age".publicKeys = all;
+  "wg_faccun_pk.age".publicKeys = workstations;
+  "wg_rpi4_pk.age".publicKeys = all;
+
   # "ntfy_password.age".publicKeys = workstations;
   # "ntfy_password.age".publicKeys = all;
   # "ntfy_password.age".publicKeys = workstations + server;

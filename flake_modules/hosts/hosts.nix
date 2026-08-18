@@ -13,6 +13,16 @@ in
               type = types.str;
               description = "Public key for host";
             };
+
+            wgPublicKey = lib.mkOption {
+              type = types.str;
+              description = "Public key for wireguard connections";
+            };
+
+            wgIp = lib.mkOption {
+              type = types.str;
+              description = "Ip in the wg network";
+            };
           };
         }
       );

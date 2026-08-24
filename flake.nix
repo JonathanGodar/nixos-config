@@ -6,9 +6,8 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    catppuccin-wallpaper-repo = {
-      url = "github:zhichaoh/catppuccin-wallpapers";
-      flake = false;
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
     };
 
     home-manager = {
@@ -16,87 +15,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    tmuxSessionX = {
-      url = "github:omerxx/tmux-sessionx";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:JonathanGodar/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    import-tree.url = "github:denful/import-tree";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
-    opentablet-ugee = {
-      url = "github:Spencer-Sawyer/OpenTabletDriver/master";
-      flake = false;
-    };
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    anyrun.url = "github:anyrun-org/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    rnote-export.url = "github:JonathanGodar/rnote_export";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nixos-hardware,
-    ...
-  } @ inputs: {
-    nixosConfigurations.faccun = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit system;
-        inherit inputs;
-      };
-
-      modules = [
-        ./hosts/faccun
-        ./binarycaches.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            inherit system;
-          };
-
-          home-manager.users.jonathan = {
-            imports = [
-              ./home/faccun
-            ];
-          };
-        }
-      ];
-    };
-    nixosConfigurations.wax9 = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit system;
-        inherit inputs;
-      };
-
-      modules = [
-        nixos-hardware.nixosModules.huawei-machc-wa
-        ./hosts/wax9
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            inherit system;
-          };
-
-          home-manager.users.jonathan = {
-            imports = [
-              ./home/wax9
-            ];
-          };
-        }
-      ];
-    };
-  };
+  outputs =
+    {
+      flake-parts,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+    } (inputs.import-tree ./flake_modules);
 }

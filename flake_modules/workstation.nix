@@ -34,6 +34,10 @@ in
         opentabletdriver
       ];
 
+      environment.systemPackages = with pkgs; [
+        distrobox
+      ];
+
       age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
       services.flatpak.enable = true;
 

@@ -55,10 +55,19 @@ in
                 ];
 
                 endpoint = "${meta.homeNetworkUrl}:32232";
+                # persistentKeepalive = 10;
               }
             ];
           };
         };
+        networking.firewall.trustedInterfaces = [ "wg0" ];
+
+        networking.firewall.allowedUDPPorts = [
+          1234
+        ];
+        networking.firewall.allowedTCPPorts = [
+          1234
+        ];
       };
 
   };

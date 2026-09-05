@@ -39,6 +39,7 @@
               wireguard_client
               workstation
               faccunHardware
+              openssh-server
 
               # For home-manager
               homeManager # Activates home-manager options

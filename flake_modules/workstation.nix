@@ -108,7 +108,12 @@ in
         fd
         ripgrep
         wl-clipboard
+
+        gh
+        vscode
       ];
+
+      services.kdeconnect.enable = true;
 
       programs = {
         discord.enable = true;

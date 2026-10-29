@@ -1,8 +1,22 @@
 {
   flake.modules.homeManager.sioyek =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
-      programs.sioyek.enable = true;
+      programs.sioyek = {
+        enable = true;
+        # Thanks mistral
+        package = (
+          pkgs.symlinkJoin {
+            name = "sioyek";
+            paths = [ pkgs.sioyek ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/sioyek \
+                --set QT_QPA_PLATFORM xcb
+            '';
+          }
+        );
+      };
 
       xdg.mimeApps.defaultApplications = {
         "application/pdf" = [ "sioyek.desktop" ]; # Replace with your preferred viewer

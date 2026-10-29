@@ -111,6 +111,17 @@
                   require("lua/faccun_monitors")
                 '';
             };
+
+            # Thanks mistral
+            programs.sioyek.package = pkgs.symlinkJoin {
+              name = "sioyek";
+              paths = [ pkgs.sioyek ];
+              nativeBuildInputs = [ pkgs.makeWrapper ];
+              postBuild = ''
+                wrapProgram $out/bin/sioyek \
+                  --set QT_QPA_PLATFORM xcb
+              '';
+            };
           };
       };
     };

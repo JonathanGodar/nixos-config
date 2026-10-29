@@ -4,18 +4,6 @@
     {
       programs.sioyek = {
         enable = true;
-        # Thanks mistral
-        package = (
-          pkgs.symlinkJoin {
-            name = "sioyek";
-            paths = [ pkgs.sioyek ];
-            nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              wrapProgram $out/bin/sioyek \
-                --set QT_QPA_PLATFORM xcb
-            '';
-          }
-        );
       };
 
       xdg.mimeApps.defaultApplications = {

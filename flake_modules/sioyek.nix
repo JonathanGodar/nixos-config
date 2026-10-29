@@ -19,7 +19,7 @@
       };
 
       xdg.mimeApps.defaultApplications = {
-        "application/pdf" = [ "sioyek.desktop" ]; # Replace with your preferred viewer
+        "application/pdf" = [ "sioyek.desktop" ];
       };
 
       home.file."${config.xdg.configHome}/sioyek/keys_user.config".text = ''

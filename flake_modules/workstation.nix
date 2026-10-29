@@ -117,6 +117,8 @@ in
         vscode
       ];
 
+      xdg.mimeApps.enable = true;
+
       services.kdeconnect.enable = true;
 
       programs = {

@@ -39,7 +39,10 @@ in
       ];
 
       age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
-      services.flatpak.enable = true;
+      services = {
+        flatpak.enable = true;
+        power-profiles-daemon.enable = true;
+      };
 
       services.backup = {
         include_paths = [

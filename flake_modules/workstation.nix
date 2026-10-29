@@ -49,7 +49,11 @@ in
 
       # This is here since we do not want it together with the raspberry pi
       boot.loader = {
-        systemd-boot.enable = true;
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 10;
+        };
+
         efi.canTouchEfiVariables = true;
 
         timeout = 1;

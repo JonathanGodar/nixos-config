@@ -103,6 +103,9 @@ in
         spotify
         rnote
 
+        gimp
+        onlyoffice-desktopeditors
+
         # Diskspace analyzer
         ncdu
         nemo

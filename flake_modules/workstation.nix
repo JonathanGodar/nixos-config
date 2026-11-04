@@ -39,7 +39,10 @@ in
       ];
 
       age.identityPaths = [ "/home/jonathan/.ssh/id_ed25519" ];
-      services.flatpak.enable = true;
+      services = {
+        flatpak.enable = true;
+        power-profiles-daemon.enable = true;
+      };
 
       services.backup = {
         include_paths = [
@@ -49,7 +52,11 @@ in
 
       # This is here since we do not want it together with the raspberry pi
       boot.loader = {
-        systemd-boot.enable = true;
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 10;
+        };
+
         efi.canTouchEfiVariables = true;
 
         timeout = 1;

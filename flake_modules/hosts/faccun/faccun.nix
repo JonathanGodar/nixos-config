@@ -14,6 +14,7 @@
         publicKey = builtins.readFile ./faccun.pub;
         wgPublicKey = "X2GbP/AIKtMFskcVU4bKwGJ5YMStIP4xuH6Vt//HaTE=";
         wgIp = "10.100.0.2";
+        wolIface = "enp4s0";
       };
       # Innan kan byta
       # direnv
@@ -40,6 +41,8 @@
               workstation
               faccunHardware
               openssh-server
+
+              wakeonlan
 
               # For home-manager
               homeManager # Activates home-manager options

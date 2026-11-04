@@ -14,6 +14,11 @@ in
               description = "Public key for host";
             };
 
+            wolIface = lib.mkOption {
+              type = types.str;
+              description = "Wake on lan interface";
+            };
+
             wgPublicKey = lib.mkOption {
               type = types.str;
               description = "Public key for wireguard connections";

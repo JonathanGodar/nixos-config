@@ -1,0 +1,37 @@
+-- Thanks mistral
+-- return {
+-- 	{
+-- 		"benlubas/molten-nvim",
+-- 		version = "^1.0.0",
+-- 		build = ":UpdateRemotePlugins",
+-- 		init = function()
+-- 			-- image rendering: "kitty" (kitty protocol), "image.nvim" or "none"
+-- 			-- vim.g.molten_image_provider = "" -- start with none, upgrade later
+-- 			-- vim.g.molten_output_win_max_height = 20
+-- 			-- vim.g.molten_auto_open_output = false
+-- 		end,
+-- 		keys = {
+-- 			{ "<leader>mi", ":MoltenInit<CR>", desc = "Start/Init kernel" },
+-- 			{ "<leader>mr", ":MoltenEvaluateOperator<CR>", desc = "Run operator" },
+-- 			{ "<leader>mv", ":MoltenEvaluateVisual<CR>gv", mode = "v", desc = "Run visual selection" },
+-- 			{ "<leader>ml", ":MoltenEvaluateLine<CR>", desc = "Run line" },
+-- 			{ "<leader>me", ":MoltenShowOutput<CR>", desc = "Show output" },
+-- 			{ "<leader>mh", ":noautocmd MoltenHideOutput<CR>", desc = "Hide output" },
+-- 			{ "<leader>mx", ":MoltenInterrupt<CR>", desc = "Interrupt kernel" },
+-- 			{ "<leader>mR", ":MoltenRestart<CR>", desc = "Restart kernel" },
+-- 		},
+-- 		lazy = false,
+-- 	},
+-- 	{
+-- 		"GCBallesteros/jupytext.nvim",
+-- 		opts = {
+-- 			custom_language_formatting = {
+-- 				python = {
+-- 					extension = "py",
+-- 					style = "percent", -- # %% cell markers, Jupytext "percent" format
+-- 				},
+-- 			},
+-- 		},
+-- 		lazy = false, -- must load before opening .ipynb files
+-- 	},
+-- }

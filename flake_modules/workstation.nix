@@ -114,7 +114,6 @@ in
         onlyoffice-desktopeditors
 
         # Diskspace analyzer
-        ncdu
         nemo
 
         ragenix

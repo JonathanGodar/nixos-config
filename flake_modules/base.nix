@@ -92,7 +92,7 @@
           "flakes"
         ];
       };
-    homeManager.base = {
+    homeManager.base = { pkgs, ... }: {
       imports = with self.modules.homeManager; [
         homeManager
         zsh
@@ -102,6 +102,10 @@
         yazi
         git
         zoxide
+      ];
+
+      home.packages = with pkgs; [
+        ncdu
       ];
     };
   };

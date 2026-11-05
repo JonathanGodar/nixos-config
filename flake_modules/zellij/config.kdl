@@ -183,6 +183,9 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "locked"
         }
+        bind "f" {
+            ToggleHostFullscreen
+        }
     }
     shared_among "normal" "locked" {
         bind "Alt Shift left" { MoveFocusOrTab "left"; }

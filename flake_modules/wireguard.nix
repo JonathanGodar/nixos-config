@@ -29,7 +29,19 @@ in
 
       networking.firewall.allowedUDPPorts = [
         32232
+	1234
       ];
+      networking.firewall.allowedTCPPorts = [
+        32232
+	1234
+      ];
+
+      boot.kernel.sysctl."net.ipv4.conf.all.rp_filter" = 2; # loose
+
+      networking.firewall.trustedInterfaces = [
+	      "wg0"
+      ];
+
 
     };
 

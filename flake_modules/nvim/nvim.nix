@@ -28,8 +28,14 @@
           viAlias = true;
           vimAlias = true;
 
-          withPython3 = false;
+          withPython3 = true;
           withRuby = false;
+
+          # Thanks mistral for this - Required for molten nvim
+          extraPython3Packages = p: [
+            p.pynvim
+            p.jupyter-client
+          ];
 
           extraPackages = with pkgs; [
             git

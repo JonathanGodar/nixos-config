@@ -14,6 +14,7 @@
         publicKey = builtins.readFile ./faccun.pub;
         wgPublicKey = "X2GbP/AIKtMFskcVU4bKwGJ5YMStIP4xuH6Vt//HaTE=";
         wgIp = "10.100.0.2";
+        wolIface = "enp4s0";
       };
       # Innan kan byta
       # direnv
@@ -39,6 +40,9 @@
               wireguard_client
               workstation
               faccunHardware
+              openssh-server
+
+              wakeonlan
 
               # For home-manager
               homeManager # Activates home-manager options
@@ -52,6 +56,14 @@
             networking.hostId = "354736d9";
 
             services.xserver.videoDrivers = [ "nvidia" ];
+
+            # makes it so that the speakers do not buzz when there is no audio playing
+            boot = {
+              binfmt.emulatedSystems = [ "aarch64-linux" ];
+              extraModprobeConfig = ''
+                options snd_hda_intel power_save=0
+              '';
+            };
 
             hardware.graphics = {
               enable = true;
@@ -104,6 +116,17 @@
                 ''
                   require("lua/faccun_monitors")
                 '';
+            };
+
+            # Thanks mistral
+            programs.sioyek.package = pkgs.symlinkJoin {
+              name = "sioyek";
+              paths = [ pkgs.sioyek ];
+              nativeBuildInputs = [ pkgs.makeWrapper ];
+              postBuild = ''
+                wrapProgram $out/bin/sioyek \
+                  --set QT_QPA_PLATFORM xcb
+              '';
             };
           };
       };

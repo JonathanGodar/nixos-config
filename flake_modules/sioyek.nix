@@ -1,11 +1,13 @@
 {
   flake.modules.homeManager.sioyek =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
-      programs.sioyek.enable = true;
+      programs.sioyek = {
+        enable = true;
+      };
 
       xdg.mimeApps.defaultApplications = {
-        "application/pdf" = [ "sioyek.desktop" ]; # Replace with your preferred viewer
+        "application/pdf" = [ "sioyek.desktop" ];
       };
 
       home.file."${config.xdg.configHome}/sioyek/keys_user.config".text = ''

@@ -3,7 +3,8 @@
   flake = {
     meta.hosts.wax9 = {
       publicKey = builtins.readFile ./wax9.pub;
-      wgPublicKey = "X2GbP/AIKtMFskcVU4bKwGJ5YMStIP4xuH6Vt//HaTE=";
+      wgIp = "10.100.0.3";
+      wgPublicKey = "kf8XCBzjKkSMFGunycyBWnHBBXrTSSskjVS+v7jh9EE=";
     };
 
     nixosConfigurations.wax9 = inputs.nixpkgs.lib.nixosSystem {
@@ -20,6 +21,8 @@
           imports = with self.modules.nixos; [
             workstation
             upower
+
+            wireguard_client
 
             # openvpn
             wax9Hardware

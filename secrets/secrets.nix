@@ -22,6 +22,7 @@ in
   # "mullvad_account.age".publicKeys = workstations;
   # "ntfy_password.age".publicKeys = all;
   "wg_faccun_pk.age".publicKeys = workstations;
+  "wg_wax9_pk.age".publicKeys = workstations;
   "wg_rpi4_pk.age".publicKeys = all;
 
   # "ntfy_password.age".publicKeys = workstations;

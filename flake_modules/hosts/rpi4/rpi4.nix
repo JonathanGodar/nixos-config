@@ -66,9 +66,9 @@ in
 
         systemOptions.flakePath = "/home/joanthan/nixos";
 
-	environment.systemPackages = with pkgs; [
-		tmux
-	];
+        environment.systemPackages = with pkgs; [
+          tmux
+        ];
 
         # This is set by the SD-installer and needs to be kept.
         fileSystems."/" = {

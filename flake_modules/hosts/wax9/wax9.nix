@@ -3,6 +3,7 @@
   flake = {
     meta.hosts.wax9 = {
       publicKey = builtins.readFile ./wax9.pub;
+      wgPublicKey = "X2GbP/AIKtMFskcVU4bKwGJ5YMStIP4xuH6Vt//HaTE=";
     };
 
     nixosConfigurations.wax9 = inputs.nixpkgs.lib.nixosSystem {

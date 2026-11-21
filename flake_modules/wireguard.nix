@@ -71,7 +71,7 @@ in
 
             peers = [
               {
-                publicKey = meta.hosts.rpi4.wgPublicKey;
+                publicKey = meta.hosts.faccun.wgPublicKey;
 
                 allowedIPs = [
                   "10.100.0.0/24"

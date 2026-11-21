@@ -37,13 +37,17 @@
           {
             imports = with self.modules.nixos; [
               steam
-              wireguard_client
               workstation
               faccunHardware
               openssh-server
 
               wakeonlan
 
+              wireguard_server
+              # wireguard_client
+
+              # firefly
+              # actual_budget_vm
               # For home-manager
               homeManager # Activates home-manager options
               {
